@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In Your Own Words: Computationally Identifying Interpretable Themes in Free-Text Survey Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ========= CSS VARIABLES ========= */
+    :root {
+      --bg:      #F8F5F1;
+      --white:   #FFFFFF;
+      --navy:    #4A6FA5;
+      --accent:  #C97B5A;
+      --race:    #6B9FD4;
+      --gender:  #9F87CC;
+      --so:      #D97A9B;
+      --text:    #2C3550;
+      --muted:   #7A8499;
+      --border:  #E4DDD6;
+      --shadow:  0 2px 16px rgba(0,0,0,0.06);
+      --radius:  12px;
+    }
+
+    /* ========= RESET ========= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: var(--navy); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    /* ========= LAYOUT ========= */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .container--wide { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 72px 0; }
+
+    /* ========= NAV ========= */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(248,245,241,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 15px; color: var(--navy);
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); }
+    .nav-links a:hover { color: var(--navy); text-decoration: none; }
+
+    /* ========= HERO ========= */
+    .hero {
+      padding: 80px 0 64px;
+      background: linear-gradient(135deg, #F8F5F1 0%, #EDE8F8 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--navy); color: #fff;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--navy);
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer; transition: all 0.15s;
+      text-decoration: none;
+    }
+    .btn-primary   { background: var(--navy); color: #fff; }
+    .btn-primary:hover { background: #3a5a8a; text-decoration: none; }
+    .btn-outline   { background: transparent; border: 1.5px solid var(--navy); color: var(--navy); }
+    .btn-outline:hover { background: var(--navy); color: #fff; text-decoration: none; }
+    .btn-accent    { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: #b06040; text-decoration: none; }
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ========= SECTION HEADERS ========= */
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 600; color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .section-desc {
+      font-size: 16px; color: var(--muted);
+      max-width: 680px; line-height: 1.7;
+    }
+
+    /* ========= ABSTRACT ========= */
+    #abstract { background: var(--white); }
+    .abstract-text {
+      font-family: 'Lora', serif;
+      font-size: 17px; color: var(--text);
+      max-width: 720px; line-height: 1.9;
+      font-style: italic;
+    }
+    .abstract-text strong { font-style: normal; font-weight: 600; }
+
+    /* ========= AUTHORS ========= */
+    #authors { background: var(--bg); }
+    .authors-grid {
+      display: flex; flex-wrap: wrap; gap: 24px;
+      margin-top: 36px;
+    }
+    .author-card {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--white);
+      padding: 16px 20px; border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      flex: 1 1 200px; min-width: 200px;
+    }
+    .author-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+      background: var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700; color: #fff;
+      border: 2px solid var(--border);
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-name { font-weight: 600; font-size: 15px; }
+    .author-name a { color: var(--navy); text-decoration: none; }
+    .author-name a:hover { text-decoration: underline; }
+    .author-affil { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+
+    /* ========= PIPELINE ========= */
+    #pipeline { background: var(--white); }
+    .pipeline-steps {
+      display: flex; gap: 8px;
+      flex-wrap: wrap;
+      margin: 32px 0 24px;
+    }
+    .pipeline-step-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-size: 13px; font-weight: 600;
+      color: var(--muted); cursor: pointer;
+      transition: all 0.18s;
+    }
+    .pipeline-step-btn .step-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--border); color: var(--muted);
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pipeline-step-btn.active {
+      border-color: var(--navy); background: var(--navy); color: #fff;
+    }
+    .pipeline-step-btn.active .step-num {
+      background: rgba(255,255,255,0.25); color: #fff;
+    }
+    .pipeline-panel {
+      display: none;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+    }
+    .pipeline-panel.active { display: flex; gap: 48px; align-items: flex-start; }
+    .pipeline-visual {
+      flex: 0 0 220px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px;
+    }
+    .pipeline-icon {
+      width: 80px; height: 80px; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .pipeline-visual-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; text-align: center;
+      color: var(--muted); max-width: 200px;
+    }
+    .pipeline-content { flex: 1; }
+    .pipeline-step-title {
+      font-family: 'Lora', serif;
+      font-size: 20px; font-weight: 600;
+      color: var(--navy); margin-bottom: 10px;
+    }
+    .pipeline-step-desc {
+      font-size: 15px; color: var(--text);
+      line-height: 1.75; margin-bottom: 16px;
+    }
+    .pipeline-detail {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .pipeline-detail-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--text);
+    }
+    .pipeline-detail-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+      background: var(--white);
+    }
+    .code-chip {
+      display: inline-block;
+      background: #2C3550; color: #A8C7E8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; padding: 2px 8px; border-radius: 4px;
+    }
+    .pipeline-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 20px;
+    }
+    .pipeline-nav-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px;
+      border: 1.5px solid var(--border); background: var(--white);
+      font-size: 13px; font-weight: 600; color: var(--navy);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .pipeline-nav-btn:hover:not(:disabled) { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .pipeline-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    #step-indicator { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+    /* ========= THEME EXPLORER ========= */
+    #themes { background: var(--bg); }
+    .theme-tabs {
+      display: flex; gap: 4px;
+      border-bottom: 2px solid var(--border);
+      margin: 32px 0 0;
+    }
+    .theme-tab {
+      padding: 10px 20px; font-size: 14px; font-weight: 600;
+      border: none; background: none; cursor: pointer;
+      color: var(--muted); border-bottom: 2px solid transparent;
+      margin-bottom: -2px; border-radius: 4px 4px 0 0;
+      transition: all 0.15s;
+    }
+    .theme-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+    .theme-tab[data-axis="race"].active   { color: var(--race); border-bottom-color: var(--race); }
+    .theme-tab[data-axis="gender"].active { color: var(--gender); border-bottom-color: var(--gender); }
+    .theme-tab[data-axis="so"].active     { color: var(--so); border-bottom-color: var(--so); }
+
+    .theme-panel { display: none; padding-top: 28px; }
+    .theme-panel.active { display: block; }
+
+    .theme-figure {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 32px;
+      background: var(--white);
+    }
+    .theme-figure-caption {
+      padding: 12px 16px;
+      background: var(--white);
+      font-size: 13px; color: var(--muted); line-height: 1.5;
+      border-top: 1px solid var(--border);
+    }
+
+    .r2-context-box {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-left: 4px solid var(--navy);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 14px 18px;
+      font-size: 13.5px; color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .r2-cats {
+      color: var(--navy); font-weight: 500;
+    }
+
+    .themes-r2-legend {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .r2-legend-bar {
+      height: 8px; width: 120px; border-radius: 4px;
+      background: linear-gradient(to right, #93C5FD, #1D4ED8);
+    }
+
+    .theme-list { display: flex; flex-direction: column; gap: 8px; }
+    .theme-item {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.15s;
+    }
+    .theme-item:hover { box-shadow: var(--shadow); }
+    .theme-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px; cursor: pointer;
+      user-select: none;
+    }
+    .theme-name {
+      flex: 1; font-size: 14px; font-weight: 500; color: var(--text);
+    }
+    .theme-r2-wrap {
+      display: flex; align-items: center; gap: 10px;
+      flex-shrink: 0;
+    }
+    .theme-r2-bar-bg {
+      width: 80px; height: 6px; border-radius: 3px; background: #E5E7EB;
+      overflow: hidden;
+    }
+    .theme-r2-bar-fill {
+      height: 100%; border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+    .theme-r2-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; font-weight: 600;
+      min-width: 52px; text-align: right;
+      color: var(--muted);
+    }
+    .theme-chevron {
+      width: 16px; height: 16px; color: var(--muted);
+      transition: transform 0.2s; flex-shrink: 0;
+    }
+    .theme-item.open .theme-chevron { transform: rotate(180deg); }
+    .theme-examples {
+      display: none;
+      padding: 0 18px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .theme-item.open .theme-examples { display: block; }
+    .r2-explainer {
+      font-size: 13px; color: var(--muted);
+      padding: 10px 0 12px;
+      line-height: 1.55;
+    }
+    .example-quotes { display: flex; flex-direction: column; gap: 8px; }
+    .example-quote {
+      font-family: 'Lora', serif;
+      font-size: 14px; font-style: italic;
+      color: var(--text); line-height: 1.7;
+      border-left: 3px solid var(--border);
+      padding: 8px 14px;
+      background: var(--bg);
+      border-radius: 0 6px 6px 0;
+    }
+    .example-quote.race   { border-left-color: var(--race); }
+    .example-quote.gender { border-left-color: var(--gender); }
+    .example-quote.so     { border-left-color: var(--so); }
+
+
+    /* ========= DATA ACCESS ========= */
+    #data { background: var(--bg); }
+    .data-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      box-shadow: var(--shadow);
+      max-width: 680px;
+      margin-top: 32px;
+    }
+    .data-card h3 {
+      font-size: 18px; font-weight: 700;
+      color: var(--navy); margin-bottom: 12px;
+    }
+    .data-card p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .data-bullets {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .data-bullet {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--text);
+    }
+    .data-bullet-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #EEF2FF; color: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ========= CITATION ========= */
+    #citation { background: var(--white); }
+    .citation-box {
+      background: #2C3550;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      position: relative;
+      margin-top: 28px;
+    }
+    .citation-box pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; color: #cbd5e1;
+      white-space: pre-wrap; line-height: 1.7;
+      overflow-x: auto;
+    }
+    .copy-btn {
+      position: absolute; top: 14px; right: 14px;
+      background: rgba(255,255,255,0.1); color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 5px 12px; border-radius: 6px;
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* ========= FOOTER ========= */
+    footer {
+      background: #2C3550;
+      padding: 32px 0;
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.55); }
+    footer a { color: rgba(255,255,255,0.8); }
+
+    /* ========= RESPONSIVE ========= */
+    @media (max-width: 680px) {
+      .pipeline-panel.active { flex-direction: column; }
+      .pipeline-visual { flex: none; width: 100%; }
+      .nav-links { display: none; }
+      .stat { flex: 1 1 120px; }
+      .data-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo"> </span>
+    <div class="nav-links">
+      <a href="#abstract">Abstract</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#themes">Themes</a>
+      <a href="#citation">Cite</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="container">
+    <!-- <div class="hero-tag">NLP &middot; Computational Social Science</div> -->
+    <h1>In Your Own Words</h1>
+    <p class="hero-subtitle">
+      A computational framework for identifying interpretable, data-driven themes from free-text
+      descriptions of race, gender, and sexual orientation — going beyond closed survey categories.
+    </p>
+    <div class="hero-links">
+      <a href="#" class="btn btn-primary">
+        <!-- paper icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Paper
+      </a>
+      <a href="#" class="btn btn-outline">
+        <!-- github icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        Code
+      </a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdn29f5FPxeCmHPTNaXFTpF7kFQmIbziAqANjIK-WnTBY6ymA/viewform" target="_blank" class="btn btn-accent">
+        <!-- database icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        Request Data
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============ ABSTRACT ============ -->
+<section id="abstract">
+  <div class="container">
+    <div class="section-label">Abstract</div>
+    <p class="abstract-text">
+      Free-text survey responses can provide nuance often missed by structured questions, but remain difficult to statistically analyze. To address this, we introduce <strong>In Your Own Words</strong>, a computational framework for exploratory analyses of free-text survey data that identifies structured, interpretable themes in free-text responses more precisely than previous computational approaches, facilitating systematic analysis. To illustrate the benefits of this approach, we apply it to free-text descriptions of race, gender, and sexual orientation from 1,004 U.S. participants. The themes our approach learns have three practical applications in survey research. First, the themes can <strong>suggest structured questions</strong> to add to future surveys by surfacing salient constructs---such as belonging and identity fluidity---that existing surveys do not capture. Second, the themes <strong>reveal heterogeneity within standardized categories</strong>, explaining additional variation in health, well-being, and identity importance. Third, the themes <strong>illuminate systematic discordance between self-identified and perceived identities</strong>, highlighting mechanisms of misrecognition that existing measures do not reflect. More broadly, our framework can be deployed in a wide range of survey settings to identify interpretable themes from free text, complementing existing qualitative methods.
+    </p>
+  </div>
+</section>
+
+<!-- ============ AUTHORS ============ -->
+<section id="authors" style="padding-top:20px; padding-bottom:56px;">
+  <div class="container">
+    <div class="section-label">Authors</div>
+    <div class="authors-grid">
+      <!-- Author 1: update href (website link) and src (photo path) -->
+      <div class="author-card">
+        <div class="author-avatar">
+          <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=eRLE0YIAAAAJ&citpid=3" alt="Author photo"
+               onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#6B9FD4,#4A6FA5)'; this.parentElement.innerHTML='JW';" />
+        </div>
+        <div>
+          <div class="author-name"><a href="https://www.jennywang.me" target="_blank">Jenny S. Wang</a></div>
+          <div class="author-affil">Harvard Business School</div>
+        </div>
+      </div>
+      <!-- Author 2: update href and src -->
+      <div class="author-card">
+        <div class="author-avatar">
+          <img src="https://sociology.stanford.edu/sites/sociology/files/styles/hs_medium_square_720x720/public/media/people/aliya_saperstein_170420_0.jpg.webp?h=da6fae6e&itok=05SLKusF" alt="Author photo"
+               onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#9F87CC,#7C6AAF)'; this.parentElement.innerHTML='??';" />
+        </div>
+        <div>
+          <div class="author-name"><a href="https://sociology.stanford.edu/people/aliya-saperstein" target="_blank">Aliya Saperstein</a></div>
+          <div class="author-affil">Stanford University</div>
+        </div>
+      </div>
+      <!-- Author 3: update href and src -->
+      <div class="author-card">
+        <div class="author-avatar">
+          <img src="https://migrate.tech.cornell.edu/authors/profile_emma.jpg" alt="Author photo"
+               onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#D97A9B,#C45A80)'; this.parentElement.innerHTML='??';" />
+        </div>
+        <div>
+          <div class="author-name"><a href="https://people.eecs.berkeley.edu/~emmapierson/" target="_blank">Emma Pierson</a></div>
+          <div class="author-affil">University of California, Berkeley</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIPELINE ============ -->
+<section id="pipeline">
+  <div class="container">
+    <div class="section-label">Methodology</div>
+    <div class="section-title">How It Works: The Analysis Pipeline</div>
+    <p class="section-desc">
+      We combine large-scale text embeddings with a Sparse Autoencoder (SAE) and LLM interpretation
+      to automatically discover interpretable identity themes from free-text survey responses.
+    </p>
+
+    <!-- Step buttons -->
+    <div class="pipeline-steps">
+      <button class="pipeline-step-btn active" onclick="showStep(0)">
+        <span class="step-num">1</span> Collect
+      </button>
+      <button class="pipeline-step-btn" onclick="showStep(1)">
+        <span class="step-num">2</span> Embed
+      </button>
+      <button class="pipeline-step-btn" onclick="showStep(2)">
+        <span class="step-num">3</span> SAE Extraction
+      </button>
+      <button class="pipeline-step-btn" onclick="showStep(3)">
+        <span class="step-num">4</span> LLM Interpret
+      </button>
+      <button class="pipeline-step-btn" onclick="showStep(4)">
+        <span class="step-num">5</span> Annotate All
+      </button>
+    </div>
+
+    <!-- Step panels -->
+
+    <!-- Step 1: Collect -->
+    <div class="pipeline-panel active">
+      <div class="pipeline-visual">
+        <div class="pipeline-icon" style="background:linear-gradient(135deg,#DBEAFE,#93C5FD);">📝</div>
+        <div class="pipeline-visual-label">
+          "Describe your [race/gender/sexual orientation] in your own words."
+        </div>
+      </div>
+      <div class="pipeline-content">
+        <div class="pipeline-step-title">Collect Free-Text Responses</div>
+        <p class="pipeline-step-desc">
+          We recruit 1,004 U.S. participants via Prolific with quotas to ensure representation
+          across racial, gender, and sexual orientation groups. Each participant answers open-ended
+          questions asking them to describe their race/ethnicity, gender, and sexual orientation
+          in their own words, alongside standard closed-category demographic questions.
+        </p>
+        <div class="pipeline-detail">
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">👥</div>
+            <span>1,004 participants recruited with demographic quotas via Prolific</span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">🗺️</div>
+            <span>3 identity dimensions: race/ethnicity, gender, and sexual orientation</span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">📊</div>
+            <span>Paired with closed-category responses for comparison and validation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Embed -->
+    <div class="pipeline-panel">
+      <div class="pipeline-visual">
+        <div class="pipeline-icon" style="background:linear-gradient(135deg,#EDE9FE,#A78BFA);">🔢</div>
+        <div class="pipeline-visual-label">
+          text → <span class="code-chip">3,072-dim</span> vector
+        </div>
+      </div>
+      <div class="pipeline-content">
+        <div class="pipeline-step-title">Compute Text Embeddings</div>
+        <p class="pipeline-step-desc">
+          Each free-text response is encoded into a dense semantic vector using
+          OpenAI's <span class="code-chip">text-embedding-3-large</span> model,
+          producing a 3,072-dimensional representation that captures the
+          semantic content of the response.
+        </p>
+        <div class="pipeline-detail">
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">🤖</div>
+            <span>Model: <strong>text-embedding-3-large</strong> (OpenAI)</span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">📐</div>
+            <span>Output dimensionality: <strong>3,072 dimensions</strong></span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">🔗</div>
+            <span>Embeddings capture semantic similarity across diverse free-text responses</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: SAE -->
+    <div class="pipeline-panel">
+      <div class="pipeline-visual">
+        <div class="pipeline-icon" style="background:linear-gradient(135deg,#FEF3C7,#FCD34D);">⚡</div>
+        <div class="pipeline-visual-label">
+          <span class="code-chip">3,072-dim</span> → <span class="code-chip">32 features</span>, K=4 active
+        </div>
+      </div>
+      <div class="pipeline-content">
+        <div class="pipeline-step-title">Train Sparse Autoencoder (SAE)</div>
+        <p class="pipeline-step-desc">
+          A Sparse Autoencoder (SAE) is trained separately on each identity's embeddings.
+          The SAE learns a sparse, overcomplete dictionary of M=32 features, where at most
+          K=4 features are active for any given response. This sparsity constraint encourages
+          each feature to capture a distinct, interpretable aspect of identity description.
+        </p>
+        <div class="pipeline-detail">
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">🧩</div>
+            <span>Architecture: <strong>M=32 dictionary features</strong>, top-K sparse coding with <strong>K=4</strong></span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">🔬</div>
+            <span>Built on <strong>HypotheSAEs</strong> framework for interpretable feature extraction</span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">✅</div>
+            <span>Trained independently for each identity dimension (race, gender, sexual orientation)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: LLM Interpret -->
+    <div class="pipeline-panel">
+      <div class="pipeline-visual">
+        <div class="pipeline-icon" style="background:linear-gradient(135deg,#FCE7F3,#F9A8D4);">💬</div>
+        <div class="pipeline-visual-label">
+          Feature activations → human-readable theme label
+        </div>
+      </div>
+      <div class="pipeline-content">
+        <div class="pipeline-step-title">LLM-Interpret Each Feature</div>
+        <p class="pipeline-step-desc">
+          The top-activating responses for each SAE feature are passed to
+          <span class="code-chip">GPT-4o</span>, which generates a natural-language
+          description of what the feature represents. Features with poor fidelity
+          (annotation F1 &lt; 0.50) are excluded.
+        </p>
+        <div class="pipeline-detail">
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">🤖</div>
+            <span>Interpreter: <strong>GPT-4o</strong> with top-10 activating examples per feature</span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">📏</div>
+            <span>Fidelity filtering: themes with F1 &lt; 0.50 excluded (median F1 = <strong>0.78</strong>)</span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">📋</div>
+            <span>Output: natural-language theme label (e.g., "mentions fluidity in gender identity")</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Annotate All -->
+    <div class="pipeline-panel">
+      <div class="pipeline-visual">
+        <div class="pipeline-icon" style="background:linear-gradient(135deg,#D1FAE5,#6EE7B7);">🏷️</div>
+        <div class="pipeline-visual-label">
+          All responses × all themes → binary annotations
+        </div>
+      </div>
+      <div class="pipeline-content">
+        <div class="pipeline-step-title">Annotate All Responses for Every Theme</div>
+        <p class="pipeline-step-desc">
+          Each theme label is used as a prompt for <span class="code-chip">GPT-4.1-mini</span>
+          to annotate <em>every</em> response (0/1) — not just the top-activating ones.
+          This produces a full binary annotation matrix for downstream analysis,
+          validated against human raters (κ = 0.65).
+        </p>
+        <div class="pipeline-detail">
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">🤖</div>
+            <span>Annotator: <strong>GPT-4.1-mini</strong> with identity-specific prompts</span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">📊</div>
+            <span>Output: binary matrix (N responses × M themes) per identity</span>
+          </div>
+          <div class="pipeline-detail-item">
+            <div class="pipeline-detail-icon">🤝</div>
+            <span>Validated against human raters: <strong>κ = 0.65</strong> agreement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <div class="pipeline-nav">
+      <button class="pipeline-nav-btn" id="prev-btn" onclick="prevStep()" disabled>
+        ← Previous
+      </button>
+      <span id="step-indicator">Step 1 of 5</span>
+      <button class="pipeline-nav-btn" id="next-btn" onclick="nextStep()">
+        Next →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THEME EXPLORER ============ -->
+<section id="themes">
+  <div class="container--wide">
+    <div class="container" style="padding:0;">
+      <div class="section-label">Interactive Explorer</div>
+      <div class="section-title">Themes Discovered Across Identity Dimensions</div>
+      <p class="section-desc">
+        The SAE discovers interpretable themes for each identity axis. Below, each theme is
+        shown with its <strong>R²</strong> — the fraction of variation explained by standard
+        demographic categories. A <em>low R²</em> means the theme captures something beyond
+        what we'd know just from someone's demographic label.
+      </p>
+    </div>
+
+    <div class="theme-tabs">
+      <button class="theme-tab active" data-axis="race" onclick="showTab('race')">Race / Ethnicity</button>
+      <button class="theme-tab" data-axis="gender" onclick="showTab('gender')">Gender</button>
+      <button class="theme-tab" data-axis="so" onclick="showTab('so')">Sexual Orientation</button>
+    </div>
+
+    <!-- RACE PANEL -->
+    <div class="theme-panel active" id="panel-race">
+      <div class="r2-context-box">
+        <strong>R² baseline:</strong> Regression of each theme on standardized race/ethnicity categories —
+        <span class="r2-cats">Asian, Black or African American, White, Hispanic or Latino, Middle Eastern or North African, Native Hawaiian or Pacific Islander, American Indian or Alaska Native, Some Other Race</span>.
+        A low R² indicates the theme captures information <em>beyond</em> what closed demographic checkboxes reveal.
+      </div>
+      <div class="theme-figure">
+        <img src="figures/custom_race_themes_barchart_legend_True.png" alt="Race themes by demographic category" />
+        <div class="theme-figure-caption">
+          Each bar shows the proportion of respondents in each racial/ethnic category whose free-text description
+          activates the theme. Themes are ordered by the maximum difference across groups.
+        </div>
+      </div>
+      <div class="themes-r2-legend">
+        <span>R² (explained by standard categories):</span>
+        <div class="r2-legend-bar"></div>
+        <span>0 → 1</span>
+      </div>
+      <div class="theme-list" id="themes-race"></div>
+    </div>
+
+    <!-- GENDER PANEL -->
+    <div class="theme-panel" id="panel-gender">
+      <div class="r2-context-box">
+        <strong>R² baseline:</strong> Regression of each theme on standardized gender categories —
+        <span class="r2-cats">Gender identity (Man, Woman, or Some other way) × Transgender status (Yes, No, or Prefer not to answer)</span>.
+        A low R² indicates the theme captures information <em>beyond</em> what closed demographic checkboxes reveal.
+      </div>
+      <div class="theme-figure">
+        <img src="figures/custom_gender_themes_barchart_legend_True.png" alt="Gender themes by category" />
+        <div class="theme-figure-caption">
+          Each bar shows the proportion of respondents in each gender category whose free-text description
+          activates the theme. Themes are ordered by the maximum difference across groups.
+        </div>
+      </div>
+      <div class="themes-r2-legend">
+        <span>R² (explained by standard categories):</span>
+        <div class="r2-legend-bar"></div>
+        <span>0 → 1</span>
+      </div>
+      <div class="theme-list" id="themes-gender"></div>
+    </div>
+
+    <!-- SO PANEL -->
+    <div class="theme-panel" id="panel-so">
+      <div class="r2-context-box">
+        <strong>R² baseline:</strong> Regression of each theme on standardized sexual orientation categories —
+        <span class="r2-cats">Straight/heterosexual, Bisexual, Gay, Lesbian, Queer, Pansexual, Asexual/aromantic, Demisexual, Questioning, Sexually fluid, Other, Prefer not to answer</span>.
+        A low R² indicates the theme captures information <em>beyond</em> what closed demographic checkboxes reveal.
+      </div>
+      <div class="theme-figure">
+        <img src="figures/custom_sexual_orientation_themes_barchart_legend_True.png" alt="Sexual orientation themes by category" />
+        <div class="theme-figure-caption">
+          Each bar shows the proportion of respondents in each sexual orientation category whose free-text
+          description activates the theme. Themes are ordered by the maximum difference across groups.
+        </div>
+      </div>
+      <div class="themes-r2-legend">
+        <span>R² (explained by standard categories):</span>
+        <div class="r2-legend-bar"></div>
+        <span>0 → 1</span>
+      </div>
+      <div class="theme-list" id="themes-so"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ CITATION ============ -->
+<section id="citation">
+  <div class="container">
+    <div class="section-label">Citation</div>
+    <div class="section-title">Cite This Work</div>
+    <div class="citation-box">
+      <button class="copy-btn" onclick="copyCitation()">Copy</button>
+      <pre id="bibtex">@article{2026inyourownwords,
+  title     = {In Your Own Words: Computational Understanding of
+               Self-Described Identity},
+  author    = {  and AND <!-- Co-Authors -->},
+  year      = {2026},
+  journal   = {<!-- Venue -->},
+  url       = {<!-- URL -->}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <p>
+    <strong style="color:rgba(255,255,255,0.85);">In Your Own Words</strong> &nbsp;·&nbsp;
+    <!-- <a href="#">Paper</a> &nbsp;·&nbsp;
+    <a href="#">Code</a> &nbsp;·&nbsp;
+    <a href="#">Data</a> &nbsp;·&nbsp; -->
+    Questions? <a href="mailto:">Contact us</a>
+  </p>
+</footer>
+
+<!-- ============ JAVASCRIPT ============ -->
+<script>
+  /* ===== PIPELINE ===== */
+  let currentStep = 0;
+  const totalSteps = 5;
+
+  function showStep(n) {
+    document.querySelectorAll('.pipeline-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === n);
+    });
+    document.querySelectorAll('.pipeline-step-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === n);
+    });
+    currentStep = n;
+    document.getElementById('prev-btn').disabled = n === 0;
+    document.getElementById('next-btn').disabled = n === totalSteps - 1;
+    document.getElementById('step-indicator').textContent = `Step ${n + 1} of ${totalSteps}`;
+  }
+
+  function prevStep() { if (currentStep > 0) showStep(currentStep - 1); }
+  function nextStep() { if (currentStep < totalSteps - 1) showStep(currentStep + 1); }
+
+  /* ===== TABS ===== */
+  function showTab(axis) {
+    document.querySelectorAll('.theme-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.theme-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`.theme-tab[data-axis="${axis}"]`).classList.add('active');
+    document.getElementById(`panel-${axis}`).classList.add('active');
+  }
+
+  /* ===== THEME DATA ===== */
+  const themeData = {
+    race: [
+      {
+        name: "mentions being Black or African American",
+        r2: 0.77,
+        examples: [
+          "Black or African American.",
+          "I am a Black African American. My root is from Western Africa.",
+          "I am Black American. Being a Black American has heavily influenced my experiences in the world."
+        ]
+      },
+      {
+        name: "mentions feelings of not fully belonging or being out of place",
+        r2: 0.05,
+        examples: [
+          "I was raised in a Caribbean country where we spoke French and Creole, but I feel like I don't fully belong anywhere.",
+          "I've had the opportunity of growing up with privilege. There are many things in my life I haven't had to worry about because of my ethnicity.",
+          "I feel like I'm caught between two worlds — not quite fitting into either the majority or my heritage group."
+        ]
+      },
+      {
+        name: "mentions speaking or understanding multiple languages",
+        r2: 0.15,
+        examples: [
+          "I am Filipino American. I can speak Tagalog and other dialects — I find this very unique.",
+          "I am a first born Filipino American. Most individuals born here and whose parents are Filipino immigrants don't speak the mother language.",
+          "My family speaks both English and Spanish at home, which has been central to my cultural identity."
+        ]
+      },
+      {
+        name: "mentions cultural food as important to identity",
+        r2: 0.04,
+        examples: [
+          "We love to eat delicious food that includes all of our unique spices, and we have a very rich history and culture.",
+          "Family is a big part of our culture and to help each other out. There is a lot of pride in our food too.",
+          "Food has always been a way for our family to connect to our heritage — traditional dishes at every gathering."
+        ]
+      },
+      {
+        name: "mentions being immigrant or immigrant generation",
+        r2: 0.05,
+        examples: [
+          "I am Filipino but I was born and raised in America. Both of my parents and all of my extended family are immigrants.",
+          "I am a half Irish and half Italian third generation American. My great-grandparents were originally from Italy and Ireland.",
+          "I am second-generation American. My parents came from Mexico, and I grew up navigating both cultures."
+        ]
+      },
+      {
+        name: "describes beliefs or values associated with their race",
+        r2: 0.06,
+        examples: [
+          "My race is a respectful and hardworking race. They do things together to achieve a common goal.",
+          "My race believes that other races shouldn't be equal. My race has bigoted views, and I don't always feel proud being my race.",
+          "We come from a culture that values community, family above all, and honoring our ancestors."
+        ]
+      },
+      {
+        name: "mentions being born in the United States",
+        r2: 0.01,
+        examples: [
+          "I was born in China. So I am Chinese American.",
+          "I'm a Venezuelan American — born in America to Venezuelan parents.",
+          "Born and raised in the United States, but my roots go back to the Philippines."
+        ]
+      }
+    ],
+    gender: [
+      {
+        name: "mentions questioning gender identity",
+        r2: 0.35,
+        examples: [
+          "I was born a male, but I've been transitioning to female over the last year. I've always known, but I never had the funds to do so until recently.",
+          "I identify as genderfluid and it took me a long time to realize this part of myself.",
+          "It wasn't until my late teens that I realized the discomfort I felt wasn't just anxiety — it was about my gender."
+        ]
+      },
+      {
+        name: "mentions fluidity or fluctuation in gender identity",
+        r2: 0.29,
+        examples: [
+          "I call myself genderfluid. Most days I feel I have no gender, but other days I feel like a woman and others a man.",
+          "My gender is a fluid wave that crashes between multiple gender aspects inside. My gender is always changing and adapting to my needs.",
+          "Some days I wake up feeling entirely masculine, others entirely feminine. I've stopped trying to pin it down."
+        ]
+      },
+      {
+        name: "mentions rejecting gender as part of identity",
+        r2: 0.25,
+        examples: [
+          "I don't have one. I feel disconnected from (and generally apathetic about) the entire concept of gender.",
+          "\"Agender\" is what I normally go with. I also describe it as gender null or gender apathetic. I simply just don't have any personal sense of a gender.",
+          "Gender has never been a meaningful category for me. I exist outside of it."
+        ]
+      },
+      {
+        name: "mentions stereotypically feminine activities or items",
+        r2: 0.04,
+        examples: [
+          "I don't consider myself super feminine but I definitely enjoy and partake in things one would deem feminine — like heels, makeup, and fashion.",
+          "I am non-binary and trans masculine. I express my gender in a more feminine way but I'm incredibly androgynous.",
+          "Even though I'm a man, I love cooking, fashion, and things culturally coded as feminine. It's just who I am."
+        ]
+      },
+      {
+        name: "mentions traditionally masculine activities or traits",
+        r2: 0.03,
+        examples: [
+          "I am a man. I do things that are manly. I usually fix things that are broken.",
+          "I am a male. Most of my hobbies are typical male things like hunting and fishing.",
+          "Growing up I was always into sports, camping, and being outdoors. That's how I was raised to be a man."
+        ]
+      },
+      {
+        name: "mentions responsibilities within family",
+        r2: 0.02,
+        examples: [
+          "Someone who takes charge in the household and provides for their family — has a father figure.",
+          "As a man it's my duty to make sure I provide for my family and protect my loved ones.",
+          "My identity as a woman is deeply tied to being a mother and keeping the family together."
+        ]
+      },
+      {
+        name: "directly mentions being male or a man",
+        r2: 0.76,
+        examples: [
+          "I am an Intersex Male. A man.",
+          "I am a man that was born a man.",
+          "Male. That is all."
+        ]
+      }
+    ],
+    so: [
+      {
+        name: "mentions questioning sexual orientation",
+        r2: 0.17,
+        examples: [
+          "This is kind of a tricky one for me. While I am mostly what others would label Heterosexual, I must admit that I find myself rather Bi-Curious at times.",
+          "I am heterosexual but do have curiosities. I don't know if there is enough to toss me into another category.",
+          "I've been questioning for a few years now. I know I'm not fully straight, but I haven't landed on a label yet."
+        ]
+      },
+      {
+        name: "distinguishes between romantic & sexual orientation",
+        r2: 0.17,
+        examples: [
+          "I would say I'm bisexual. Specifically, I'm sexually attracted to men and women but only romantically attracted to men.",
+          "I'm unsure of my sexual orientation because I have had attraction to both men and women. I've never had romantic feelings for anyone so that also adds to the confusion.",
+          "I am heterosexual but have had other sexual partners in the past (non-romantic) that were of the same gender."
+        ]
+      },
+      {
+        name: "mentions attraction to multiple genders",
+        r2: 0.48,
+        examples: [
+          "As a bisexual person, I am attracted to individuals of more than one gender, finding beauty and connection in diverse expressions of identity.",
+          "I'm bisexual — as in, 'genders like mine and genders not like mine.' Bisexuality isn't binary or dualistic.",
+          "I don't limit my attraction to any one gender. If I connect with a person, I connect with them."
+        ]
+      },
+      {
+        name: "mentions attraction not based on gender or sex",
+        r2: 0.51,
+        examples: [
+          "I am not attracted to people based on their gender or sex. I find people attractive for who they are as people.",
+          "I am pansexual, which means I don't base my attraction on someone's gender/sex. My attraction is based on a person's heart.",
+          "Gender isn't a factor in who I'm drawn to. It's all about the person themselves."
+        ]
+      },
+      {
+        name: "mentions age of realization or coming out",
+        r2: 0.06,
+        examples: [
+          "I am gay. I found out when I was very young — in middle school.",
+          "I'm a lesbian both romantically and sexually. I learned this about myself around puberty, which happened young for me at 9 years old.",
+          "I didn't come out until I was 40. For most of my life I thought I was straight because that's all I knew."
+        ]
+      },
+      {
+        name: "mentions never questioning sexual orientation",
+        r2: 0.07,
+        examples: [
+          "I HAVE ALWAYS BEEN A STRAIGHT MALE. HAVE NEVER QUESTIONED MY ORIENTATION.",
+          "I am heterosexual and have always been my whole life. I have only seen women as romantic interests.",
+          "Straight. Never questioned it, never needed to. It's just always been clear to me."
+        ]
+      },
+      {
+        name: "mentions reluctance to form intimate connections",
+        r2: 0.28,
+        examples: [
+          "I have rarely been the dating type, but I did eventually end up with my lovely current long-term partner. I really do struggle socially in some ways.",
+          "I have a much larger preference for males than I do for any women. I do like effeminate qualities, but I personally can't connect with women intimately.",
+          "Forming romantic connections has always been hard for me. I'm not sure if it's demisexuality or just anxiety."
+        ]
+      }
+    ]
+  };
+
+  /* ===== COLOR MAPS ===== */
+  const axisColor = { race: '#6B9FD4', gender: '#9F87CC', so: '#D97A9B' };
+
+  /* ===== BUILD THEME LISTS ===== */
+  function buildThemes() {
+    const axisMap = { race: 'race', gender: 'gender', so: 'so' };
+    Object.entries(axisMap).forEach(([axis]) => {
+      const container = document.getElementById(`themes-${axis}`);
+      const color = axisColor[axis];
+      themeData[axis].forEach((theme, i) => {
+        const item = document.createElement('div');
+        item.className = 'theme-item';
+        item.id = `theme-${axis}-${i}`;
+
+        const barPct = Math.min(theme.r2 * 100, 100).toFixed(0);
+        const noveltyLabel = theme.r2 <= 0.10
+          ? '✦ Novel' : theme.r2 <= 0.30
+          ? 'Moderate' : '● Predicted';
+        const noveltyTitle = theme.r2 <= 0.10
+          ? 'Low R² — this theme reveals information beyond standard categories'
+          : theme.r2 <= 0.30
+          ? 'Moderate R² — partially explained by standard categories'
+          : 'High R² — largely predicted by standard demographic categories';
+
+        const exampleHtml = theme.examples.slice(0, 2).map(ex =>
+          `<div class="example-quote ${axis}">"${ex}"</div>`
+        ).join('');
+
+        item.innerHTML = `
+          <div class="theme-header" onclick="toggleTheme('${axis}', ${i})">
+            <div class="theme-name">${theme.name}</div>
+            <div class="theme-r2-wrap">
+              <div class="theme-r2-bar-bg">
+                <div class="theme-r2-bar-fill" style="width:${barPct}%; background:${color};"></div>
+              </div>
+              <div class="theme-r2-label" style="color:${color};" title="${noveltyTitle}">
+                R²=${theme.r2.toFixed(2)}
+              </div>
+            </div>
+            <svg class="theme-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+          <div class="theme-examples">
+            <p class="r2-explainer">
+              <strong>R² = ${theme.r2.toFixed(2)}:</strong> Standard demographic categories explain
+              ${(theme.r2 * 100).toFixed(0)}% of variation in who mentions this theme.
+              ${theme.r2 <= 0.10
+                ? 'This theme reveals information that goes <em>beyond</em> what we\'d know from someone\'s demographic category alone.'
+                : theme.r2 <= 0.30
+                ? 'This theme captures some within-group variation not fully explained by demographic categories.'
+                : 'This theme closely tracks demographic categories and could partly replace a closed survey question.'
+              }
+            </p>
+            <div class="example-quotes">${exampleHtml}</div>
+          </div>`;
+        container.appendChild(item);
+      });
+    });
+  }
+
+  function toggleTheme(axis, i) {
+    const item = document.getElementById(`theme-${axis}-${i}`);
+    item.classList.toggle('open');
+  }
+
+  /* ===== CITATION COPY ===== */
+  function copyCitation() {
+    const text = document.getElementById('bibtex').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  }
+
+  /* ===== INIT ===== */
+  buildThemes();
+</script>
+</body>
+</html>
