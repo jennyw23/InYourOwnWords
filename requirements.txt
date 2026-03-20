@@ -1,0 +1,32 @@
+# Core data / numerics
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.14.1
+statsmodels==0.14.4
+
+# SAE training
+torch==2.6.0
+hypothesaes==2.0.0
+
+# Theme validation / regression
+scikit-learn==1.7.1
+
+# Baseline topic models
+tomotopy==0.13.0
+spacy==3.8.11
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl#sha256=1932429db727d4bff3deed6b34cfc05df17794f4a52eeb26cf8928f7c1a0fb85
+bertopic==0.16.4
+hdbscan==0.8.39
+umap-learn==0.5.9.post2
+topicgpt_python==0.2.7
+
+# LLM / embeddings
+openai==2.14.0
+
+# Visualization
+matplotlib==3.9.2
+
+# Utilities
+python-dotenv==1.0.1
+pyyaml==6.0.2
+tqdm==4.67.1

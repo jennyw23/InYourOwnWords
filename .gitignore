@@ -1,0 +1,16 @@
+# Ignore environment variables and system files
+.env
+**/.DS_Store
+*_pycache_*
+
+# Ignore data and embedding files
+*.npy
+data/in_your_own_words.csv
+data/*/*.csv
+data/*/*/*.pt
+validation/*.csv
+analysis/baselines/bertopic/bertopic_models/*
+analysis/baselines/topicgpt/data/*
+
+# Ignore figure outputs
+analysis/figures/*.png
