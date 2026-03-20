@@ -1,0 +1,142 @@
+level,parent_theme,theme_name,count,description
+1,,Sexuality,240,Discusses the complexities of sexual orientation and the nuances of attraction and relationships.
+2,Sexuality,Heterosexuality,1,Refers to attraction to the opposite gender.
+2,Sexuality,Homosexuality,1,Refers to attraction to the same gender.
+2,Sexuality,Bisexuality,1,Refers to attraction to both men and women.
+2,Sexuality,Pansexuality,1,Refers to attraction to people regardless of gender.
+2,Sexuality,Asexuality,1,Refers to little or no sexual attraction to others.
+2,Sexuality,Questioning,1,Refers to individuals exploring or uncertain about their sexual orientation.
+1,,Asexuality,126,Refers to a sexual orientation characterized by a lack of sexual attraction to others.
+2,Asexuality,Aromanticism,1,"Mentions lack of romantic attraction, often associated with asexuality."
+2,Asexuality,Demisexuality,1,Mentions sexual attraction only after forming strong emotional bonds.
+2,Asexuality,Grey-Asexuality,1,Mentions experiencing sexual attraction infrequently or under specific circumstances.
+2,Asexuality,Biromanticism,1,Mentions romantic attraction to multiple genders without sexual attraction.
+2,Asexuality,Sex-Positive Asexuality,1,Mentions engaging in sexual activities without experiencing sexual attraction.
+1,,Panromanticism,22,Describes a romantic orientation where one is attracted to individuals regardless of their gender.
+2,Panromanticism,Asexuality,1,Mentions individuals who experience romantic attraction but not sexual attraction.
+2,Panromanticism,Pansexuality,1,Mentions individuals who are attracted to others regardless of their gender.
+2,Panromanticism,Bisexuality,1,Mentions individuals who are attracted to both men and women.
+2,Panromanticism,Queer,1,Mentions individuals who identify with a non-normative sexual orientation or gender identity.
+2,Panromanticism,Aromanticism,1,Mentions individuals who experience little to no romantic attraction to others.
+1,,Aromanticism,26,"Highlights the absence of romantic attraction, as mentioned in the document."
+2,Aromanticism,Aromantic Identity,1,"Discusses the experiences and characteristics of individuals who identify as aromantic, including the lack of romantic attraction and the impact on relationships."
+2,Aromanticism,Asexuality,1,"Covers the experiences and characteristics of individuals who identify as asexual, including the lack of sexual attraction and how it influences their lives."
+2,Aromanticism,Romantic and Sexual Orientation Spectrum,1,"Explores the diverse range of romantic and sexual orientations, including those who identify as queer, bisexual, straight, and other variations, and how these identities intersect with aromanticism and asexuality."
+1,,Family,32,Mentions the roles and experiences related to being a husband and a mother within a community context.
+2,Family,Sexual Orientation,1,Discusses various sexual orientations and their impact on personal and family life.
+2,Family,Marriage and Parenthood,1,Explores experiences related to marriage and raising children within the family context.
+1,,Romanticism,40,Refers to the emotional and romantic attraction experienced in relationships.
+2,Romanticism,Sexual Orientation,1,Discusses various sexual orientations and how they relate to romanticism.
+2,Romanticism,Romantic Relationships,1,Explores the nature and dynamics of romantic relationships and their influence on individuals' lives.
+2,Romanticism,Asexuality and Aromanticism,1,Focuses on the experiences and perspectives of individuals who identify as asexual or aromantic.
+1,,Bisexuality,160,"Mentions attraction to multiple genders, indicating a sexual orientation."
+2,Bisexuality,Sexual Fluidity,1,Discusses the changing or fluid nature of sexual orientation over time.
+2,Bisexuality,Romantic Preferences,1,Mentions specific romantic preferences or inclinations within bisexuality.
+2,Bisexuality,Gender Spectrum,1,Refers to attraction to multiple genders beyond the binary male and female.
+2,Bisexuality,Asexuality and Bisexuality,1,Discusses the intersection of asexuality with bisexuality.
+2,Bisexuality,Queer Identity,1,Refers to identifying as queer in addition to or instead of bisexual.
+2,Bisexuality,Coming Out and Identity,1,Discusses experiences related to coming out and embracing bisexual identity.
+1,,Love,48,"Mentions a general affection towards others, which can encompass various forms of love."
+2,Love,Sexual Orientation,1,Discusses various sexual orientations and how they influence love and relationships.
+2,Love,Romantic Relationships,1,"Explores the dynamics and experiences of romantic relationships, often in the context of sexual orientation."
+1,,Gay,43,"A term used to describe individuals who are attracted to members of the same sex, typically referring to men."
+2,Gay,Sexual Orientation,1,"Discusses the identification and personal experiences related to being gay, including the intersection with other sexual orientations and identities."
+2,Gay,Gender Identity,1,"Explores the relationship between gender identity and being gay, including experiences of transgender and nonbinary individuals."
+2,Gay,Community and Acceptance,1,"Focuses on the social aspects of being gay, including community support, acceptance, and pride."
+2,Gay,Relationships and Attraction,1,"Covers romantic and sexual relationships, preferences, and attractions within the context of being gay."
+1,,Queer,72,"Refers to a broad spectrum of sexual orientations and identities that are not exclusively heterosexual or cisgender, often used as an umbrella term within the LGBTQ+ community."
+2,Queer,Bisexuality,1,Refers to attraction to more than one gender.
+2,Queer,Pansexuality,1,Refers to attraction to people regardless of their gender identity.
+2,Queer,Lesbian,1,Refers to women who are attracted to other women.
+2,Queer,Asexuality,1,Refers to a lack of sexual attraction to others.
+2,Queer,Demisexuality,1,Refers to sexual attraction that occurs only after a strong emotional connection is formed.
+2,Queer,Gay,1,"Refers to attraction to the same gender, often used by men attracted to men."
+1,,Heterosexuality,330,Refers specifically to the sexual orientation of being attracted to individuals of the opposite sex.
+2,Heterosexuality,Romantic Relationships,1,Mentions relationships and partnerships with the opposite sex.
+2,Heterosexuality,Sexual Orientation Identity,1,Discusses personal identification and understanding of one's sexual orientation.
+2,Heterosexuality,Societal and Cultural Influences,1,Explores how societal norms and cultural values impact perceptions and experiences of heterosexuality.
+1,,Female,58,Refers to the sex that is typically associated with the production of ova and the capacity to bear offspring.
+2,Female,Sexual Orientation,1,"Discusses various sexual orientations and preferences of females, including heterosexual, bisexual, pansexual, lesbian, and asexual orientations."
+1,,Lesbian,56,"Refers to women who are attracted to other women, encompassing aspects of sexual orientation and identity."
+2,Lesbian,Sexual Orientation,1,"Discusses the identification and experiences related to being a lesbian, including coming out, self-identification, and the impact on personal life."
+2,Lesbian,Relationships,1,"Focuses on romantic and sexual relationships, including challenges, preferences, and experiences as a lesbian."
+2,Lesbian,Identity and Expression,1,"Explores the intersection of lesbian identity with other aspects of identity, such as being queer, bisexual, or non-binary, and how individuals express their identity."
+1,,Male,40,Implies attraction to masculine-presenting individuals.
+2,Male,Sexual Orientation,1,"Discusses various sexual orientations and attractions, including heterosexual, homosexual, bisexual, pansexual, and asexual identities, as well as the influence of these orientations on personal identity and relationships."
+1,,Relationships,205,Mentions the connections and interactions between individuals.
+2,Relationships,Sexual Orientation,1,Discusses how individuals identify their sexual orientation and how it influences their relationships and personal experiences.
+2,Relationships,Romantic Relationships,1,"Explores the nature of romantic relationships, including preferences, experiences, and societal influences on romantic connections."
+1,,Demisexuality,43,Refers to a sexual orientation where an individual only experiences sexual attraction after forming a strong emotional connection.
+2,Demisexuality,Sexual Orientation,1,"Discusses various sexual orientations and how they relate to demisexuality, including heterosexuality, bisexuality, pansexuality, and asexuality."
+2,Demisexuality,Emotional Connection,1,Highlights the importance of emotional bonds in forming sexual attraction for demisexual individuals.
+2,Demisexuality,Identity Exploration,1,"Explores the process of understanding and identifying one's sexual orientation, including the challenges and realizations associated with demisexuality."
+1,,Intelligence,3,Mentions the attraction to intelligence as a trait in partners.
+1,,Gender,36,Discusses the concept of gender identity and its distinction from sexual orientation.
+2,Gender,Gender Identity,1,"Discusses how individuals perceive and identify their own gender, including cisgender, transgender, and non-binary identities."
+2,Gender,Sexual Orientation,1,"Covers the spectrum of sexual orientations, including gay, lesbian, bisexual, pansexual, asexual, and queer identities."
+2,Gender,Romantic Orientation,1,"Focuses on romantic attraction, which may differ from sexual attraction, including terms like aromantic and biromantic."
+1,,Homosexuality,17,Mentions having homosexual relationships and the associated feelings of happiness.
+2,Homosexuality,Sexual Orientation,1,"Discusses various sexual orientations, including heterosexual, homosexual, bisexual, pansexual, and queer identities."
+2,Homosexuality,Societal and Cultural Impact,1,"Explores the societal and cultural challenges and acceptance related to different sexual orientations, including family acceptance, societal norms, and discrimination."
+2,Homosexuality,Personal Identity and Expression,1,"Focuses on how individuals identify and express their sexual orientation and gender identity, including non-binary and polyamorous identities."
+1,,Polyamory,7,Describes the practice of engaging in multiple romantic relationships with the consent of all parties involved.
+1,,Pansexuality,68,Refers to the sexual attraction to individuals regardless of their gender identity.
+2,Pansexuality,Bisexuality,1,"Mentions the attraction to two or more genders, often used interchangeably with pansexuality."
+2,Pansexuality,Demisexuality,1,"Mentions the need for an emotional connection before experiencing sexual attraction, often mentioned alongside pansexuality."
+2,Pansexuality,Asexuality,1,"Mentions the lack of sexual attraction or interest, sometimes in conjunction with pansexuality."
+2,Pansexuality,Romantic Orientation,1,"Discusses romantic attraction, which may differ from sexual attraction, often mentioned in the context of pansexuality."
+1,,Community,16,Mentions the importance of supportive groups and networks in the journey of self-discovery and acceptance.
+2,Community,Sexual Orientation,1,"Discusses various sexual orientations, including straight, gay, lesbian, bisexual, and pansexual, and how these identities influence personal relationships and community interactions."
+1,,Fluidity,42,"Refers to the concept of sexual orientation being flexible and not fixed, allowing for situational changes in attraction."
+2,Fluidity,Sexual Orientation,1,"Discusses the spectrum and variability of sexual orientation, including heterosexuality, bisexuality, pansexuality, and other non-binary identities, as well as the fluid nature of these identities over time."
+2,Fluidity,Romantic Orientation,1,"Explores the spectrum and variability of romantic attraction, which may differ from sexual attraction, and includes identities such as biromantic and aromantic."
+2,Fluidity,Labels and Identity,1,"Examines the use and rejection of labels in defining sexual and romantic identities, highlighting the personal and societal implications of labeling or not labeling one's orientation."
+1,,Compulsory Heterosexuality,4,Mentions the societal expectation of heterosexuality that influences personal identity and self-discovery.
+1,,Monogamy,5,Mentions the desire for a single partner in a relationship.
+1,,Bullying,4,Discusses the social issues related to harassment and discrimination based on sexual orientation.
+1,,Awareness,3,Refers to the understanding of issues faced by individuals with different sexual orientations.
+1,,LGBTQ Community,4,"Refers to the broader community encompassing various sexual orientations and gender identities, highlighting societal attitudes and discrimination."
+1,,Gynesexuality,1,Refers to the sexual attraction to femininity or female-identifying individuals.
+1,,Identity,50,"Refers to the understanding and expression of oneself, including aspects such as personal design and attraction to one's original self."
+2,Identity,Sexual Orientation,1,"Discusses the various aspects of sexual orientation, including attraction to different genders, personal experiences, and the impact on relationships and identity."
+1,,Greysexuality,3,Describes individuals who have little interest in sex but may engage in it under certain circumstances.
+1,,Greyromanticism,2,Refers to a romantic orientation where individuals experience romantic attraction infrequently or under specific circumstances.
+1,,Aesthetic Attraction,1,"Describes the appreciation of physical appearance without sexual attraction, highlighting a distinct form of attraction."
+1,,Transgender,12,Mentions the experience of individuals whose gender identity differs from the sex they were assigned at birth.
+2,Transgender,Sexual Orientation,1,"Discusses various sexual orientations and attractions in the context of transgender identities, including lesbian, gay, queer, pansexual, asexual, and bisexual orientations."
+1,,Sexual Orientation,69,"Mentions the classification of individuals based on their patterns of emotional, romantic, or sexual attraction."
+2,Sexual Orientation,Bisexual,1,Describes individuals who are attracted to more than one gender.
+2,Sexual Orientation,Heterosexual,1,Describes individuals who are attracted to the opposite gender.
+2,Sexual Orientation,Asexual,1,Describes individuals who experience little to no sexual attraction to others.
+2,Sexual Orientation,Queer,1,An umbrella term for sexual and gender minorities who are not heterosexual or are not cisgender.
+2,Sexual Orientation,Pansexual,1,Describes individuals who are attracted to others regardless of gender.
+2,Sexual Orientation,Demisexual,1,Describes individuals who only experience sexual attraction after forming a strong emotional connection.
+2,Sexual Orientation,Fluid,1,Describes individuals whose sexual orientation may change over time or depending on the situation.
+1,,Dating,3,Mentions the social activity of meeting and engaging with potential romantic partners.
+1,,Isolation,1,"Mentions the feeling of being separated or excluded from others, particularly in the context of dating and relationships."
+1,,Emotional Connection,12,"Highlights the importance of emotional bonds in relationships, which can encompass various types of intimacy."
+2,Emotional Connection,Demisexuality,1,Refers to a sexual orientation where individuals do not experience sexual attraction unless they form a strong emotional connection with someone.
+2,Emotional Connection,Asexuality,1,Refers to a sexual orientation where individuals experience little to no sexual attraction to others.
+2,Emotional Connection,Romantic Orientation,1,"Refers to the pattern of romantic attraction one feels towards others, which may or may not align with their sexual orientation."
+1,,Hypersexuality,1,Refers to an increased sexual desire or behavior.
+1,,Biromanticism,2,"Refers to the romantic attraction to individuals of more than one gender, as mentioned in the individual's self-description."
+1,,Trauma,3,Indicates the impact of past experiences on current sexual feelings and interests.
+1,,Masculinity,6,Discusses the cultural implications and perceptions of masculinity in relation to attraction.
+1,,Androsexuality,2,"Refers to attraction to masculinity, including males and nonbinary individuals who embody masculine traits."
+1,,Nonbinary,6,Relates to individuals whose gender identity does not fit within the traditional binary of male and female.
+1,,Fraysexual,1,Describes a type of sexual attraction that diminishes upon getting to know someone.
+1,,Aegosexual,1,Refers to experiencing attraction in an imaginative context rather than in real-life situations.
+1,,Trade,2,"Mentions the exchange of opinions or discussions about attraction, in this case, regarding physical appearance."
+1,,Discrimination,9,Mentions the experience of being discriminated against based on sexual orientation.
+1,,Attraction,7,"Refers to the feelings of interest or desire towards others, which can include various forms such as romantic, sexual, or aesthetic attraction."
+1,,Homoromanticism,1,Indicates romantic attraction to individuals of the same gender.
+1,,Heteroromanticism,4,Describes individuals who are romantically attracted to people of the opposite gender.
+1,,Autism,1,Highlights the neurodevelopmental condition that affects social interaction and communication.
+1,,Diversity,1,"Emphasizes the variety of human experiences, identities, and orientations across different genders, sexualities, and races."
+1,,Sapphic,1,"Refers to a term used to describe women who are attracted to other women, often used interchangeably with lesbian."
+1,,Sapiosexuality,2,Indicates a sexual attraction based on intelligence.
+1,,Heteroflexibility,1,"Suggests a fluidity in sexual orientation, primarily identifying with heterosexuality but open to same-gender attraction."
+1,,Polysexuality,1,"Refers to the sexual attraction to multiple genders, distinct from pansexuality."
+1,,Mental Health,2,"Discusses the impact of experiences on mental health, specifically relating to OCD and its resolution."
+1,,Demiromanticism,1,Refers to a romantic orientation where an individual only experiences romantic attraction after forming a strong emotional connection.
+1,,Pride,1,Relates to the celebration and affirmation of one's sexual orientation.

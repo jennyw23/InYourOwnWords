@@ -1,0 +1,32 @@
+verbose: False
+
+# Input data
+race_data: "data/input/race_open.jsonl"
+gender_data: "data/input/gender_open.jsonl"
+sexual_orientation_data: "data/input/sexuality_open.jsonl"
+
+# Level-1 theme generation (all documents, no early stopping)
+generation:
+  prompt: "prompt/generation_1.txt"
+  seed: "prompt/seed_1.md"
+
+  race_output: "data/output/default_prompt_full_dataset/race_generation_1.jsonl"
+  gender_output: "data/output/default_prompt_full_dataset/gender_generation_1.jsonl"
+  sexual_orientation_output: "data/output/default_prompt_full_dataset/sexual_orientation_generation_1.jsonl"
+
+  race_topic_output: "data/output/default_prompt_full_dataset/race_generation_1.md"
+  gender_topic_output: "data/output/default_prompt_full_dataset/gender_generation_1.md"
+  sexual_orientation_topic_output: "data/output/default_prompt_full_dataset/sexual_orientation_generation_1.md"
+
+# Level-2 subtheme generation
+generate_subtopics: True
+generation_2:
+  prompt: "prompt/generation_2.txt"
+
+  race_output: "data/output/default_prompt_full_dataset/race_generation_2.jsonl"
+  gender_output: "data/output/default_prompt_full_dataset/gender_generation_2.jsonl"
+  sexual_orientation_output: "data/output/default_prompt_full_dataset/sexual_orientation_generation_2.jsonl"
+
+  race_topic_output: "data/output/default_prompt_full_dataset/race_generation_2.md"
+  gender_topic_output: "data/output/default_prompt_full_dataset/gender_generation_2.md"
+  sexual_orientation_topic_output: "data/output/default_prompt_full_dataset/sexual_orientation_generation_2.md"
