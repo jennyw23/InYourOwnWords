@@ -1,0 +1,83 @@
+variable_name,section,type,description,values_or_range,notes
+index,Admin,Integer,Row index (0-based),,
+race_open,Race,Open text,Free-text description of racial/ethnic identity,,Primary outcome variable
+race_closed,Race,Categorical (multi-select),Closed-form race/ethnicity selection,American Indian or Alaska Native; Asian; Black or African American; Hispanic or Latino; Middle Eastern or North African; Native Hawaiian or Pacific Islander; White; Some other race (specify); I prefer not to answer,Comma-separated when multiple selected
+race_closed_8_TEXT,Race,Open text,Write-in for 'Some other race' in race_closed,,
+finer_aian,Race,Categorical (multi-select),Finer-grained American Indian / Alaska Native tribe/group,Specific tribal categories + Other (specify),Shown only to AIAN respondents
+finer_aian_7_TEXT,Race,Open text,Write-in for 'Other' finer AIAN group,,
+finer_asian,Race,Categorical (multi-select),Finer-grained Asian subgroup,Chinese; Filipino; Indian; Japanese; Korean; Vietnamese; Other (specify),Shown only to Asian respondents
+finer_asian_9_TEXT,Race,Open text,Write-in for 'Other' finer Asian group,,
+finer_black,Race,Categorical (multi-select),Finer-grained Black / African American subgroup,African American; African (e.g. Nigerian; Kenyan); Caribbean (e.g. Jamaican; Haitian); Other (specify),Shown only to Black respondents
+finer_black_7_TEXT,Race,Open text,Write-in for 'Other' finer Black group,,
+finer_hispa,Race,Categorical (multi-select),Finer-grained Hispanic/Latino subgroup,Mexican/Mexican American; Puerto Rican; Cuban; Central American; South American; Spanish; Other (specify),Shown only to Hispanic/Latino respondents
+finer_hispa_7_TEXT,Race,Open text,Write-in for 'Other' finer Hispanic group,,
+finer_mena,Race,Categorical (multi-select),Finer-grained Middle Eastern / North African subgroup,Arab; Iranian/Persian; Turkish; North African; Other (specify),Shown only to MENA respondents
+finer_mena_7_TEXT,Race,Open text,Write-in for 'Other' finer MENA group,,
+finer_natam,Race,Categorical (multi-select),Finer-grained Native American subgroup,Various tribal categories; Other (specify),Shown only to Native American respondents
+finer_natam_4_TEXT,Race,Open text,Write-in for 'Other' finer Native American group,,
+finer_white,Race,Categorical (multi-select),Finer-grained White / European subgroup,Various European ancestries; Other (specify),Shown only to White respondents
+finer_white_7_TEXT,Race,Open text,Write-in for 'Other' finer White group,,
+race_details,Race,Binary,Does free-text race description add info beyond closed-form?,Yes; No,
+race_perceive_open,Race,Open text,Free-text: how others perceive respondent's race,,Primary outcome variable
+race_perceive_closed,Race,Categorical,How similar is others' perception to self-identified race?,Mostly the same; Somewhat the same and somewhat different; Mostly different; Completely different; Unsure,
+gender_open,Gender,Open text,Free-text description of gender identity,,Primary outcome variable
+born_gender,Gender,Categorical,Sex assigned at birth,Male; Female; I prefer not to answer,
+describe_gender,Gender,Categorical,How respondent describes their gender (simple),Man; Woman; Some other way,
+describe_gender_3_TEXT,Gender,Open text,Write-in for 'Some other way' in describe_gender,,
+gender_closed,Gender,Categorical,Closed-form gender identity,Man; Woman; Nonbinary; Gender fluid; Gender queer; Gender questioning; Agender; Māhū or muxe or two spirit; I prefer not to answer,
+gender_trans,Gender,Categorical,Transgender status,Yes; No; I prefer not to answer,
+gender_details,Gender,Binary,Does free-text gender description add info beyond closed-form?,Yes; No,
+gend_perceive_open,Gender,Open text,Free-text: how others perceive respondent's gender,,Primary outcome variable
+gend_perceive_closed,Gender,Categorical,How similar is others' perception to self-identified gender?,Mostly the same; Somewhat the same and somewhat different; Mostly different; Completely different; Unsure,
+sexuality_open,Sexual Orientation,Open text,Free-text description of sexual orientation,,Primary outcome variable
+sexuality_closed,Sexual Orientation,Categorical (multi-select),Closed-form sexual orientation,Straight or heterosexual; Gay or Lesbian; Bisexual; Pansexual; Asexual; Aromantic; Queer; Questioning; Demisexual; Sexually fluid; Something else (specify); I prefer not to answer,Comma-separated when multiple selected
+sexuality_closed_19_TEXT,Sexual Orientation,Open text,Write-in for 'Something else' in sexuality_closed,,
+sexuality_details,Sexual Orientation,Binary,Does free-text SO description add info beyond closed-form?,Yes; No,
+sex_perceive_open,Sexual Orientation,Open text,Free-text: how others perceive respondent's sexual orientation,,Primary outcome variable
+sex_perceive_closed,Sexual Orientation,Categorical,How similar is others' perception to self-identified SO?,Mostly the same; Somewhat the same and somewhat different; Mostly different; Completely different; Unsure,
+physical_health,Wellbeing,Categorical (ordinal),Self-rated physical health,Excellent; Very Good; Good; Fair; Poor; I prefer not to answer,
+mental_health,Wellbeing,Categorical (ordinal),Self-rated mental health,Excellent; Very Good; Good; Fair; Poor; I prefer not to answer,
+life_satisfaction,Wellbeing,Integer (0–10),Life satisfaction rating,0 (not at all satisfied) to 10 (completely satisfied),
+identity_import_1,Identity Importance,Categorical (ordinal),Importance of racial identity,Not at all important; Not very important; Somewhat important; Very important; Extremely important,
+identity_import_2,Identity Importance,Categorical (ordinal),Importance of gender identity,Not at all important; Not very important; Somewhat important; Very important; Extremely important,
+identity_import_3,Identity Importance,Categorical (ordinal),Importance of sexual orientation identity,Not at all important; Not very important; Somewhat important; Very important; Extremely important,
+discrimin_other_1,Discrimination (Witnessed),Categorical (ordinal),Witnessed discrimination based on race,None at all; Only a little; Some; A lot,
+discrimin_other_2,Discrimination (Witnessed),Categorical (ordinal),Witnessed discrimination based on gender,None at all; Only a little; Some; A lot,
+discrimin_other_3,Discrimination (Witnessed),Categorical (ordinal),Witnessed discrimination based on sexual orientation,None at all; Only a little; Some; A lot,
+discrimin_other_4,Discrimination (Witnessed),Categorical (ordinal),Witnessed discrimination based on age,None at all; Only a little; Some; A lot,
+discrimin_other_5,Discrimination (Witnessed),Categorical (ordinal),Witnessed discrimination based on disability,None at all; Only a little; Some; A lot,
+discrimin_other_6,Discrimination (Witnessed),Categorical (ordinal),Witnessed discrimination based on religion,None at all; Only a little; Some; A lot,
+discrimin_other_7,Discrimination (Witnessed),Categorical (ordinal),Witnessed discrimination based on national origin/immigration status,None at all; Only a little; Some; A lot,
+discrimin_other_8,Discrimination (Witnessed),Categorical (ordinal),Witnessed discrimination based on socioeconomic class,None at all; Only a little; Some; A lot,
+discrim_personal_1,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on race,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_personal_2,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on gender,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_personal_3,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on sexual orientation,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_personal_4,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on age,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_personal_5,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on disability,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_personal_6,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on religion,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_personal_7,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on national origin/immigration status,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_personal_8,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on socioeconomic class,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_personal_9,Discrimination (Experienced),Categorical (ordinal),Personally experienced discrimination based on physical appearance,Never; Less than once a year; A few times a year; A few times a month; At least once a week; Almost everyday,
+discrim_why1,Discrimination (Experienced),Categorical (multi-select),Primary reason(s) for personal discrimination experienced,Your Race; Your Gender; Your Sexual Orientation; Your Age; Your Disability; Your Religion; Your National Origin/Immigration Status; Your Socioeconomic Class; Your Physical Appearance; Your Weight; Your Education or Income Level; A Physical Disability; Other (specify),Comma-separated when multiple selected
+discrim_why1_14_TEXT,Discrimination (Experienced),Open text,Write-in 'Other' reason for personal discrimination,,Free text
+discrim_why2,Discrimination (Experienced),Open text,Open-ended: why respondent thinks they experience discrimination,,Free text
+age,Demographics,Categorical (ordinal),Age bracket,18-24; 25-34; 35-44; 45-54; 55-64; 65-74; 75 or older,
+education,Demographics,Categorical (ordinal),Highest level of education,Less than high school; High school incomplete; High school graduate/GED; Some college no degree; Two-year associate degree; Four-year college/Bachelor's; Some postgraduate; Postgraduate/professional degree; I prefer not to answer,
+politics,Demographics,Categorical,Political party affiliation,Democrat; Republican; Independent; Something else,
+politics_5_TEXT,Demographics,Open text,Write-in for 'Something else' political affiliation,,
+politics_lean,Demographics,Categorical,Party lean (for independents/other),Democratic Party; Republican Party,
+income,Demographics,Categorical (ordinal),Household income bracket,"No income; Less than $25,000; $25,000 to $50,000; $50,000 to $75,000; $75,000 to $100,000; $100,000 to $200,000; $200,000 to $500,000; More than $500,000; I prefer not to answer",
+employed,Demographics,Categorical,Employment status,I have one job; I have two jobs; I have three or more jobs; I am not employed but I am looking for work; I am not employed and I am NOT looking for work; I am retired; I prefer not to answer,
+relationship,Demographics,Categorical,Relationship status,In a relationship; Not in a relationship; I prefer not to answer,
+religion,Demographics,Categorical,Religious affiliation,Christian (Catholic/Orthodox/Protestant/other); Muslim; Jewish; Buddhist; Hindu; Agnostic; Atheist; Nothing in particular; Spiritual but not religious; Other (specify); I prefer not to answer,
+religion_18_TEXT,Demographics,Open text,Write-in for 'Other' religion,,
+current_community,Demographics,Categorical,Type of community currently living in,Rural; Suburban; Urban,
+birthplace,Demographics,Categorical,Country of birth,United States (including Puerto Rico); Another country; I prefer not to answer,
+birthplace _3_TEXT,Demographics,Open text,Write-in specific country of birth for non-US born,,
+us_length,Demographics,Categorical (ordinal),Length of time living in the US (non-US born),Less than 5 years; At least 5 years but less than 10 years; At least 10 years but less than 20 years; 20 years or more,Shown only to non-US-born respondents
+parents_birthplace,Demographics,Categorical,Parental birthplace,Both parents born in United States; One or both parents born in another country; I prefer not to answer,
+citizenship,Demographics,Categorical,US citizenship status,Yes citizen; No not citizen; I prefer not to answer,
+region_grew_up,Demographics,Categorical,US region where respondent grew up,State in the Northeast; State in the Midwest; State in the South; State in the West; Grew up outside the United States,
+race,Derived,Categorical,Harmonized race/ethnicity category,White; Black or African American; Hispanic or Latino; Asian; American Indian or Alaska Native; Middle Eastern or North African; Native Hawaiian or Pacific Islander; Two or More Races; Some Other Race,Derived from race_closed for paper figures
+gender,Derived,Categorical,Harmonized gender category,Cisgender Woman; Cisgender Man; Cisgender (Other); Transgender Woman; Transgender Man; Transgender (Other); Prefer not to answer,Derived from describe_gender × gender_trans
+sexual_orientation,Derived,Categorical,Harmonized sexual orientation category,Straight or heterosexual; Gay or Lesbian; Bisexual and/or Pansexual; Queer; Asexual or aromantic; Demisexual; Sexually fluid; Questioning; Multiple Identities; Other; I prefer not to answer,Derived from sexuality_closed
