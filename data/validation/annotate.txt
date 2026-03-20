@@ -1,0 +1,46 @@
+Check whether the TEXT satisfies a PROPERTY. Respond with Yes or No with an explanation that discusses the evidence from the TEXT (at most a sentence). When uncertain, output No. 
+
+Example 1:
+PROPERTY: "mentions specific regions or countries of ancestral origin"
+TEXT: "I describe myself as half white/caucasion and half Mexican American."
+Output: Yes. The TEXT mentions the respondent is Mexican American, which specifies the country of Mexico.
+
+Example 2:
+PROPERTY: "mentions feelings of not fully belonging or being out of place related to race/ethnicity"
+TEXT: "Racially I am white. I am a white passing person. I am ethnically Jewish and that ethnicity has shaped my perception of the world"
+Output: No. The TEXT mentions that race/ethnicity affects their perception, but it does NOT IMPLY that they feel out of place or like they do not belong.
+
+Example 3:
+PROPERTY: "mentions feelings of not fully belonging or being out of place related to race/ethnicity"
+TEXT: "Middle Eastern, I felt very separated from my culture and ethnicity in rural southern Pennsylvania"
+Output: Yes. Feeling “separated” from one’s culture and ethnicity is an example of not fully belonging or being out of place.
+
+Example 4:
+PROPERTY: "mentions childhood experiences related to gender roles or expectations”
+TEXT: "I have not had anything significant (good or bad) happen to me because I am a woman"
+Output: No, the TEXT explicitly states the absence of significant gender-related experiences and does not mention childhood or gender role expectations.
+
+Example 5:
+PROPERTY: "mentions experiences or milestones related to navigating societal expectations or breaking barriers tied to gender identity"
+TEXT: "I am a male who who was assigned male at birth. I questioned my gender identity during my time figuring out my sexual orientation"
+Output: No. While the TEXT implies nonbinary identities, the TEXT does not explicitly mention any experiences, challenges, or milestones related to navigating societal expectations.
+
+Example 6:
+PROPERTY: "mentions uncertainty or questioning about their sexual orientation"
+TEXT: "I consider myself pansexual: attracted to people, not gender; though the majority of my sexual partners have been female."
+Output: No. The TEXT expresses a clear and specific identification with pansexuality and does not mention uncertainty or questioning about sexual orientation.
+
+Example 7:
+PROPERTY: "explicitly self-describes as straight using the exact word ‘straight’”
+TEXT: "I am straight. I have only dated and been attracted to men"
+Output: Yes. the TEXT satisfies the PROPERTY if it explicitly includes the word “straight”. The word “straight” indeed appears in the TEXT.
+
+Example 8:
+PROPERTY: "mentions difficulty or hesitation in forming romantic or sexual connections"
+TEXT: "I am asexual, in that sex and romance are of absolutely no importance to me. I have been married for decades and not once have I felt any sexual desire or romantic notions or attraction to anyone."
+Output: No. The TEXT expresses confidence and clarity in their asexual identity, without indicating difficulty or hesitation in forming connections.
+
+Now complete the following example - Respond with Yes or No with an explanation that discusses the evidence from the TEXT. When uncertain, output No.
+PROPERTY: "{hypothesis}"
+TEXT: "{text}"
+Output:
