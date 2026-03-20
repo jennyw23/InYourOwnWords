@@ -1,0 +1,34 @@
+level,parent_theme,theme_name,count,description
+1,,Gender Identity,981,"Discusses the experiences and perspectives shaped by one's gender identity, including the diversity of expressions and identities beyond traditional norms."
+2,Gender Identity,Cisgender,1,Refers to individuals whose gender identity matches the sex they were assigned at birth.
+2,Gender Identity,Transgender,1,Refers to individuals whose gender identity differs from the sex they were assigned at birth.
+2,Gender Identity,Non-binary,1,Refers to gender identities that do not fit within the traditional binary of male and female.
+2,Gender Identity,Gender Fluid,1,Refers to a gender identity that is not fixed and can change over time or depending on the situation.
+2,Gender Identity,Agender,1,Refers to individuals who do not identify with any gender.
+2,Gender Identity,Genderqueer,1,Refers to a gender identity that is not exclusively male or female and may encompass a combination of genders.
+2,Gender Identity,Gender Expression,1,"Refers to the external manifestation of gender, expressed through behavior, clothing, haircut, voice, and other forms of presentation."
+1,,Fashion,8,Mentions activities related to dressing up and personal grooming.
+1,,Social Activities,15,Mentions going out and having fun with friends.
+2,Social Activities,Gender Identity,1,"Discusses how gender identity influences social interactions, personal experiences, and societal roles."
+2,Social Activities,Socializing and Leisure,1,Involves activities related to spending time with friends and engaging in leisure activities.
+2,Social Activities,Gender Roles and Expectations,1,"Explores societal expectations and roles based on gender, including challenges and stereotypes."
+1,,Health,9,Mentions experiences related to overcoming illness and health challenges.
+1,,Outdoor Activities,11,Mentions experiences in the wilderness and exposure to nature.
+2,Outdoor Activities,Wilderness Activities,1,"Involves spending time in natural environments, such as camping and fishing."
+2,Outdoor Activities,Sports,1,"Involves physical activities and games, often competitive, such as playing or watching sports."
+2,Outdoor Activities,Hunting and Fishing,1,Involves activities related to pursuing and capturing or killing animals for food or sport.
+1,,Work,19,"Mentions working in a male-dominated industry, highlighting gender dynamics in the workplace."
+2,Work,Gender Identity in the Workplace,1,"Discusses how gender identity influences experiences, challenges, and discrimination in professional settings."
+2,Work,Gender Roles and Expectations,1,"Explores societal expectations and traditional roles associated with gender, particularly in relation to work and family responsibilities."
+1,,Family,30,Mentions motherhood and the joy of giving birth to children.
+2,Family,Gender Roles,1,"Discusses expectations and societal norms associated with being male or female, including roles such as provider, caregiver, and societal perceptions."
+2,Family,Parenthood,1,"Focuses on the experience and significance of being a parent, including giving birth, raising children, and the impact of parenthood on identity."
+2,Family,Gender Identity,1,"Explores personal identification with gender, including experiences of being female or male, and how these identities influence personal and social experiences."
+1,,Cultural Identity,16,Mentions the experiences and values related to cultural heritage and identity within the African diaspora.
+2,Cultural Identity,Racial Identity,1,Discusses the influence of race and ethnicity on personal and cultural experiences.
+2,Cultural Identity,Gender Identity,1,Explores how gender identity shapes personal experiences and societal interactions.
+1,,Education,4,Mentions the pursuit of higher education and its significance within a family context.
+1,,Sexual Orientation,19,"Discusses aspects of sexual attraction and asexuality, as well as companionship beyond sexual relationships."
+2,Sexual Orientation,Gender Identity,1,"Discusses how individuals identify their gender, including cisgender, transgender, non-binary, and other identities."
+2,Sexual Orientation,Sexual Orientation,1,"Covers the spectrum of sexual attraction and orientation, including heterosexual, homosexual, bisexual, pansexual, and asexual orientations."
+1,,Political Climate,1,Reflects on the impact of elections on societal attitudes towards the LGBT community.
