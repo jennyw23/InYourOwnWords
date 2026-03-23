@@ -7,7 +7,7 @@ race_indicator_Black_or_African_American + race_indicator_Native_Hawaiian_or_Pac
 race_indicator_American_Indian_or_Alaska_Native + race_indicator_Middle_Eastern_or_North_African + \
 race_indicator_Hispanic_or_Latino"
 
-STANDARDIZED_GENDER_FORMULA = "C(describe_gender)*C(gender_trans)"
+STANDARDIZED_GENDER_FORMULA = "C(describe_gender)*C(gender_trans, Treatment('No'))"
 
 STANDARDIZED_SEXUAL_ORIENTATION_FORMULA = "sexual_orientation_indicator_Pansexual + \
 sexual_orientation_indicator_Straight_or_heterosexual + sexual_orientation_indicator_Questioning + \
