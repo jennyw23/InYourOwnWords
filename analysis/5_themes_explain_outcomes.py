@@ -88,7 +88,7 @@ def base_formula(identity, df):
         cols = sorted(c for c in df.columns if c.startswith("race_indicator_"))
         return " + ".join(cols)
     elif identity == "gender":
-        return "C(describe_gender) * C(gender_trans)"
+        return "C(describe_gender) * C(gender_trans, Treatment('No'))"
     else:
         cols = sorted(c for c in df.columns
                       if c.startswith("sexual_orientation_indicator_"))
@@ -128,6 +128,7 @@ def nested_f_test(df, outcome, base_vars, theme_cols):
 
     try:
         base_m = sm.OLS.from_formula(base_formula_, data=data).fit()
+        print(base_m.summary())
         full_m = sm.OLS.from_formula(full_formula,  data=data).fit()
     except Exception as e:
         return {"outcome": outcome, "adj_r2_base": np.nan, "adj_r2_full": np.nan,

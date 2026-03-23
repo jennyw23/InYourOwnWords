@@ -72,7 +72,7 @@ def category_formula(identity, df):
         cols = sorted(c for c in df.columns if c.startswith("race_indicator_"))
         return " + ".join(cols)
     elif identity == "gender":
-        return "C(describe_gender) * C(gender_trans)"
+        return "C(describe_gender) * C(gender_trans, Treatment('No'))"
     else:
         cols = sorted(c for c in df.columns if c.startswith("sexual_orientation_indicator_"))
         return " + ".join(cols)
