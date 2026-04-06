@@ -14,3 +14,6 @@ analysis/baselines/topicgpt/data/*
 
 # Ignore figure outputs
 analysis/figures/*.png
+
+# Update this directory so people can use the code for their own projects
+quickstart/

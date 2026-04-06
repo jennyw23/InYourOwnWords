@@ -257,6 +257,7 @@ def improved_race_themes_barchart(proportions, IDENTITY, sort_by, r2_dict=None, 
         # Only keep categories present in the data
         category_order = [cat for cat in category_order if cat in proportions.index]
         proportions = proportions.loc[category_order]
+        proportions = proportions.div(proportions.sum(axis=0), axis=1)
 
     color_mapping = _get_color_mapping(IDENTITY, custom_colors)
     if color_mapping:
@@ -284,7 +285,7 @@ def improved_race_themes_barchart(proportions, IDENTITY, sort_by, r2_dict=None, 
         ("American Indian or Alaska Native", "AIAN"),
         ("Native Hawaiian or Pacific Islander", "NHPI"),
         ("Two or More Races", "2+ Races"),
-        ("Some Other Race", "Other"),
+        ("Some Other Race", "Another race"),
     ]
     # Only keep those present
     legend_labels = [(cat, label) for cat, label in legend_labels if cat in proportions.index]
@@ -374,6 +375,7 @@ def improved_gender_themes_barchart(proportions, IDENTITY, sort_by, r2_dict=None
         ]
         category_order = [cat for cat in category_order if cat in proportions.index]
         proportions = proportions.loc[category_order]
+        proportions = proportions.div(proportions.sum(axis=0), axis=1)
     # Get colors
     color_mapping = _get_color_mapping(IDENTITY, custom_colors)
     print(color_mapping)
@@ -398,13 +400,13 @@ def improved_gender_themes_barchart(proportions, IDENTITY, sort_by, r2_dict=None
     
     # Configure legend with custom order and labels
     legend_labels = [
-        ("Cisgender Woman", "Cis Woman"),
-        ("Cisgender Man", "Cis Man"),
-        ("Cisgender (Other)", "Cis Other"),
-        ("Transgender Woman", "Trans Woman"),
-        ("Transgender Man", "Trans Man"),
-        ("Transgender (Other)", "Trans Other"),
-        ("Prefer not to answer", "No Answer")
+        ("Cisgender Woman", "Cis, Woman"),
+        ("Cisgender Man", "Cis, Man"),
+        ("Cisgender (Other)", "Cis, Another gender"),
+        ("Transgender Woman", "Trans, Woman"),
+        ("Transgender Man", "Trans, Man"),
+        ("Transgender (Other)", "Trans, Another gender"),
+        ("Prefer not to answer", "Prefer not to answer")
     ]
     legend_labels = [(cat, label) for cat, label in legend_labels if cat in proportions.index]
     handles = [patches.Patch(color=color_mapping.get(cat, "#ACACAC"), label=label) for cat, label in legend_labels]
@@ -496,6 +498,7 @@ def improved_sexual_orientation_themes_barchart(proportions, IDENTITY, sort_by, 
         ]
         category_order = [cat for cat in category_order if cat in proportions.index]
         proportions = proportions.loc[category_order]
+        proportions = proportions.div(proportions.sum(axis=0), axis=1)
 
     # Get colors
     color_mapping = _get_color_mapping(IDENTITY, custom_colors)
@@ -518,15 +521,15 @@ def improved_sexual_orientation_themes_barchart(proportions, IDENTITY, sort_by, 
     legend_labels = [
         ("Straight or heterosexual", "Straight"),
         ("Gay or Lesbian", "Gay/Lesbian"),
-        ("Bisexual and/or Pansexual", "Bisexual/\nPansexual"),
+        ("Bisexual and/or Pansexual", "Bisexual/Pansexual"),
         ("Queer", "Queer"),
-        ("Asexual or aromantic", "Asexual/\nAromantic"),
+        ("Asexual or aromantic", "Asexual/Aromantic"),
         ("Sexually fluid", "Sexually Fluid"),
         ("Demisexual", "Demisexual"),
         ("Questioning", "Questioning"),
         ("Multiple Identities", "Multiple"),
-        ("Other", "Other"),
-        ("I prefer not to answer", "No Answer")
+        ("Other", "Another orientation"),
+        ("I prefer not to answer", "Prefer not to answer")
     ]
     legend_labels = [(cat, label) for cat, label in legend_labels if cat in proportions.index]
     handles = [patches.Patch(color=color_mapping.get(cat, "#ACACAC"), label=label) for cat, label in legend_labels]
@@ -555,5 +558,5 @@ def improved_sexual_orientation_themes_barchart(proportions, IDENTITY, sort_by, 
         plt.legend('', frameon=False)
     plt.tight_layout()
     plt.show()
-    
+
     return fig

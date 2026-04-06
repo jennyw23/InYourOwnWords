@@ -73,7 +73,7 @@ def crosstab_gender(row):
     '''
 
     if row['describe_gender'] == "Some other way":
-        row['describe_gender'] = "Other"
+        row['describe_gender'] = "(Other)"
 
     if row['gender_trans'] == 'Yes':
         return f"Transgender {row['describe_gender']}"
@@ -83,7 +83,7 @@ def crosstab_gender(row):
         return f"Prefer not to answer"
     else:
         return "Unspecified"
-    
+
 def group_bi_pan_gay_lesb_queer(identity):
     """
     Group 'Bisexual' and 'Pansexual' into 'Bisexual and/or Pansexual'
