@@ -4,7 +4,13 @@ This code accompanies the paper `In Your Own Words:
 Computationally identifying interpretable themes in free-text survey data`. If using either the data or the code, please cite the paper:
 
 ````
-Add citation here
+@article{InYourOwnWords2026, 
+      title={In your own words: computationally identifying interpretable themes in free-text survey data}, 
+      author={Jenny S Wang and Aliya Saperstein and Emma Pierson},
+      journal={arXiv preprint arXiv:2603.26930},
+      url={https://arxiv.org/abs/2603.26930},
+      year={2026}
+}
 ````
 
 ## Data availability
@@ -17,7 +23,7 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
-An OpenAI API key is required for the LLM-based steps (SAE training, BERTopic relabeling, TopicGPT). Set it in a `.env` file at the repo root:
+An OpenAI API key is required for the LLM-based steps (SAE training, baseline comparisons with BERTopic and TopicGPT). Set it in a `.env` file at the repo root:
 
 ```
 OPENAI_API_KEY=sk-...
@@ -63,33 +69,3 @@ The following pre-computed intermediate files are included in this repository an
 - **`data/validation/`** — human and LLM annotations used for inter-rater reliability (Table S7)
 
 See [`data/README.md`](data/README.md) for the full directory layout and variable descriptions.
-
-## Repository structure
-
-```
-├── run_all.py                          # Runs all analysis scripts in order
-├── analysis/
-│   ├── 1_free_text_adds_context.py     # Minority respondents share more context
-│   ├── 2_extract_themes.py             # Reporting extracted themes and fidelity scores
-│   ├── 3_validate_themes.py            # Validating themes against human annotations
-│   ├── 4_themes_by_category.py         # Theme alignment with standardized categories
-│   ├── 5_themes_explain_outcomes.py    # Themes predict life outcomes (Table 1)
-│   ├── 6_baseline_comparisons.py       # LDA and BERTopic baseline models
-│   ├── 7_robustness_sae_params.py      # Robustness to SAE hyperparameters
-│   ├── 8_perception_themes.py          # Perceived identity themes
-│   └── baselines/
-│       ├── lda/                        # LDA implementation (tomotopy, K=32)
-│       ├── bertopic/                   # BERTopic implementation (HDBSCAN + GPT labels)
-│       └── topicgpt/                   # TopicGPT implementation (Pham et al., 2024)
-├── scripts/
-│   ├── train_sae.py                    # Train SAEs on self-description responses
-│   ├── train_sae_perception.py         # Train SAEs on perceived-identity responses
-│   ├── train_sae_robustness.py         # Train SAEs at alternative hyperparameters
-│   └── annotate_themes.py              # LLM annotation of theme indicators
-├── src/
-│   ├── data_helper.py                  # Data loading and identity grouping utilities
-│   ├── sae_helper.py                   # SAE loading and theme filtering helpers
-│   ├── regression_helper.py            # Regression utilities
-│   └── make_figures.py                 # Figure generation
-└── data/                               # See data/README.md
-```
