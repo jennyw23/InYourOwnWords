@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+15,"(32, 4)",mentions dresses,0.9583333333333334
+2,"(32, 4)",mentions a 'top' as the clothing item under review,0.9
+27,"(32, 4)",mentions issues with fabric quality or durability,0.8844943820224719
+19,"(32, 4)",mentions sweaters or cardigans,0.8686363636363637
+14,"(32, 4)",mentions pants or jeans,0.864367816091954
+18,"(32, 4)",mentions height and weight measurements of the reviewer,0.8599999999999999
+0,"(32, 4)","mentions how the clothing item highlights or affects specific body features (e.g., hips, shoulders, chest, waist)",0.8088888888888889
+3,"(32, 4)",mentions that the clothing item runs large or is oversized,0.8088888888888889
+12,"(32, 4)",mentions returning or not keeping the item due to fit issues,0.8000000000000002
+13,"(32, 4)",mentions shirts,0.7689192609465958
+17,"(32, 4)",mentions pants,0.7534177215189872
+26,"(32, 4)",mentions softness or coziness,0.7030985915492959
+8,"(32, 4)",mentions sizing up or down,0.6985915492957747
+31,"(32, 4)",mentions height or body measurements,0.6936416184971098
+4,"(32, 4)",mentions specific body measurements or proportions,0.6652941176470588
+23,"(32, 4)",mentions fabric quality or texture,0.66
+20,"(32, 4)","mentions personal physical measurements (e.g., height, weight, bust size)",0.6589456869009584
+25,"(32, 4)",mentions a jacket,0.6502027276078143
+16,"(32, 4)",mentions the word flattering or discusses flattering fit/shape,0.6381818181818182
+1,"(32, 4)",mentions jeans or overalls,0.6128526645768025
+9,"(32, 4)",mentions returning or returning the item,0.6055384615384616
+7,"(32, 4)",mentions dissatisfaction with color or pattern accuracy compared to expectations,0.5970243748021526
+29,"(32, 4)",mentions a skirt,0.5964332892998679
+30,"(32, 4)",mentions specific body measurements or weight,0.5668016194331984
+5,"(32, 4)",mentions softness or comfort in a positive context,0.5626229508196722
+28,"(32, 4)","mentions specific sizing details (e.g., size ordered, fit description, body measurements)",0.534375
+24,"(32, 4)",mentions occasions or events where the clothing will be worn,0.5003389830508475
+6,"(32, 4)","discusses fit or sizing issues related to specific body measurements (e.g., chest, ribcage, arms)",0.4174545454545454
+21,"(32, 4)",mentions receiving compliments when wearing the item,0.4109677419354839
+10,"(32, 4)",mentions lace,0.3050847457627119
+22,"(32, 4)",mentions fall or autumn,0.24436363636363637
+11,"(32, 4)",mentions fit issues or sizing concerns,0.20689655172413793

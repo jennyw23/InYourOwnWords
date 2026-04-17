@@ -16,4 +16,4 @@ analysis/baselines/topicgpt/data/*
 analysis/figures/*.png
 
 # Update this directory so people can use the code for their own projects
-quickstart/
+# quickstart/
