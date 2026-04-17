@@ -13,6 +13,10 @@ Computationally identifying interpretable themes in free-text survey data`. If u
 }
 ````
 
+## Quickstart — try it on your own data
+
+Want to run the SAE pipeline on your own free-text dataset? See [`quickstart/`](quickstart/), which provides a self-contained notebook (`train_and_interpret_sae.ipynb`) that works with any CSV. A worked example on the Kaggle Women's E-Commerce Clothing Reviews dataset is included (`ex_train_and_interpret_sae.ipynb`).
+
 ## Data availability
 If you would like to request access to the *In Your Own Words* dataset, follow the instructions on the project website. We grant data access for research use. More information about the available variables are described in the [codebook](https://docs.google.com/spreadsheets/d/1UIqBnTKMBFFVU_sbcRfJyRT9xyuPz09e8LgbQtjbbIs/edit?gid=0#gid=0) and [data request form](https://docs.google.com/forms/d/e/1FAIpQLSdn29f5FPxeCmHPTNaXFTpF7kFQmIbziAqANjIK-WnTBY6ymA/viewform). 
 
