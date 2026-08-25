@@ -1,0 +1,3 @@
+timestamp,identity,stage,seconds,device,device_name,cpu_count,platform,extra
+2026-07-09T02:56:35+00:00,race,"load_checkpoint (reused, no training)",0.005,mps,Apple Silicon (MPS),11,macOS-15.7.7-arm64-arm-64bit,"{""M"": 32, ""K"": 4, ""n_responses"": 1004}"
+2026-07-09T02:56:35+00:00,race,compute_activations,0.019,mps,Apple Silicon (MPS),11,macOS-15.7.7-arm64-arm-64bit,"{""n_responses"": 1004}"

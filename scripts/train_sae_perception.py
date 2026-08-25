@@ -21,7 +21,7 @@ What this script does:
   1. Loads perception embeddings and survey data.
   2. Filters out "Mostly the same" responses on the closed-form perception item.
   3. Trains an SAE with M=32 neurons and K=4 active neurons per input.
-  4. Interprets each SAE neuron via an LLM (GPT-4.1 by default).
+  4. Interprets each SAE neuron via an LLM (GPT-4o by default).
   5. Scores interpretation fidelity with an annotator LLM (GPT-4.1-mini).
   6. Saves fidelity scores to data/fidelity/{identity}_perceive_interpretation_fidelity.csv.
 
@@ -133,8 +133,8 @@ def parse_args():
     parser.add_argument("--K", type=int, default=DEFAULT_K,
                         help="Active neurons per input — sparsity (default: 4)")
     parser.add_argument(
-        "--interpreter-model", default="gpt-4.1",
-        help="LLM for generating neuron interpretations (default: gpt-4.1)",
+        "--interpreter-model", default="gpt-4o",
+        help="LLM for generating neuron interpretations (default: gpt-4o)",
     )
     parser.add_argument(
         "--annotator-model", default="gpt-4.1-mini",
