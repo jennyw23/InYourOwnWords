@@ -10,7 +10,7 @@ Pre-computed embeddings are required (see data/README.md).
 What this script does:
   1. Loads pre-computed embeddings from the embeddings directory.
   2. Trains SAEs with M=16 and M=64 neurons (K=4 active neurons per input).
-  3. Interprets each SAE neuron via an LLM (GPT-4.1 by default).
+  3. Interprets each SAE neuron via an LLM (GPT-4o by default).
   4. Scores interpretation fidelity with an annotator LLM (GPT-4.1-mini).
   5. Saves fidelity scores to data/fidelity/{identity}_interpretation_fidelity_m{M}.csv.
 
@@ -115,8 +115,8 @@ def parse_args():
     parser.add_argument("--K", type=int, default=DEFAULT_K,
                         help="Active neurons per input — sparsity (default: 4)")
     parser.add_argument(
-        "--interpreter-model", default="gpt-4.1",
-        help="LLM for generating neuron interpretations (default: gpt-4.1)",
+        "--interpreter-model", default="gpt-4o",
+        help="LLM for generating neuron interpretations (default: gpt-4o)",
     )
     parser.add_argument(
         "--annotator-model", default="gpt-4.1-mini",
@@ -168,7 +168,7 @@ def generate_interpretations_and_fidelity_scores(
     cache_name,
     *,
     interpreter_model="gpt-4o",
-    annotator_model="gpt-4o-mini",
+    annotator_model="gpt-4.1-mini",
     n_examples_for_interpretation=20,
     max_words_per_example=256,
     interpret_temperature=0.7,
