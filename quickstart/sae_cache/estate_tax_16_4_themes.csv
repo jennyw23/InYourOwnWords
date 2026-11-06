@@ -1,0 +1,17 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+1,"(16, 4)",mentions poor or lower class people,0.92
+4,"(16, 4)",mentions wealth inequality,0.864367816091954
+3,"(16, 4)",mentions inheritance or estate,0.8560919540229885
+7,"(16, 4)",expresses uncertainty about the topic,0.8039506172839506
+6,"(16, 4)",mentions fairness,0.7534177215189872
+5,"(16, 4)",mentions loopholes or hiding money,0.6666666666666666
+10,"(16, 4)",mentions hard work or self-reliance,0.6666666666666666
+0,"(16, 4)",expresses uncertainty or lack of knowledge,0.634375
+9,"(16, 4)",expresses uncertainty,0.6285714285714286
+8,"(16, 4)",mentions negative consequences,0.5898305084745763
+15,"(16, 4)",mentions equal or higher taxes,0.5681159420289855
+2,"(16, 4)",discusses redistribution of wealth through government programs,0.5294117647058824
+11,"(16, 4)",mentions fairness or equality,0.5279999999999999
+14,"(16, 4)",mentions the idea of improvement or better alternatives,0.4062745098039216
+13,"(16, 4)",mentions gender equality or equal treatment based on gender,0.36065573770491804
+12,"(16, 4)",mentions leveling the playing field,0.33333333333333337
