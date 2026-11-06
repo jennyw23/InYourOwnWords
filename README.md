@@ -76,8 +76,8 @@ The data request provides the files that contain the survey text or could be use
 
 - **`data/in_your_own_words.csv`** — raw survey responses (required for all scripts)
 - **`data/embeddings/`** — pre-computed OpenAI embeddings for all identity and perception questions (required for SAE training and BERTopic)
-- **`data/validation/*.csv`** — human and LLM annotations used for inter-rater reliability (Tables S2, S3, S31)
-- **`analysis/baselines/`** — saved BERTopic models (which store example responses) and TopicGPT inputs
+- **`data/validation/`** — human and LLM annotations used for inter-rater reliability (Tables S2, S3, S31), and the identity-specific annotation prompt, whose examples are real responses
+- **`analysis/baselines/`** — saved LDA and BERTopic models (both store responses) and the TopicGPT inputs
 
 Included in the repo, since they contain no text:
 

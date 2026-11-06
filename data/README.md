@@ -2,7 +2,7 @@
 
 The survey data (`in_your_own_words.csv`) is available upon request for research use from [Harvard Dataverse](https://doi.org/10.7910/DVN/YHUVXQ)
 
-Files that contain the survey text, or could be used to recover it, come with the data request: the survey responses, the embeddings (`embeddings/`), and the validation sample (`validation/*.csv`). Place them here before running the analysis scripts. The fidelity scores, annotation indicators, and SAE checkpoints contain no text and are included in the repo.
+Files that contain the survey text, or could be used to recover it, come with the data request: the survey responses, the embeddings (`embeddings/`), and the validation sample and annotation prompt (`validation/`). Place them here before running the analysis scripts. The fidelity scores, annotation indicators, and SAE checkpoints contain no text and are included in the repo.
 
 ## Directory layout
 

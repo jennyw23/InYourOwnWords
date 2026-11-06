@@ -8,7 +8,7 @@
 *.npy
 data/in_your_own_words.csv
 data/embeddings/
-data/validation/*.csv
+data/validation/
 analysis/baselines/bertopic/bertopic_models/*
 analysis/baselines/topicgpt/data/*
 
@@ -24,3 +24,6 @@ open_weight/output/
 additional_surveys/raw_data/
 additional_surveys/cleaned_data/
 additional_surveys/sae_cache/
+
+# LDA models store every training document
+analysis/baselines/lda/lda_models/
