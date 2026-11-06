@@ -22,7 +22,7 @@ What this script does:
   2. Filters out "Mostly the same" responses on the closed-form perception item.
   3. Trains an SAE with M=32 neurons and K=4 active neurons per input.
   4. Interprets each SAE neuron via an LLM (GPT-4o by default).
-  5. Scores interpretation fidelity with an annotator LLM (GPT-4.1-mini).
+  5. Scores interpretation fidelity (recall/specificity harmonic mean) with an annotator LLM.
   6. Saves fidelity scores to data/fidelity/{identity}_perceive_interpretation_fidelity.csv.
 
 Usage:
@@ -53,6 +53,9 @@ import hypothesaes.quickstart as _qs
 import torch
 from hypothesaes.quickstart import train_sae
 from hypothesaes.interpret_neurons import NeuronInterpreter, InterpretConfig, ScoringConfig, LLMConfig, SamplingConfig
+from fidelity import FIDELITY_METRIC, patch_hypothesaes
+
+patch_hypothesaes()
 
 
 # ---------------------------------------------------------------------------
@@ -241,12 +244,12 @@ def generate_interpretations_and_fidelity_scores(
     for idx in selected_neurons:
         best_interp = max(
             interpretations[idx],
-            key=lambda interp: metrics[idx][interp]["f1"],
+            key=lambda interp: metrics[idx][interp][FIDELITY_METRIC],
         )
         results.append({
             "neuron_idx": idx,
             "interpretation": best_interp,
-            "f1_fidelity_score": metrics[idx][best_interp]["f1"],
+            "f1_fidelity_score": metrics[idx][best_interp][FIDELITY_METRIC],
         })
     return pd.DataFrame(results)
 
@@ -262,7 +265,7 @@ def train_and_interpret(survey_path, emb_dir, identity, M, K,
 
     texts, embeddings = load_perception_data(survey_path, emb_dir, identity)
 
-    cache_name     = f"perception_drop_same_M={M}_K={K}_{identity}"
+    cache_name     = f"perception_{identity}_drop_same"
     checkpoint_dir = str(DATA_DIR / "checkpoints" / cache_name)
 
     sae = train_sae(
@@ -289,7 +292,7 @@ def train_and_interpret(survey_path, emb_dir, identity, M, K,
     out_path = fidelity_dir / f"{identity}_perceive_interpretation_fidelity.csv"
     fidelity_df.to_csv(out_path, index=False)
     print(f"  Saved: {out_path.relative_to(ROOT)}")
-    print(f"  Median F1 fidelity: {fidelity_df['f1_fidelity_score'].median():.3f}")
+    print(f"  Median fidelity: {fidelity_df['f1_fidelity_score'].median():.3f}")
 
 
 # ---------------------------------------------------------------------------

@@ -18,11 +18,12 @@ What this script does:
   1. Loads pre-computed embeddings from the embeddings directory.
   2. Trains an SAE with M=32 neurons and K=4 active neurons per input.
   3. Interprets each SAE neuron via an LLM (GPT-4o by default).
-  4. Scores interpretation fidelity with an annotator LLM (GPT-4.1-mini).
+  4. Scores interpretation fidelity with an annotator LLM (GPT-4.1-mini). Fidelity is the
+     harmonic mean of recall and specificity (src/fidelity.py).
   5. Saves fidelity scores to data/fidelity/{identity}_interpretation_fidelity.csv.
-  6. Saves all 3 candidate interpretations per neuron, scored under both the recall/specificity
-     (v1) and recall/precision (v2) fidelity formula, to
-     data/f1_metric_comparison/{identity}_all_candidates.csv.
+  6. Saves all 3 candidate interpretations per neuron, scored under both recall/specificity
+     and precision/recall (F1), to data/f1_metric_comparison/{identity}_all_candidates.csv
+     (the check behind footnote 8 of the paper).
   7. Times the SAE-only stages (train/load checkpoint, compute activations —
      NOT the LLM interpretation/annotation steps) and appends the results,
      along with hardware info, to data/runtime_log.csv — use this to report
@@ -30,13 +31,13 @@ What this script does:
 
 Usage:
     # Run all three identities (reuses checkpoint if found)
-    python scripts/train_sae.py --embeddings data/embeddings/
+    python scripts/train_sae.py
 
     # Run one identity
-    python scripts/train_sae.py --embeddings data/embeddings/ --identity race
+    python scripts/train_sae.py --identity race
 
     # Retrain from scratch, overwriting existing checkpoints
-    python scripts/train_sae.py --embeddings data/embeddings/ --identity gender --overwrite
+    python scripts/train_sae.py --identity gender --overwrite
 """
 
 import sys
@@ -69,6 +70,9 @@ from hypothesaes.interpret_neurons import (
     sample_top_zero,
 )
 from hypothesaes.annotate import annotate, CACHE_DIR
+from fidelity import FIDELITY_METRIC, compute_metrics, patch_hypothesaes
+
+patch_hypothesaes()
 
 
 # ---------------------------------------------------------------------------
@@ -239,30 +243,12 @@ def load_survey_texts(survey_path, identity, response_ids):
 
 
 # ---------------------------------------------------------------------------
-# TODO: RELABEL AS NOT "BUG" BEFORE PUSHING
-# F1 metric comparison: old (buggy, pre-fix) vs new (fixed) formula
-#
-# Old bug: precision was computed as 1 - mean(annotations[labels==0]), which is
-# specificity (TN / (TN+FP)), not precision (TP / (TP+FP)). Recall was correct
-# and is unchanged between the two formulas.
+# Fidelity under both definitions, for every candidate (footnote 8 check)
 # ---------------------------------------------------------------------------
-def _old_f1_metrics(annotations, labels):
-    annotations = np.asarray(annotations, dtype=float)
-    labels = np.asarray(labels)
-    if not (1 in labels and 0 in labels):
-        return {"recall": 0.0, "precision": 0.0, "f1": 0.0}
-    true_pos = np.mean(annotations[labels == 1])
-    false_pos = np.mean(annotations[labels == 0])
-    precision = 1 - false_pos
-    f1 = 2 * true_pos * precision / (true_pos + precision) if (true_pos + precision) > 0 else 0.0
-    return {"recall": true_pos, "precision": precision, "f1": f1}
-
-
 def score_all_candidates_both_metrics(interpreter, texts, activations, interpretations,
                                        scoring_config, cache_name):
-    """Score every candidate interpretation (not just the winner) under both the
-    old (buggy) and new (fixed) F1 formulas, reusing the annotation cache that
-    `score_interpretations` just populated (no extra API calls).
+    """Score every candidate under recall/specificity and precision/recall, reusing the
+    annotation cache that `score_interpretations` just populated (no extra API calls).
 
     Returns a DataFrame with one row per (neuron_idx, candidate) pair.
     """
@@ -291,31 +277,28 @@ def score_all_candidates_both_metrics(interpreter, texts, activations, interpret
             cached = annotate(tasks=tasks, cache_path=cache_path, use_cache_only=True, show_progress=False)
             annotations = np.array([cached[interp][text] for text in eval_texts])
 
-            new_m = interpreter._compute_metrics(annotations=annotations, labels=labels, activations=eval_activations)
-            old_m = _old_f1_metrics(annotations, labels)
-
+            m = compute_metrics(annotations, labels, eval_activations)
             rows.append({
                 "neuron_idx": neuron_idx,
                 "candidate_num": candidate_num,
                 "interpretation": interp,
-                "new_precision": new_m["precision"],
-                "new_recall": new_m["recall"],
-                "new_f1": new_m["f1"],
-                "old_precision": old_m["precision"],
-                "old_recall": old_m["recall"],
-                "old_f1": old_m["f1"],
+                "recall": m["recall"],
+                "precision": m["precision"],
+                "specificity": m["specificity"],
+                "recall_specificity_hmean": m[FIDELITY_METRIC],
+                "precision_recall_f1": m["f1"],
             })
 
     df = pd.DataFrame(rows).sort_values(["neuron_idx", "candidate_num"]).reset_index(drop=True)
 
     flips = 0
     for neuron_idx, group in df.groupby("neuron_idx"):
-        best_new = group.loc[group["new_f1"].idxmax(), "interpretation"]
-        best_old = group.loc[group["old_f1"].idxmax(), "interpretation"]
-        if best_new != best_old:
+        best_rs = group.loc[group["recall_specificity_hmean"].idxmax(), "interpretation"]
+        best_f1 = group.loc[group["precision_recall_f1"].idxmax(), "interpretation"]
+        if best_rs != best_f1:
             flips += 1
     n_neurons = df["neuron_idx"].nunique()
-    print(f"  Theme selection changed by the metric fix: {flips}/{n_neurons} neurons")
+    print(f"  Neurons whose selected theme differs under precision/recall F1: {flips}/{n_neurons}")
 
     return df
 
@@ -339,7 +322,7 @@ def generate_interpretations_and_fidelity_scores(
     max_interpretation_tokens=50,
     n_candidate_interpretations=1,
     n_scoring_examples=100,
-    scoring_metric="f1",
+    scoring_metric=FIDELITY_METRIC,
     n_workers_interpretation=10,
     n_workers_annotation=30,
     task_specific_instructions=None,
@@ -432,10 +415,11 @@ def generate_interpretations_and_fidelity_scores(
                 "neuron_idx": idx,
                 "source_sae": neuron_source_sae_info[idx],
                 "interpretation": best_interp,
-                f"{scoring_metric}_fidelity_score": best_score,
+                # column name kept for compatibility with the shipped fidelity files
+                "f1_fidelity_score": best_score,
             })
 
-        print(f"\nStep 4: Comparing old vs. new F1 across all {n_candidate_interpretations} candidates per neuron")
+        print(f"\nStep 4: Scoring all {n_candidate_interpretations} candidates per neuron under both fidelity definitions")
         all_candidates_df = score_all_candidates_both_metrics(
             interpreter=interpreter,
             texts=texts,
@@ -495,7 +479,7 @@ def train_and_interpret(survey_path, emb_dir, identity, M, K,
     out_path = fidelity_dir / f"{identity}_interpretation_fidelity.csv"
     fidelity_df.to_csv(out_path, index=False)
     print(f"  Saved: {out_path.relative_to(ROOT)}")
-    print(f"  Median F1 fidelity: {fidelity_df['f1_fidelity_score'].median():.3f}")
+    print(f"  Median fidelity: {fidelity_df['f1_fidelity_score'].median():.3f}")
 
     if all_candidates_df is not None:
         comparison_dir = DATA_DIR / "f1_metric_comparison"
@@ -538,4 +522,3 @@ if __name__ == "__main__":
             print(f"Error processing {identity}: {e}")
 
     print(f"\nDone. SAE timing log: {RUNTIME_LOG_PATH.relative_to(ROOT)}")
-    print("Run scripts/annotate_themes.py next to regenerate theme annotation indicators.")

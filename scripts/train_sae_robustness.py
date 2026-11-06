@@ -11,18 +11,18 @@ What this script does:
   1. Loads pre-computed embeddings from the embeddings directory.
   2. Trains SAEs with M=16 and M=64 neurons (K=4 active neurons per input).
   3. Interprets each SAE neuron via an LLM (GPT-4o by default).
-  4. Scores interpretation fidelity with an annotator LLM (GPT-4.1-mini).
+  4. Scores interpretation fidelity (recall/specificity harmonic mean) with an annotator LLM.
   5. Saves fidelity scores to data/fidelity/{identity}_interpretation_fidelity_m{M}.csv.
 
 Usage:
     # Run all identities for both M values
-    python scripts/train_sae_robustness.py --embeddings data/embeddings/
+    python scripts/train_sae_robustness.py
 
     # Run one identity
-    python scripts/train_sae_robustness.py --embeddings data/embeddings/ --identity race
+    python scripts/train_sae_robustness.py --identity race
 
     # Retrain from scratch, overwriting existing checkpoints
-    python scripts/train_sae_robustness.py --embeddings data/embeddings/ --overwrite
+    python scripts/train_sae_robustness.py --overwrite
 """
 
 import sys
@@ -45,6 +45,9 @@ import hypothesaes.quickstart as _qs
 import torch
 from hypothesaes.quickstart import train_sae
 from hypothesaes.interpret_neurons import NeuronInterpreter, InterpretConfig, ScoringConfig, LLMConfig, SamplingConfig
+from fidelity import FIDELITY_METRIC, patch_hypothesaes
+
+patch_hypothesaes()
 
 
 # ---------------------------------------------------------------------------
@@ -175,7 +178,7 @@ def generate_interpretations_and_fidelity_scores(
     max_interpretation_tokens=50,
     n_candidate_interpretations=1,
     n_scoring_examples=100,
-    scoring_metric="f1",
+    scoring_metric=FIDELITY_METRIC,
     n_workers_interpretation=10,
     n_workers_annotation=30,
     task_specific_instructions=None,
@@ -264,7 +267,7 @@ def generate_interpretations_and_fidelity_scores(
                 "neuron_idx": idx,
                 "source_sae": neuron_source_sae_info[idx],
                 "interpretation": best_interp,
-                f"{scoring_metric}_fidelity_score": best_score,
+                "f1_fidelity_score": best_score,
             })
 
     return pd.DataFrame(results)
@@ -309,7 +312,7 @@ def train_and_interpret(survey_path, emb_dir, identity, M, K,
     out_path = fidelity_dir / f"{identity}_interpretation_fidelity_m{M}.csv"
     fidelity_df.to_csv(out_path, index=False)
     print(f"  Saved: {out_path.relative_to(ROOT)}")
-    print(f"  Median F1 fidelity: {fidelity_df['f1_fidelity_score'].median():.3f}")
+    print(f"  Median fidelity: {fidelity_df['f1_fidelity_score'].median():.3f}")
 
 
 # ---------------------------------------------------------------------------
