@@ -1,0 +1,17 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(16, 1)",mentions fairness or equality in taxation,0.657910447761194
+1,"(16, 1)",Use of the word 'because' or its variation 'cuz' at the beginning,0.6844444444444445
+2,"(16, 1)",Expressions of uncertainty or guessing,0.8982222222222221
+3,"(16, 1)",mentions wealth inequality,0.7054054054054054
+4,"(16, 1)",mentions gender equality or equal treatment of genders,0.8636363636363636
+5,"(16, 1)",mentions better ways,0.6376811594202899
+6,"(16, 1)",mentions opportunities for lower income individuals,0.8689655172413793
+7,"(16, 1)",mentions lack of impact or difference,0.8202409638554217
+8,"(16, 1)",mentions loopholes or ways to evade taxes,0.9273118279569893
+9,"(16, 1)",mentions the concept of fairness or equity in taxation,0.7594736842105264
+10,"(16, 1)",mentions hard work or working hard,0.8096385542168675
+11,"(16, 1)","mentions not knowing (e.g., 'dont know', 'idk')",0.6575342465753424
+12,"(16, 1)",contains the phrase 'Not sure',0.9130434782608696
+13,"(16, 1)",mentions leveling/evens the playing field,0.9290322580645162
+14,"(16, 1)",mentions 'good',0.6842105263157895
+15,"(16, 1)",response is 'none',0.5714285714285715

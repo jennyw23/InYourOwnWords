@@ -1,0 +1,17 @@
+neuron_idx,interpretation,pct_active_activation_based,pct_annotated_llm
+15,mentions distribution or movement of money,0.22460776218001652,0.4186622625928984
+11,mentions wealth or wealthy,0.38109000825763834,0.32947976878612717
+3,mentions tax,0.32452518579686207,0.259289843104872
+10,Mentions lack of impact or effect,0.3179190751445087,0.24938067712634188
+9,mentions the possibility of alternative solutions or better ways,0.3170933113129645,0.2060280759702725
+0,mentions the poor,0.2584640792733278,0.1680429397192403
+7,"Contains expressions of uncertainty (e.g., 'not sure')",0.12758051197357556,0.14285714285714285
+14,starts with 'because',0.17093311312964493,0.10528488852188274
+12,mentions personal estate or inheritance,0.1606110652353427,0.10528488852188274
+2,Responses consist of short phrases expressing uncertainty or lack of knowledge,0.2865400495458299,0.10404624277456648
+5,mentions hard work or working hard,0.27704376548307186,0.06606110652353427
+8,mentions finding ways to avoid or bypass taxes,0.17795210569777042,0.05945499587118084
+6,mentions the phrase 'very good' or 'good',0.300990916597853,0.047481420313790254
+13,Responds with 'Not sure',0.11312964492155243,0.03303055326176713
+4,mentions leveling the playing field,0.3509496284062758,0.02601156069364162
+1,mentions equality between genders,0.20891824938067713,0.023121387283236993

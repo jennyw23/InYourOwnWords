@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(32, 1)",mentions division,0.9473684210526316
+1,"(32, 1)",mentions the word 'democracy',0.9690721649484536
+2,"(32, 1)",mentions Covid-19 control,0.9273118279569893
+3,"(32, 1)",mentions prices,0.8505747126436781
+4,"(32, 1)",mentions inflation,1.0
+5,"(32, 1)",mentions border control,0.4615384615384615
+6,"(32, 1)",mentions hatred,0.6666666666666666
+7,"(32, 1)",mentions pandemic explicitly,0.98989898989899
+8,"(32, 1)",mentions money or spending,0.7743209876543209
+9,"(32, 1)",mentions unity or bringing people together,0.9698969072164948
+10,"(32, 1)",mentions covid-19,0.9795918367346939
+11,"(32, 1)",mentions poverty,0.6794666666666668
+12,"(32, 1)",mentions misinformation or disinformation,0.8483720930232559
+13,"(32, 1)",mentions election fraud,0.6842105263157895
+14,"(32, 1)",mentions violence,0.7679999999999999
+15,"(32, 1)",mentions the word 'covid' exactly,1.0
+16,"(32, 1)",mentions the word 'economy',0.9795918367346939
+17,"(32, 1)",mentions racism,1.0
+18,"(32, 1)",mentions women's rights or abortion rights,0.9690721649484536
+19,"(32, 1)",mentions cost of living,1.0
+20,"(32, 1)",mentions corruption,0.9795918367346939
+21,"(32, 1)",mentions education,0.8028915662650602
+22,"(32, 1)",mentions immigration,1.0
+23,"(32, 1)",mentions socialism,0.9795918367346939
+24,"(32, 1)",mentions healthcare,0.98989898989899
+25,"(32, 1)",mentions debt,1.0
+26,"(32, 1)",numeric value -5,1.0
+27,"(32, 1)",mentions 'SK',1.0
+28,"(32, 1)",mentions climate change,1.0
+29,"(32, 1)",mentions the economy explicitly,0.9690721649484536
+30,"(32, 1)",mentions Donald Trump,0.7341772151898733
+31,"(32, 1)",mentions divisiveness,0.9273118279569893

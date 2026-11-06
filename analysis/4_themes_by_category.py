@@ -8,7 +8,7 @@ to existing categories have high R²; themes that cut across categories have low
 Produces:
   - Per-theme R² sorted table (one per identity)
   - Median R² per identity
-  - Table S5: four R² metrics (OLS, adjusted, McFadden, Cox-Snell)
+  - Table S10: four R² metrics (OLS, adjusted, McFadden, Cox-Snell)
   - Stacked bar-chart figures saved to analysis/figures/
 
 Run from InYourOwnWords/:
@@ -145,7 +145,7 @@ def print_median_r2(results):
 
 def print_robust_r2(results):
     print("\n" + "─" * 60)
-    print("Median R² by metric (Table S5)")
+    print("Median R² by metric (Table S10)")
     print("─" * 60)
     metrics = [
         ("r2",        "OLS R²"),

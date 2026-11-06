@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(32, 4)",Contains expression of uncertainty or refusal to provide a reason,0.8844943820224719
+1,"(32, 4)",mentions taxes negatively,0.8889887640449439
+2,"(32, 4)",mentions the concept of rich people getting richer,0.7274666666666666
+3,"(32, 4)",expresses uncertainty or lack of knowledge,0.8599999999999999
+4,"(32, 4)",mentions redistribution of wealth,0.6260869565217392
+5,"(32, 4)",Contains the phrase 'Not sure',0.6301369863013699
+6,"(32, 4)",mentions leveling or evening the playing field,0.8489411764705882
+7,"(32, 4)",mentions helping lower income or less fortunate people,0.7548717948717948
+8,"(32, 4)",starts with 'because',0.8844943820224719
+9,"(32, 4)",mentions taking from one group to give to another,0.8380952380952381
+10,"(32, 4)",mentions helping or balancing,0.63
+11,"(32, 4)",mentions the poor or being poor,0.8898876404494382
+12,"(32, 4)",mentions finding loopholes or ways to avoid/evade taxes,0.9273118279569893
+13,"(32, 4)",mentions fairness or unfairness,0.7779487179487179
+14,"(32, 4)",Response consists entirely of the word 'na' or variations thereof,0.36065573770491804
+15,"(32, 4)",mentions the word 'good',0.6963157894736842
+16,"(32, 4)",opposition to government interference,0.8298795180722892
+17,"(32, 4)",mentions money explicitly,0.8323809523809523
+18,"(32, 4)",mentions uncertainty with the phrase 'I don't know',0.5915492957746479
+19,"(32, 4)",mentions wealth inequality,0.7054054054054054
+20,"(32, 4)",mentions estate tax,0.98989898989899
+21,"(32, 4)",mentions not knowing,0.7960975609756098
+22,"(32, 4)",mentions inheritance or inheritors,0.9130434782608696
+23,"(32, 4)",mentions taxation,0.924731182795699
+24,"(32, 4)",mentions the need for additional actions or steps,0.6161194029850747
+25,"(32, 4)",mentions women,0.8636363636363636
+26,"(32, 4)",mentions negative impact on jobs or economy,0.8671264367816092
+27,"(32, 4)",mentions lack of effect or impact,0.9273118279569893
+28,"(32, 4)",mentions the wealthy paying more,0.864367816091954
+29,"(32, 4)",mentions the economy,0.8606896551724138
+30,"(32, 4)",mentions better ways,0.8404705882352941
+31,"(32, 4)",mentions hard work or working hard,0.98989898989899

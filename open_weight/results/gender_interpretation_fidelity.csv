@@ -1,0 +1,33 @@
+neuron_idx,interpretation,f1_fidelity_score
+0,self-identifies as a woman using explicit statements like 'I identify as a woman' or 'I am a woman',0.8037383177570094
+1,"self-describes using fluid or non-binary gender terms such as 'gender fluid,' 'non-binary,' or 'genderqueer' and discusses varying or fluctuating gender experiences",0.8979591836734694
+2,self-describes as male using biological or physical attributes,0.78
+3,self-identifies with a non-static or fluid gender identity,0.8571428571428572
+4,describes gender roles or expectations related to traditional masculine or feminine behaviors and responsibilities,0.7933884297520661
+5,"self-describes as transgender or using terms like transmasculine, nonbinary, or transsexual in the context of gender identity",0.9019607843137256
+6,self-describes as cisgender male with reflection on masculinity or societal expectations,0.8910891089108911
+7,"self-describes using gender identity terms like 'female' or 'woman' while also mentioning a contrast with masculine traits, tomboy identity, or non-binary considerations",0.7407407407407408
+8,"uses single-word responses such as 'Male', 'Female', 'male', or 'female'",0.5405405405405406
+9,"mentions personal characteristics or traits such as appearance, personality, or roles rather than specific gender labels",0.4
+10,self-describes as female using biological or physical characteristics,0.7304347826086957
+11,self-describes as agender or explicitly rejects traditional gender categories,0.9504950495049505
+12,"self-describes as a woman or female without mentioning non-binary, genderfluid, transgender, or other non-cisgender identities",0.8205128205128206
+13,uses minimal self-description stating only gender identity without additional context or elaboration,0.8076923076923077
+14,"self-describes as ... and discusses how their gender identity influences aspects of their life, relationships, or societal expectations",0.6962962962962963
+15,self-describes as biological/female at birth and emphasizes being born a female,0.9038461538461539
+16,mentions a process of self-discovery or realization about their gender identity over time,0.7884615384615384
+17,states being assigned or born a specific gender and consistently identifying with it without questioning,0.8392857142857143
+18,self-describes using the term 'cis' or 'cisgender',1.0
+19,"self-identifies as nonbinary or uses terms like nonbinary, non-binary, or transmasc nonbinary",1.0
+20,mentions giving birth or ability to conceive children,0.7951807228915663
+21,self-describes as cisgender female or uses language indicating biological sex aligns with gender identity as female,0.8648648648648649
+22,"self-describes using the terms 'male' or 'man' in a straightforward, declarative statement without additional elaboration",0.9306930693069307
+23,self-identifies as male or Cisgender male and aligns with the sex assigned at birth,0.9607843137254902
+24,self-identifies as heterosexual or straight and specifies a gender (male/female),0.7640449438202247
+25,mentions how gender identity influences or impacts life experiences,0.7142857142857143
+26,mentions societal or cultural expectations tied to gender roles,0.7899159663865546
+27,"self-describes using gender identity terms in combination with societal, cultural, or personal experiences",0.6870229007633587
+28,self-describes as ... and references racial or ethnic background in the same statement,0.8529411764705882
+29,"self-describes as female or woman without mentioning being transgender, nonbinary, or intersex",0.8440366972477064
+30,"mentions enjoyment or emphasis on feminine presentation, clothing, or traits",0.8131868131868132
+31,"mentions experiencing gender-based discrimination or inequality in work, society, or personal life",0.8260869565217391

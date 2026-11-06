@@ -1,0 +1,65 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(64, 1)",mentions social security,0.7027027027027027
+1,"(64, 1)",mentions gun control,0.6443835616438356
+2,"(64, 1)",mentions control of COVID-19 virus,0.9010989010989011
+3,"(64, 1)",mentions leadership,0.9583333333333334
+4,"(64, 1)",mentions civil or social unrest,0.9795918367346939
+5,"(64, 1)",mentions poverty,0.9795918367346939
+6,"(64, 1)",mentions freedom,0.7951807228915663
+7,"(64, 1)",mentions 'first one',0.7906976744186047
+8,"(64, 1)",mentions racism or racial issues,0.8288110508140109
+9,"(64, 1)",mentions the word 'pandemic' exactly,0.9490526315789475
+10,"(64, 1)",mentions war,0.98989898989899
+11,"(64, 1)",mentions cost of living,0.98989898989899
+12,"(64, 1)",mentions fascism,0.5507246376811594
+13,"(64, 1)",mentions illegal immigration,1.0
+14,"(64, 1)",mentions Donald Trump,0.7654320987654321
+15,"(64, 1)",mentions 'the economy',0.9795918367346939
+16,"(64, 1)",lack of specific problems mentioned,0.5575757575757576
+17,"(64, 1)",mentions climate change,0.9795918367346939
+18,"(64, 1)",mentions immigration,0.9690721649484536
+19,"(64, 1)",mentions misinformation or disinformation,0.7951807228915663
+20,"(64, 1)",mentions income inequality,0.7012987012987013
+21,"(64, 1)",mentions financial terms related to 'money' or 'spending',0.8280952380952381
+22,"(64, 1)",mentions coronavirus,0.9382978723404256
+23,"(64, 1)",mentions greed or corporate greed,0.5294117647058824
+24,"(64, 1)",mentions high prices,0.7012987012987013
+25,"(64, 1)",mentions crime,0.8560919540229885
+26,"(64, 1)",mentions foreign policy or international relations,0.8235294117647058
+27,"(64, 1)",mentions racism explicitly,1.0
+28,"(64, 1)",mentions wage-related issues,0.8636363636363636
+29,"(64, 1)",mentions hatred,0.9010989010989011
+30,"(64, 1)",mentions the word 'virus',0.9690721649484536
+31,"(64, 1)",mentions national security,0.5681159420289855
+32,"(64, 1)",mentions unity or unification,0.9698969072164948
+33,"(64, 1)",mentions systemic racism,0.8235294117647058
+34,"(64, 1)",mentions political division,0.38068965517241377
+35,"(64, 1)",mentions socialism,0.98989898989899
+36,"(64, 1)",mentions human rights,0.5265671641791045
+37,"(64, 1)",mentions protection or care related to people or environment,0.7263157894736842
+38,"(64, 1)",mentions the word 'economy' explicitly,0.9473684210526316
+39,"(64, 1)",mentions COVID without additional context,0.9473684210526316
+40,"(64, 1)",mentions political polarization,0.6911999999999999
+41,"(64, 1)",mentions law and order or rule of law,0.8095238095238095
+42,"(64, 1)",mentions lowercase 'covid',0.98989898989899
+43,"(64, 1)",responses are all 'SK',1.0
+44,"(64, 1)",mentions government overreach or big government,0.7012987012987013
+45,"(64, 1)",mentions border control,0.43750000000000006
+46,"(64, 1)",mentions multiple problems without specifying them,0.4935483870967743
+47,"(64, 1)",mentions democracy,0.98989898989899
+48,"(64, 1)",mentions abortion,0.717948717948718
+49,"(64, 1)",mentions inflation,0.98989898989899
+50,"(64, 1)",mentions corruption,0.7804878048780487
+51,"(64, 1)",mentions the economic impact of COVID,0.7012987012987013
+52,"(64, 1)",mentions ignorance,0.7073684210526316
+53,"(64, 1)",mentions COVID-19,0.98989898989899
+54,"(64, 1)",mentions climate change,0.9290322580645162
+55,"(64, 1)",mentions homelessness,0.9473684210526316
+56,"(64, 1)",mentions unemployment,0.7287179487179486
+57,"(64, 1)",mentions division,0.98989898989899
+58,"(64, 1)","mentions Covid-19 or Covid with emphasis on current timing (e.g., 'right now', 'currently')",0.9046153846153846
+59,"(64, 1)",mentions morality or lack thereof,0.9072527472527473
+60,"(64, 1)",mentions debt,1.0
+61,"(64, 1)",mentions healthcare,1.0
+62,"(64, 1)",mentions education,0.9698969072164948
+63,"(64, 1)",mentions all problems collectively,0.7287179487179486

@@ -5,9 +5,9 @@ Delegates to the standalone scripts in analysis/baselines/:
   - baselines/lda/lda_analysis.py        (tomotopy LDA, K=32)
   - baselines/bertopic/bertopic_analysis.py  (HDBSCAN min_cluster_size=7 + GPT-4o-mini labels)
 
-Pre-trained models are included in baselines/lda/lda_models/ and
-baselines/bertopic/bertopic_models/, so the scripts will load existing
-checkpoints unless --overwrite is passed.
+Both need the survey data. The LDA models (baselines/lda/lda_models/) are in the repo; the
+BERTopic models (baselines/bertopic/bertopic_models/) store example responses, so they come
+with the data request. Existing models are loaded unless --overwrite is passed.
 
 TopicGPT (Pham et al., 2024) is run separately via
 baselines/topicgpt/topicgpt_run.py, as it requires many OpenAI API calls.
@@ -24,7 +24,8 @@ import argparse
 import sys
 from pathlib import Path
 
-BASELINES_DIR = Path(__file__).resolve().parent / "baselines"
+ROOT = Path(__file__).resolve().parent.parent
+BASELINES_DIR = ROOT / "analysis" / "baselines"
 
 SCRIPTS = [
     BASELINES_DIR / "lda" / "lda_analysis.py",
@@ -41,6 +42,15 @@ def parse_args():
 
 def main():
     args = parse_args()
+
+    required = [ROOT / "data" / "in_your_own_words.csv", ROOT / "data" / "embeddings"]
+    if not args.overwrite:
+        required.append(BASELINES_DIR / "bertopic" / "bertopic_models")
+    missing = [p for p in required if not p.exists()]
+    if missing:
+        sys.exit("This script requires data access. Missing:\n"
+                 + "\n".join(f"  {p.relative_to(ROOT)}" for p in missing)
+                 + "\nThese are provided with the data request; see data/README.md.")
 
     for script in SCRIPTS:
         print(f"\n{'═'*60}")

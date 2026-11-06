@@ -1,5 +1,5 @@
 """
-Section 5: Free-text themes help explain life outcomes (Table 1).
+Section 5: Free-text themes help explain life outcomes (Table S11, Figures S10–S12).
 
 For each identity axis, runs nested F-tests comparing:
   - Base model:  outcome ~ standardized identity categories
@@ -388,7 +388,7 @@ OUTCOME_LABELS = {
 
 def print_table(all_results):
     print("\n" + "─" * 70)
-    print("Table 1 — Free-text themes improve explained variance in life outcomes")
+    print("Table S11 — Free-text themes improve explained variance in life outcomes")
     print("(adj R²: base model → full model, relative increase, BH-corrected sig.)")
     print("─" * 70)
     header = f"  {'Identity':<22} {'Outcome':<28} {'Base':>6} {'Full':>6} {'Ratio':>7} {'Sig':>4}"

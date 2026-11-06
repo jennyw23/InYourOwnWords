@@ -1,0 +1,65 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(64, 4)",mentions the word 'bad',0.6666666666666666
+1,"(64, 4)",distrust in government handling of money,0.8404705882352941
+2,"(64, 4)",mentions punishment for success or hard work,0.7822222222222223
+3,"(64, 4)","use of phrases indicating uncertainty or indirect agreement (e.g., 'seems', 'sounds like', 'would work')",0.6313846153846154
+4,"(64, 4)",mentions being poor or the poor,0.8871910112359551
+5,"(64, 4)",mentions the lack of benefit to poor people,0.7468421052631579
+6,"(64, 4)",mentions a video,0.888888888888889
+7,"(64, 4)",mentions leveling or evening the playing field,0.9382978723404256
+8,"(64, 4)",mentions fairness,0.9498947368421051
+9,"(64, 4)",mentions estate tax,0.8636363636363636
+10,"(64, 4)",mentions tax negativity,0.6783098591549297
+11,"(64, 4)",mentions opportunities for the less fortunate,0.7686075949367089
+12,"(64, 4)",mentions funding programs for low income or poor people,0.588
+13,"(64, 4)",mentions increasing taxes as a negative action,0.8689655172413793
+14,"(64, 4)",use of the phrase 'I just think',0.18181818181818182
+15,"(64, 4)",positive sentiment words,0.7263157894736842
+16,"(64, 4)",mentions loopholes,0.6301369863013699
+17,"(64, 4)",mentions women or gender equality,0.9795918367346939
+18,"(64, 4)",mentions 'rich',0.98
+19,"(64, 4)",contains the phrase 'not sure' or 'don't know' (case-insensitive),0.9595833333333332
+20,"(64, 4)",mentions economic benefits or growth,0.7954999999999999
+21,"(64, 4)",mentions income tax or taxation,0.8498823529411764
+22,"(64, 4)",Contains 'idk',0.43750000000000006
+23,"(64, 4)",mentions problems not being solved,0.7338666666666667
+24,"(64, 4)",mentions the wealthy directly,0.896
+25,"(64, 4)",responses are short and informal,0.5147169811320754
+26,"(64, 4)",mentions better ways,0.8202409638554217
+27,"(64, 4)",mentions socialism,0.717948717948718
+28,"(64, 4)",mentions lack of significant impact,0.9298924731182796
+29,"(64, 4)",mentions guessing or not knowing the answer,0.9490526315789475
+30,"(64, 4)",contains the word 'none',0.3870967741935484
+31,"(64, 4)",mentions hard work,0.98989898989899
+32,"(64, 4)",mentions balance or imbalance,0.36
+33,"(64, 4)",mentions penalizing/punishing for wealth or success,0.5142857142857143
+34,"(64, 4)",mentions job creation or employment effects,0.6111111111111112
+35,"(64, 4)",mentions equality or fairness for everyone,0.7746835443037976
+36,"(64, 4)",contains the phrase 'not sure',1.0
+37,"(64, 4)",uses the word 'good',0.6034285714285714
+38,"(64, 4)",mentions the rich hiding or retaining wealth,0.8404705882352941
+39,"(64, 4)",mentions redistribution of wealth,0.5193333333333333
+40,"(64, 4)",mentions having no idea,0.9046153846153846
+41,"(64, 4)",mentions lack of wealth or estate,0.43520000000000003
+42,"(64, 4)",mentions the rich paying their fair share,0.5843478260869565
+43,"(64, 4)",contains the phrase 'no comment',0.3050847457627119
+44,"(64, 4)",lack of explanation or reasoning,0.5538461538461539
+45,"(64, 4)",mentions the word 'money',0.8698850574712644
+46,"(64, 4)",responses are short and one-word,0.7534177215189872
+47,"(64, 4)",mentions the need for additional measures or alternatives,0.8395238095238095
+48,"(64, 4)",mentions help or helps,0.9595833333333332
+49,"(64, 4)",mentions redistribution of wealth,0.78
+50,"(64, 4)",mentions not knowing,0.9583333333333334
+51,"(64, 4)",mentions impact on lower or middle class,0.8195121951219512
+52,"(64, 4)",mentions uncertainty or lack of knowledge,0.718904109589041
+53,"(64, 4)",mentions the idea that wealthier individuals should pay more taxes,0.6219718309859155
+54,"(64, 4)",mentions 'wealth inequality',0.8727272727272728
+55,"(64, 4)",mentions taxation in context of income or wealth redistribution,0.7779487179487179
+56,"(64, 4)",Starts with 'because',0.9046153846153846
+57,"(64, 4)",mentions the word 'would',0.8240963855421687
+58,"(64, 4)",mentions taking from one group and giving to another,0.782
+59,"(64, 4)",mentions double taxation,0.4615384615384615
+60,"(64, 4)",mentions increase or increases,0.9595833333333332
+61,"(64, 4)",mentions helping or providing opportunities for the less fortunate,0.42482758620689653
+62,"(64, 4)",mentions wealth or money abundance,0.7471794871794871
+63,"(64, 4)",contains 'Na' or variations,0.7659574468085106

@@ -1,0 +1,65 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(64, 4)",mentions negative numbers,0.6301369863013699
+1,"(64, 4)",mentions democracy,0.9583333333333334
+2,"(64, 4)",mentions only the word 'economy',1.0
+3,"(64, 4)",mentions all-encompassing or collective terms,0.2030769230769231
+4,"(64, 4)",mentions the president or president-elect by name,0.6301369863013699
+5,"(64, 4)",mentions socialism,0.98989898989899
+6,"(64, 4)",mentions political polarization or partisan politics,0.7891358024691357
+7,"(64, 4)",mentions climate change,1.0
+8,"(64, 4)",mentions National Debt,0.8372093023255813
+9,"(64, 4)",mentions divisiveness or a divided country,0.9690721649484536
+10,"(64, 4)",mentions high prices,0.7804878048780487
+11,"(64, 4)",mentions gun control,0.6666666666666666
+12,"(64, 4)",mentions covid 19,0.98989898989899
+13,"(64, 4)",mentions Coronavirus explicitly,0.9473684210526316
+14,"(64, 4)",mentions abortion or addiction,0.5915492957746479
+15,"(64, 4)",mentions the virus,0.909010989010989
+16,"(64, 4)",mentions the border,0.9795918367346939
+17,"(64, 4)",mentions economic or political instability/unrest,0.675
+18,"(64, 4)",mentions Education,1.0
+19,"(64, 4)",mentions inflation,1.0
+20,"(64, 4)",mentions environment,0.5805882352941176
+21,"(64, 4)",starts with 'right now',0.888888888888889
+22,"(64, 4)",Mentions environmental issues,0.11279999999999998
+23,"(64, 4)",mentions abortion rights,0.9010989010989011
+24,"(64, 4)",mentions illegal immigration,1.0
+25,"(64, 4)",mentions importance of all problems,0.7341772151898733
+26,"(64, 4)",mentions national security,0.5074626865671642
+27,"(64, 4)",mentions the economy,0.9690721649484536
+28,"(64, 4)",mentions 'the economy',0.98989898989899
+29,"(64, 4)",mentions cost of living,1.0
+30,"(64, 4)",Mentions Donald Trump,0.9583333333333334
+31,"(64, 4)",mentions misinformation,0.8505747126436781
+32,"(64, 4)",The phrase 'The pandemic',1.0
+33,"(64, 4)",mentions the importance or priority of issues,1.0
+34,"(64, 4)",mentions homelessness,0.98989898989899
+35,"(64, 4)",mentions crime,0.8686363636363637
+36,"(64, 4)",mentions 'SK',1.0
+37,"(64, 4)",mentions working together or unifying the country,0.7804878048780487
+38,"(64, 4)",mentions poverty,1.0
+39,"(64, 4)",mentions war or international conflict,0.9690721649484536
+40,"(64, 4)",mentions election fraud,0.7951807228915663
+41,"(64, 4)",mentions the word 'Pandemic' exclusively,0.98989898989899
+42,"(64, 4)",mentions racism explicitly without additional context,0.9795918367346939
+43,"(64, 4)",mentions lack of leadership,0.41269841269841273
+44,"(64, 4)",mentions unemployment,0.8505747126436781
+45,"(64, 4)",mentions the word 'Division',0.98989898989899
+46,"(64, 4)",mentions wealth inequality,0.9583333333333334
+47,"(64, 4)",mentions immigrants or political parties (democrats),0.7891358024691357
+48,"(64, 4)",mentions immigration,0.9795918367346939
+49,"(64, 4)",mentions moral or religious decline,0.8372093023255813
+50,"(64, 4)",mentions racism,1.0
+51,"(64, 4)",mentions coronavirus explicitly,0.9795918367346939
+52,"(64, 4)",mentions health care,0.98989898989899
+53,"(64, 4)",mentions the word 'unity',1.0
+54,"(64, 4)",mentions systemic racism,0.8505747126436781
+55,"(64, 4)",expresses uncertainty or lack of opinion,0.9795918367346939
+56,"(64, 4)",mentions government overreach,0.5843478260869565
+57,"(64, 4)",mentions hatred,0.98989898989899
+58,"(64, 4)",mentions inequality,0.9498947368421051
+59,"(64, 4)",mentions 'COVID' exactly,1.0
+60,"(64, 4)",mentions corruption,0.9795918367346939
+61,"(64, 4)",mentions global warming,0.9361702127659575
+62,"(64, 4)",mentions healthcare,0.9795918367346939
+63,"(64, 4)",mentions human rights,0.7595

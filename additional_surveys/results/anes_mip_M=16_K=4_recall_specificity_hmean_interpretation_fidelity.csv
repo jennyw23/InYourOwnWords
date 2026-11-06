@@ -1,0 +1,17 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(16, 4)",mentions pandemic,1.0
+1,"(16, 4)",mentions healthcare,1.0
+2,"(16, 4)",mentions inflation,1.0
+3,"(16, 4)",mentions economy,0.9473684210526316
+4,"(16, 4)",Capitalized first letter,0.98989898989899
+5,"(16, 4)",mentions racism,1.0
+6,"(16, 4)",mentions socialism,0.98989898989899
+7,"(16, 4)",mentions corruption,0.9690721649484536
+8,"(16, 4)",mentions covid 19,1.0
+9,"(16, 4)",mentions climate change,1.0
+10,"(16, 4)",mentions division in the country,0.98989898989899
+11,"(16, 4)",mentions 'border security',0.7341772151898733
+12,"(16, 4)",mentions income inequality or disparity,0.9795918367346939
+13,"(16, 4)",mentions the concept of media or love without additional context,0.2750877192982456
+14,"(16, 4)",mentions Donald Trump,0.9010989010989011
+15,"(16, 4)",mentions immigration,1.0

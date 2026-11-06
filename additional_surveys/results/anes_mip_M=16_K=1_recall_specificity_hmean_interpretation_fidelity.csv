@@ -1,0 +1,17 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(16, 1)",mentions healthcare,0.98989898989899
+1,"(16, 1)",mentions 'division',1.0
+2,"(16, 1)",mentions economy,0.9473684210526316
+3,"(16, 1)",mentions Donald Trump,0.8505747126436781
+4,"(16, 1)",mentions corruption,0.6666666666666666
+5,"(16, 1)",mentions Covid-19 explicitly,0.9583333333333334
+6,"(16, 1)",mentions immigration without additional context,0.9795918367346939
+7,"(16, 1)",mentions illegal immigration,1.0
+8,"(16, 1)",mentions climate change,1.0
+9,"(16, 1)",mentions border control,0.4615384615384615
+10,"(16, 1)",mentions 'SK' or 'info',1.0
+11,"(16, 1)",mentions racism,1.0
+12,"(16, 1)",mentions abortion,0.717948717948718
+13,"(16, 1)",mentions socialism,0.9795918367346939
+14,"(16, 1)",mentions inflation,0.98989898989899
+15,"(16, 1)",mentions Covid-19 or covid control,0.9498947368421051

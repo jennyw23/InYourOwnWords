@@ -1,253 +1,135 @@
 """
-Section 3: Validating extracted themes.
+Section 3: Validating extracted themes (Supplementary C.1).
 
-Reports inter-rater agreement between LLM annotations (GPT-4.1-mini,
-identity-specific prompt) and human annotations on a random sample of
-8 themes x 100 responses per identity axis (24 themes total).
-
-Two kappa methods are used (following the paper):
-  - Per-theme kappa: kappa computed for each 100-row theme block; overall median cited in text
-  - Diagonal kappa: single kappa over all 800 concatenated diagonal values per identity;
-                used for the per-identity values and Table S7
+Compares LLM annotations with human annotations on 8 themes x 100 responses per
+identity axis (24 themes). Reports the median across themes, as in the paper:
+  - Table S2: Cohen's kappa and positive rates for each annotation model and prompt
+  - Table S3: kappa, precision, and recall for GPT-4.1-mini + identity-specific prompt
+  - Figure S6: per-theme kappa for that configuration
 
 Run from InYourOwnWords/:
     python analysis/3_validate_themes.py
 """
 
-import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from pathlib import Path
-from sklearn.metrics import cohen_kappa_score
+from sklearn.metrics import cohen_kappa_score, precision_score, recall_score
+from statsmodels.stats.proportion import proportion_confint
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data"
-sys.path.insert(0, str(ROOT / "src"))
-FIGURES_DIR    = Path(__file__).parent / "figures"
+VALIDATION_DIR = ROOT / "data" / "validation"
+FIGURES_DIR = Path(__file__).parent / "figures"
 
-VALIDATION_DIR    = DATA_DIR / "validation"
-ROWS_PER_THEME    = 100
+ROWS_PER_THEME = 100
 THEMES_PER_IDENTITY = 8
-IDENTITIES        = ["race", "gender", "sexual_orientation"]
+IDENTITIES = ["race", "gender", "sexual_orientation"]
 
-# All model x prompt combinations in the validation study
+# Rows of Table S2, in paper order
 MODELS = [
-    ("gpt-4o-mini",  "default"),
     ("gpt-4.1-mini", "default"),
     ("gpt-4.1",      "default"),
     ("gpt-4.1-mini", "identity-specific"),
     ("gpt-4.1",      "identity-specific"),
 ]
-CHOSEN_MODEL  = "gpt-4.1-mini"
-CHOSEN_PROMPT = "identity-specific"
-
-KAPPA_LABELS = {
-    (0.00, 0.20): "slight",
-    (0.20, 0.40): "fair",
-    (0.40, 0.60): "moderate",
-    (0.60, 0.80): "substantial",
-    (0.80, 1.01): "almost perfect",
-}
+CHOSEN = ("gpt-4.1-mini", "identity-specific")
 
 
-def _kappa_label(k):
-    for (lo, hi), label in KAPPA_LABELS.items():
-        if lo <= k < hi:
-            return label
-    return ""
-
-
-def _per_theme_kappas(identity, model, prompt):
-    """Compute kappa for each 100-row theme block (Method 1)."""
-    llm_path   = VALIDATION_DIR / f"annotated-{identity}-{model}-{prompt}.csv"
-    human_path = VALIDATION_DIR / f"annotated-{identity}-sample.csv"
-    llm_df     = pd.read_csv(llm_path)
-    human_df   = pd.read_csv(human_path)
-
-    kappas = []
+def paired_labels(identity, model, prompt):
+    """(theme, human, llm) for each theme's 100-row block, NaNs dropped pairwise."""
+    human_df = pd.read_csv(VALIDATION_DIR / f"annotated-{identity}-sample.csv")
+    llm_df = pd.read_csv(VALIDATION_DIR / f"annotated-{identity}-{model}-{prompt}.csv")
+    out = []
     for i in range(THEMES_PER_IDENTITY):
-        lo, hi    = i * ROWS_PER_THEME, (i + 1) * ROWS_PER_THEME
-        theme_col = human_df.columns[i + 2]
-        llm_vals  = llm_df.iloc[lo:hi][theme_col].values
-        hum_vals  = human_df.iloc[lo:hi][theme_col].values
-        mask      = ~(pd.isna(llm_vals) | pd.isna(hum_vals))
-        k = cohen_kappa_score(llm_vals[mask].astype(int), hum_vals[mask].astype(int))
-        kappas.append(k)
-    return kappas
+        rows = slice(i * ROWS_PER_THEME, (i + 1) * ROWS_PER_THEME)
+        theme = human_df.columns[i + 2]
+        h = human_df.iloc[rows][theme].to_numpy()
+        l = llm_df.iloc[rows][theme].to_numpy()
+        mask = ~(pd.isna(h) | pd.isna(l))
+        out.append((theme, h[mask].astype(int), l[mask].astype(int)))
+    return out
 
 
-def _diagonal_kappa(identity, model, prompt):
-    """Compute single kappa over 800 concatenated diagonal values (Method 2)."""
-    llm_path   = VALIDATION_DIR / f"annotated-{identity}-{model}-{prompt}.csv"
-    human_path = VALIDATION_DIR / f"annotated-{identity}-sample.csv"
-    llm_df     = pd.read_csv(llm_path)
-    human_df   = pd.read_csv(human_path)
-
-    llm_labels, hum_labels = [], []
-    for i in range(THEMES_PER_IDENTITY):
-        lo, hi    = i * ROWS_PER_THEME, (i + 1) * ROWS_PER_THEME
-        theme_col = human_df.columns[i + 2]
-        llm_block = llm_df.iloc[lo:hi][theme_col].values
-        hum_block = human_df.iloc[lo:hi][theme_col].values
-        mask      = ~(pd.isna(llm_block) | pd.isna(hum_block))
-        llm_labels.extend(llm_block[mask].tolist())
-        hum_labels.extend(hum_block[mask].tolist())
-
-    llm_arr = np.array(llm_labels, dtype=int)
-    hum_arr = np.array(hum_labels, dtype=int)
-    k       = cohen_kappa_score(llm_arr, hum_arr)
-    pos_rate = np.mean(llm_arr)
-    return k, pos_rate
+def clopper_pearson(successes, trials):
+    if trials == 0:
+        return np.nan, np.nan
+    return proportion_confint(successes, trials, method="beta")
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-
-def overall_median_kappa():
-    """Overall median kappa across all 24 themes (chosen model)."""
-    print("─" * 60)
-    print("Per-theme kappa — chosen model "
-          f"({CHOSEN_MODEL}, {CHOSEN_PROMPT} prompt)")
-    print("─" * 60)
-
-    all_kappas = []
+def theme_reliability(model, prompt):
+    """One row per theme: kappa, precision, recall (human labels as reference) with 95% CIs."""
+    rows = []
     for identity in IDENTITIES:
-        try:
-            kappas = _per_theme_kappas(identity, CHOSEN_MODEL, CHOSEN_PROMPT)
-        except FileNotFoundError as e:
-            print(f"  {identity}: file not found — {e}")
-            continue
-        all_kappas.extend(kappas)
-        ks = [f"{k:.2f}" for k in kappas]
-        print(f"  {identity:25s}  [{', '.join(ks)}]  "
-              f"median={np.median(kappas):.3f}")
-
-    if all_kappas:
-        med = np.median(all_kappas)
-        print(f"\n  Overall median kappa (24 themes): {med:.3f}  ({_kappa_label(med)})")
-    print()
-
-
-def per_identity_kappa():
-    """Per-identity diagonal kappa for the chosen model (cited in main text)."""
-    print("─" * 60)
-    print("Per-identity kappa — chosen model "
-          f"({CHOSEN_MODEL}, {CHOSEN_PROMPT} prompt)")
-    print("─" * 60)
-    for identity in IDENTITIES:
-        try:
-            k, pos = _diagonal_kappa(identity, CHOSEN_MODEL, CHOSEN_PROMPT)
-        except FileNotFoundError as e:
-            print(f"  {identity}: file not found — {e}")
-            continue
-        print(f"  {identity:25s}  kappa={k:.3f}  ({_kappa_label(k)})"
-              f"  LLM positive rate={pos:.3f}")
-    print()
+        for theme, h, l in paired_labels(identity, model, prompt):
+            tp = int(((h == 1) & (l == 1)).sum())
+            n_llm, n_human = int(l.sum()), int(h.sum())
+            p_lo, p_hi = clopper_pearson(tp, n_llm)
+            r_lo, r_hi = clopper_pearson(tp, n_human)
+            rows.append({
+                "identity": identity, "theme": theme,
+                "kappa": cohen_kappa_score(h, l),
+                "precision": precision_score(h, l, zero_division=0), "precision_lo": p_lo, "precision_hi": p_hi,
+                "recall": recall_score(h, l, zero_division=0), "recall_lo": r_lo, "recall_hi": r_hi,
+                "n_llm_positive": n_llm, "n_human_positive": n_human,
+                "n": len(h), "human_sum": int(h.sum()), "llm_sum": int(l.sum()),
+            })
+    return pd.DataFrame(rows)
 
 
-def annotation_agreement_table():
-    """Full annotation agreement table: all model × prompt × identity combinations."""
-    print("─" * 60)
-    print("Annotation agreement by model and prompt (Table S7)")
-    print("─" * 60)
-    header = f"  {'Model':<15} {'Prompt':<20} {'Race kappa':>8} {'Gender kappa':>10} {'SO kappa':>8} {'LLM+ rate':>10}"
-    print(header)
-    print("  " + "─" * (len(header) - 2))
-
-    human_pos_rates = []
-    for identity in IDENTITIES:
-        try:
-            human_path = VALIDATION_DIR / f"annotated-{identity}-sample.csv"
-            hum_df = pd.read_csv(human_path)
-            all_vals = []
-            for i in range(THEMES_PER_IDENTITY):
-                lo, hi = i * ROWS_PER_THEME, (i + 1) * ROWS_PER_THEME
-                theme_col = hum_df.columns[i + 2]
-                all_vals.extend(hum_df.iloc[lo:hi][theme_col].dropna().astype(int).tolist())
-            human_pos_rates.append(np.mean(all_vals))
-        except FileNotFoundError:
-            pass
-    human_avg_pos = np.mean(human_pos_rates) if human_pos_rates else float("nan")
-
+def table_s2():
+    print("─" * 78)
+    print("Table S2 — annotation agreement by model and prompt (median kappa across 8 themes)")
+    print("─" * 78)
+    print(f"  {'Model':<14}{'Prompt':<19}{'Race':>7}{'Gender':>8}{'SO':>7}{'Human+%':>9}{'LLM+%':>8}{'Δ pp':>7}")
     for model, prompt in MODELS:
-        kappas, pos_rates = {}, []
-        for identity in IDENTITIES:
-            try:
-                k, pos = _diagonal_kappa(identity, model, prompt)
-                kappas[identity] = k
-                pos_rates.append(pos)
-            except FileNotFoundError:
-                kappas[identity] = float("nan")
-
-        avg_pos = np.mean(pos_rates) if pos_rates else float("nan")
-        marker  = " <- chosen" if (model, prompt) == (CHOSEN_MODEL, CHOSEN_PROMPT) else ""
-        print(f"  {model:<15} {prompt:<20} "
-              f"{kappas.get('race', float('nan')):>8.3f} "
-              f"{kappas.get('gender', float('nan')):>10.3f} "
-              f"{kappas.get('sexual_orientation', float('nan')):>8.3f} "
-              f"{avg_pos:>10.3f}{marker}")
-
-    print(f"\n  Human annotator average positive rate: {human_avg_pos:.3f}")
+        df = theme_reliability(model, prompt)
+        k = df.groupby("identity")["kappa"].median()
+        # positive rates pool each identity's 800 labels, then average across identities
+        sums = df.groupby("identity")[["human_sum", "llm_sum", "n"]].sum()
+        pos = pd.Series({"human_pos": (sums.human_sum / sums.n).mean(), "llm_pos": (sums.llm_sum / sums.n).mean()})
+        marker = "  <- selected" if (model, prompt) == CHOSEN else ""
+        print(f"  {model:<14}{prompt:<19}{k['race']:>7.3f}{k['gender']:>8.3f}{k['sexual_orientation']:>7.3f}"
+              f"{100 * pos['human_pos']:>9.1f}{100 * pos['llm_pos']:>8.1f}"
+              f"{round(100 * (pos['llm_pos'] - pos['human_pos']), 6):>+7.1f}{marker}")
     print()
 
 
-def plot_kappa_figure(out_path=None):
-    """Bar chart of per-theme kappas for the chosen model, color-coded by identity."""
-    if out_path is None:
-        out_path = FIGURES_DIR / "kappa_by_theme.png"
+def table_s3(df):
+    print("─" * 78)
+    print(f"Table S3 — {CHOSEN[0]}, {CHOSEN[1]} prompt (median across 8 themes)")
+    print("─" * 78)
+    med = df.groupby("identity", sort=False)[["kappa", "precision", "recall"]].median()
+    for identity, r in med.iterrows():
+        print(f"  {identity:<22} kappa={r['kappa']:.3f}  precision={r['precision']:.3f}  recall={r['recall']:.3f}")
+    print(f"\n  Median kappa across all 24 themes: {df['kappa'].median():.3f}\n")
 
-    colors = plt.cm.Set2.colors
-    identity_colors = {
-        "race":               colors[0],
-        "gender":             colors[1],
-        "sexual_orientation": colors[2],
-    }
-    identity_labels = {
-        "race":               "Race",
-        "gender":             "Gender",
-        "sexual_orientation": "Sexual Orientation",
-    }
+    print("  Per-theme estimates (95% Clopper-Pearson CIs)")
+    for r in df.itertuples():
+        print(f"    {r.identity:<19} {r.theme[:60]:<60} κ={r.kappa:5.2f}  "
+              f"P={r.precision:.2f} [{r.precision_lo:.2f}, {r.precision_hi:.2f}] (n={r.n_llm_positive})  "
+              f"R={r.recall:.2f} [{r.recall_lo:.2f}, {r.recall_hi:.2f}] (n={r.n_human_positive})")
+    print()
 
-    all_kappas, all_labels, all_colors = [], [], []
 
-    for identity in IDENTITIES:
-        human_path = VALIDATION_DIR / f"annotated-{identity}-sample.csv"
-        try:
-            human_df = pd.read_csv(human_path)
-            kappas   = _per_theme_kappas(identity, CHOSEN_MODEL, CHOSEN_PROMPT)
-        except FileNotFoundError as e:
-            print(f"  Skipping {identity}: {e}")
-            continue
+def plot_kappa_figure(df, out_path=FIGURES_DIR / "kappa_by_theme.png"):
+    """Figure S6: per-theme kappa, colored by identity axis."""
+    colors = dict(zip(IDENTITIES, plt.cm.Set2.colors))
+    labels = {"race": "Race", "gender": "Gender", "sexual_orientation": "Sexual Orientation"}
 
-        theme_cols = [human_df.columns[i + 2] for i in range(THEMES_PER_IDENTITY)]
-        all_kappas.extend(kappas)
-        all_labels.extend(theme_cols)
-        all_colors.extend([identity_colors[identity]] * len(kappas))
-
-    if not all_kappas:
-        print("No data to plot.")
-        return
-
-    x = range(len(all_kappas))
-    fig, ax = plt.subplots(figsize=(max(12, len(all_kappas) * 0.8), 6))
-    bars = ax.bar(x, all_kappas, color=all_colors)
-
-    for bar, k in zip(bars, all_kappas):
+    fig, ax = plt.subplots(figsize=(max(12, len(df) * 0.8), 6))
+    bars = ax.bar(range(len(df)), df["kappa"], color=df["identity"].map(colors))
+    for bar, k in zip(bars, df["kappa"]):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
                 f"{k:.2f}", ha="center", va="bottom", fontsize=9)
 
-    ax.set_xticks(list(x))
-    ax.set_xticklabels(all_labels, rotation=60, ha="right", fontsize=9)
+    ax.set_xticks(range(len(df)))
+    ax.set_xticklabels(df["theme"], rotation=60, ha="right", fontsize=9)
     ax.set_ylabel("Cohen's Kappa")
-    ax.set_title(f"Per-theme kappa ({CHOSEN_MODEL}, {CHOSEN_PROMPT} prompt)")
+    ax.set_title(f"Per-theme kappa ({CHOSEN[0]}, {CHOSEN[1]} prompt)")
     ax.set_ylim(0, 1.05)
-
-    legend_handles = [
-        mpatches.Patch(color=identity_colors[i], label=identity_labels[i])
-        for i in IDENTITIES if identity_colors.get(i)
-    ]
-    ax.legend(handles=legend_handles, title="Identity")
+    ax.legend(handles=[mpatches.Patch(color=colors[i], label=labels[i]) for i in IDENTITIES], title="Identity")
 
     fig.tight_layout()
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -256,11 +138,9 @@ def plot_kappa_figure(out_path=None):
     print(f"Saved kappa figure: {out_path}")
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-
 if __name__ == "__main__":
     print()
-    overall_median_kappa()
-    per_identity_kappa()
-    annotation_agreement_table()
-    plot_kappa_figure()
+    table_s2()
+    chosen = theme_reliability(*CHOSEN)
+    table_s3(chosen)
+    plot_kappa_figure(chosen)

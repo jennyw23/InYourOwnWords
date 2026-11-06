@@ -4,7 +4,7 @@ Section 1: Minority respondents share more context.
 Corresponds to the paper section "Minority respondents share more context."
 
 Run from InYourOwnWords/:
-    python d02_analysis/1_free_text_adds_context.py
+    python analysis/1_free_text_adds_context.py
 
 Or run all scripts at once:
     python run_all.py

@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(32, 1)",mentions socialism,0.831592689295039
+1,"(32, 1)",mentions leveling the playing field for lower income or poor families,0.9160869565217392
+2,"(32, 1)",mentions negative impact on middle or lower class,0.7274666666666666
+3,"(32, 1)",responses consist solely of the word 'none',0.7692307692307693
+4,"(32, 1)",mentions gender equality or equal taxation for men and women,0.8235294117647058
+5,"(32, 1)",mentions leveling the playing field,0.6527777777777778
+6,"(32, 1)",mentions personal estate or household wealth,0.8395238095238095
+7,"(32, 1)",contains 'I don't know',0.4615384615384615
+8,"(32, 1)",mentions tax increases as negative,0.6634285714285715
+9,"(32, 1)",mentions helping,0.7822222222222223
+10,"(32, 1)",mentions reduction in available money or resources,0.6927777777777777
+11,"(32, 1)",contains the phrase 'very good' or 'good',0.5767164179104478
+12,"(32, 1)",mentions taking from one group to give to another,0.8180487804878049
+13,"(32, 1)",mentions the phrase 'rich get richer',0.14814814814814814
+14,"(32, 1)",mentions effects on wealth inequality,0.7979999999999999
+15,"(32, 1)",mentions the wealthy should pay more taxes,0.9046153846153846
+16,"(32, 1)","responses consist of brief, vague phrases without detailed explanation",0.5265671641791045
+17,"(32, 1)",Mentions hard work or personal responsibility,0.8558139534883721
+18,"(32, 1)",mentions programs or services for the poor,0.7822222222222223
+19,"(32, 1)",mentions guessing or being unsure about the guess,0.9473684210526316
+20,"(32, 1)",mentions alternative ways or solutions,0.8121951219512195
+21,"(32, 1)",mentions impact on middle or working class,0.4904918032786886
+22,"(32, 1)",mentions redistribution of wealth,0.7837974683544303
+23,"(32, 1)",The response is 'Not sure',0.9490526315789475
+24,"(32, 1)",mentions punishment for success or hard work,0.7073684210526316
+25,"(32, 1)",Denial or rejection of wealth inequality as a concept,0.5476470588235295
+26,"(32, 1)",mentions positive economic impact,0.7173684210526314
+27,"(32, 1)",mentions lack of impact or effect,0.8648920140632848
+28,"(32, 1)",nonsensical or gibberish text,0.9743589743589743
+29,"(32, 1)",mentions loopholes or hiding wealth,0.9698969072164948
+30,"(32, 1)",contains the phrase 'no comment',0.6428571428571429
+31,"(32, 1)",mentions working hard or earning wealth as a reason against the estate tax,0.9160869565217392

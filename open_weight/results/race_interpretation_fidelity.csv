@@ -1,0 +1,33 @@
+neuron_idx,interpretation,f1_fidelity_score
+0,"explains the distinction between race and ethnicity by referencing cultural practices, traditions, language, or family heritage",0.6837606837606838
+1,mentions specific cultural or familial values and traditions that have influenced personal identity,0.6324786324786325
+2,self-describes using a specific racial or ethnic identifier without additional cultural or traditional elaboration,0.6818181818181819
+3,"mentions specific ancestral regions or historical migration patterns of African, Middle Eastern, or Jewish descent",0.691358024691358
+4,mentions being raised to assimilate into a different culture or not participate in one's heritage culture,0.8431372549019608
+5,self-identifies as Hispanic or specifies Hispanic/Latino descent,0.9148936170212766
+6,describes participation in or emphasis on holiday or cultural traditions passed down through family,0.8971962616822429
+7,self-identifies as Native American or a member of a specific Indigenous tribe,0.9484536082474226
+8,self-identifies as Mexican or Mexican American and discusses cultural or familial ties to Mexico,0.9696969696969697
+9,self-describes as ... and explicitly states they speak English,0.8073394495412843
+10,mentions speaking multiple languages as part of heritage or family,0.5
+11,self-identifies with Black or African American racial/ethnic category,0.9215686274509804
+12,self-describes as [ethnicity] American with explicit mention of being born in the United States or to immigrant parents from a specific country/region,0.826923076923077
+13,self-identifies specifically as Black or African American without additional ethnic or cultural elaboration,0.8444444444444444
+14,includes brief or single-word self-identification without detailed cultural or familial elaboration,0.5
+15,self-identifies as white and discusses ambiguity or complexity in racial/ethnic identity,0.7636363636363636
+16,"describes being of mixed racial or ethnic heritage with specific parentage (e.g., 'half X and half Y' or 'mother is X and father is Y')",0.8247422680412372
+17,"self-identifies as Arab, Middle Eastern, or specifies a specific Middle Eastern or Arab ethnicity (e.g., Yemeni, Jordanian, Lebanese, Moroccan, Israeli)",0.7654320987654321
+18,self-describes as white American or white with European ancestry and lacks strong connection to specific countries or cultural traditions,0.8431372549019608
+19,"self-identifies as Asian or an Asian ethnicity (e.g., Chinese, Korean, Filipino, Southeast Asian)",0.98989898989899
+20,explicitly states experiencing or being aware of white privilege,0.813953488372093
+21,"identifies race/ethnicity using a single, broad category label without elaboration",0.62
+22,"describes cultural practices, traditions, or values specific to a non-Western or non-Caucasian ethnic group",0.7787610619469026
+23,mentions English language and Christian-based holidays or traditions,0.8314606741573033
+24,"describes race/ethnicity in terms of cultural heritage, traditions, and historical influences",0.7313432835820894
+25,"self-identifies as White, Caucasian, or European with specific ancestral or regional origins",0.8545454545454546
+26,"mentions family gatherings, traditions, or cultural practices specific to African American culture",0.6582278481012658
+27,"self-describes using terms like 'Black,' 'Black American,' or 'African American' and discusses the cultural, historical, and societal implications of being Black",0.9158878504672898
+28,"mentions being raised in a household where a non-English language is primarily or significantly spoken, alongside or in addition to English",0.6976744186046512
+29,states having no specific cultural traditions or customs related to race or ethnicity,0.7816091954022989
+30,self-describes as mixed race or multiracial,0.8785046728971964
+31,"mentions specific Northern European ethnicities such as Irish, Scottish, German, or English ancestry",0.98

@@ -6,7 +6,7 @@ prints the filtered theme lists for each identity, mirroring what the main
 analysis uses at M=32.
 
 To regenerate the fidelity CSVs from scratch, run:
-    python scripts/train_sae_robustness.py --embeddings data/embeddings/
+    python scripts/train_sae_robustness.py
 
 Run from InYourOwnWords/:
     python analysis/6_robustness_sae_params.py

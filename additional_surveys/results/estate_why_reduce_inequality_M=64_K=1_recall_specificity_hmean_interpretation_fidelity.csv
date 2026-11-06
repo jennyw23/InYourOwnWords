@@ -1,0 +1,65 @@
+neuron_idx,source_sae,interpretation,recall_specificity_hmean_fidelity_score
+0,"(64, 1)",mentions hard work or effort,0.9595833333333332
+1,"(64, 1)",mentions the American Dream,0.34782608695652173
+2,"(64, 1)",mentions the size or lack thereof of one's own estate,0.8372093023255813
+3,"(64, 1)",mentions relative ease or difficulty,0.4922724670864339
+4,"(64, 1)",mentions programs that help the poor or lower income families,0.685945945945946
+5,"(64, 1)",mentions gender or sex,0.98989898989899
+6,"(64, 1)",mentions the ineffectiveness or minimal impact on wealth inequality,0.8734835355285963
+7,"(64, 1)",mentions 'good',0.5843478260869565
+8,"(64, 1)",responses use variations of the word 'because',0.7746835443037976
+9,"(64, 1)",mentions video,0.8148148148148148
+10,"(64, 1)",mentions negative impact or harm,0.5880452342487884
+11,"(64, 1)",Expressions of uncertainty or lack of knowledge,0.8910622113556099
+12,"(64, 1)",mentions the word 'tax',0.844235294117647
+13,"(64, 1)",expresses uncertainty or lack of rationale,0.6501872659176031
+14,"(64, 1)",mentions lack of correlation or connection,0.6031746031746031
+15,"(64, 1)",contains 'idk',1.0
+16,"(64, 1)",mentions backlash from the wealthy,0.9690721649484536
+17,"(64, 1)",contains the word 'none',0.8275862068965517
+18,"(64, 1)",contains the phrase 'not sure',0.9490526315789475
+19,"(64, 1)",mentions the effect on wealth inequality,0.8599999999999999
+20,"(64, 1)",mentions double taxation,0.846153846153846
+21,"(64, 1)",mentions hiding or avoiding taxes,0.90989010989011
+22,"(64, 1)",mentions impact on middle or lower class,0.8929712460063898
+23,"(64, 1)",mentions job creation or job loss,0.6468646864686469
+24,"(64, 1)",mentions socialism,0.9
+25,"(64, 1)",mentions distrust in government's use of the money,0.9081718618365627
+26,"(64, 1)",nonsensical or random text,0.975609756097561
+27,"(64, 1)",mentions a small percentage of a group,0.6666666666666666
+28,"(64, 1)",mentions benefit to the lower class,0.8668909178279672
+29,"(64, 1)",mentions providing or increasing support for poor or low-income individuals,0.7308970099667775
+30,"(64, 1)",mentions children or heirs,0.98989898989899
+31,"(64, 1)",level the playing field,0.8277177368086459
+32,"(64, 1)",mentions loopholes or ways to avoid taxes,0.9290322580645162
+33,"(64, 1)",mentions the existence of better alternatives,0.7750065634024679
+34,"(64, 1)",mentions gender equality,0.8627450980392156
+35,"(64, 1)",mentions punishment or discouragement of hard work and success,0.8470530930345835
+36,"(64, 1)",mentions the rich being taxed,0.352
+37,"(64, 1)",mentions 'playing field',0.6666666666666666
+38,"(64, 1)",mentions wealth inequality,0.7919999999999999
+39,"(64, 1)",contains 'na' or 'Na',0.8571428571428571
+40,"(64, 1)",Mentions lack of specific reason or content,0.7654320987654321
+41,"(64, 1)",mentions the rich or wealthy paying more,0.864367816091954
+42,"(64, 1)",mentions uncertainty or lack of knowledge,0.9130434782608696
+43,"(64, 1)",mentions government's role or lack thereof in wealth inequality,0.7954999999999999
+44,"(64, 1)",mentions the concept of paying or giving more,0.7547169811320756
+45,"(64, 1)",mentions fairness,0.8926673751328373
+46,"(64, 1)",negative sentiment expressed concisely,0.7804878048780487
+47,"(64, 1)",mentions wage/salary equality or increasing wages,0.8497109826589595
+48,"(64, 1)",mentions working hard to earn wealth,0.7073684210526316
+49,"(64, 1)",references to taking from the rich and giving to the poor,0.6343612334801763
+50,"(64, 1)",mentions hiding money or assets,0.9444444444444444
+51,"(64, 1)",mentions impact on the economy,0.8814432989690723
+52,"(64, 1)",mentions equality or gain,0.7951807228915663
+53,"(64, 1)",mentions women,0.9538461538461539
+54,"(64, 1)",mentions helping disadvantaged or less fortunate individuals,0.686626746506986
+55,"(64, 1)",mentions taxing the wealthy or high-income individuals,0.8470588235294118
+56,"(64, 1)",mentions the phrase 'rich get richer',0.18181818181818182
+57,"(64, 1)",mentions middle class,0.874870734229576
+58,"(64, 1)",mentions the negative impact of tax increases on the economy,0.844235294117647
+59,"(64, 1)",mentions spending or having less money,0.7008985879332478
+60,"(64, 1)",mentions opposition to increased taxation,0.8339992735197965
+61,"(64, 1)",mentions opposition to estate tax,0.5189189189189188
+62,"(64, 1)",redistributes wealth,0.8357647058823529
+63,"(64, 1)",mentions lack of impact or effect,0.9058441558441558

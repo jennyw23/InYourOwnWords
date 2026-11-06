@@ -85,6 +85,16 @@ def main():
         raise FileNotFoundError(f"Survey data not found: {DATA_FILE}\nSee data/README.md for access instructions.")
     if not EMB_DIR.is_dir():
         raise FileNotFoundError(f"Embeddings directory not found: {EMB_DIR}\nSee data/README.md for access instructions.")
+    missing = [d for i in ["race", "gender", "sexual_orientation"]
+               for d in (MODEL_OUTPUT_DIR / f"bertopic_{i}_model", MODEL_OUTPUT_DIR / f"bertopic_{i}_model_gpt_topics")
+               if not d.exists()]
+    if missing and not args.overwrite:
+        # the saved models store example responses, so they come with the data request
+        raise FileNotFoundError(
+            f"Saved BERTopic models not found: {', '.join(d.name for d in missing)} in {MODEL_OUTPUT_DIR}\n"
+            "They are provided with the data request; see data/README.md for access instructions.\n"
+            "To retrain instead, pass --overwrite (needs OPENAI_API_KEY)."
+        )
 
     TOPIC_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     MODEL_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
