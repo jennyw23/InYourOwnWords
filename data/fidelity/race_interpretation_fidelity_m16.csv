@@ -1,0 +1,17 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(16, 4)",mentions whiteness or being white,0.35904761904761906
+1,"(16, 4)",self-describes as white,0.98989898989899
+2,"(16, 4)",mentions cultural traditions or practices,0.9395744680851065
+3,"(16, 4)",explicitly self-describes as Black or African American,0.90989010989011
+4,"(16, 4)",mentions collective or community-oriented values,0.6994285714285715
+5,"(16, 4)",mentions speaking an Asian language,0.723116883116883
+6,"(16, 4)",mentions Spanish language or bilingualism,0.7951807228915663
+7,"(16, 4)",uses single-word or extremely brief responses to describe race/ethnicity,0.7443037974683544
+8,"(16, 4)",mentions not thinking about their race or ethnicity much,0.8525581395348837
+9,"(16, 4)",mentions skin color or complexion explicitly,0.4618867924528301
+10,"(16, 4)",mentions being mixed race or having mixed ancestry,0.8180487804878049
+11,"(16, 4)",mentions family or cultural traditions/practices,0.5279999999999999
+12,"(16, 4)",mentions family or ancestors in a personal or cultural context,0.6096774193548388
+13,"(16, 4)",mentions being black or African American,0.98989898989899
+14,"(16, 4)",mentions personal or familial connection to multiple ethnicities or cultures,0.2604651162790698
+15,"(16, 4)","explicitly self-identifies race and ethnicity in distinct terms (e.g., 'My race is... and my ethnicity is...')",0.5611940298507463

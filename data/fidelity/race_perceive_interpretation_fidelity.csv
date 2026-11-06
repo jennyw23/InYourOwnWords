@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(32, 4)",mentions connection (or lack thereof) to European heritage or traditions,0.5476470588235295
+1,"(32, 4)",mentions being black or African,0.9160869565217392
+2,"(32, 4)",mentions feeling disconnected from or not fully immersed in their cultural heritage,0.8039506172839506
+3,"(32, 4)",mentions being perceived as white,0.8000000000000002
+4,"(32, 4)",mentions equality or equal treatment,0.4355555555555556
+5,"(32, 4)",mentions uncertainty or lack of knowledge about how others perceive their race/ethnicity,0.6303030303030304
+6,"(32, 4)",mentions alignment or discrepancy between self-identified and perceived race/ethnicity,0.5686153846153846
+7,"(32, 4)",expresses indifference or uncertainty about race or how it is perceived by others,0.576
+8,"(32, 4)",mentions Native American tribes or heritage,0.14814814814814814
+9,"(32, 4)","mentions physical appearance or features, such as skin color, body shape, or facial traits",0.8871910112359551
+10,"(32, 4)",mentions the assumption or stereotype that all Asians are Chinese,0.7341772151898733
+11,"(32, 4)","mentions being Latino, Hispanic, or Mexican and how others perceive that identity",0.9395744680851065
+12,"(32, 4)",expresses uncertainty or similarity without elaboration,0.6519402985074627
+13,"(32, 4)",self-identifies with more detailed or nuanced terms for their race or ethnicity than how others perceive them,0.6686567164179105
+14,"(32, 4)","expresses pride in their race, ethnicity, or culture",0.7443037974683544
+15,"(32, 4)",describes differences in perception without specifying detailed personal experiences or examples,0.47916666666666663
+16,"(32, 4)",describes their appearance as racially or ethnically ambiguous,0.864367816091954
+17,"(32, 4)",mentions being perceived as generically white or European without further specificity,0.844235294117647
+18,"(32, 4)",mentions not thinking about their race or ethnicity much,0.6575342465753424
+19,"(32, 4)",mentions experiences of discrimination or cultural misunderstanding,0.336
+20,"(32, 4)",expresses uncertainty or lack of clarity about their race or ethnicity,0.555483870967742
+21,"(32, 4)",mentions stereotypes about their race or ethnicity,0.7068493150684931
+22,"(32, 4)",discusses Black identity or perception of Black people,0.9195652173913044
+23,"(32, 4)",mentions the complexity or nuances of their identity being overlooked or misinterpreted by others,0.48733333333333334
+24,"(32, 4)",discusses being perceived or identified as American or not American,0.7098591549295775
+25,"(32, 4)",mentions being perceived as Jewish or references Jewish identity,0.4615384615384615
+26,"(32, 4)",uses brief and vague responses without detailed explanations or context,0.7480519480519481
+27,"(32, 4)",discusses how others stereotype their group in a negative way,0.54
+28,"(32, 4)",mentions perceptions of racism or privilege associated with their race or ethnicity,0.5656140350877192
+29,"(32, 4)",mentions assumptions others make about their ethnicity based on appearance or name,0.6323529411764707
+30,"(32, 4)",mentions lack of concern or misunderstanding by others about their race or ethnicity,0.4221276595744681
+31,"(32, 4)",expresses uncertainty or lack of concern about race/ethnicity perception,0.38745098039215686

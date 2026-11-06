@@ -136,6 +136,9 @@ if __name__ == "__main__":
     parser.add_argument("--overwrite", action="store_true", help="retrain SAEs even if a checkpoint exists")
     args = parser.parse_args()
 
+    if not (DATA_DIR / "in_your_own_words.csv").exists():
+        sys.exit("This script requires data access: data/in_your_own_words.csv is provided with the "
+                 "data request; see data/README.md.")
     deepinfra.patch_hypothesaes(cache_dir=str(OUT_DIR / "annotation_cache"))
     for identity in IDENTITIES if args.identity == "all" else [args.identity]:
         run_identity(identity, args.overwrite)

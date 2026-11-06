@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(32, 4)",mentions being perceived with mixed or multiple gender identities,0.8096385542168675
+1,"(32, 4)",mentions societal or cultural expectations related to gender,0.6794117647058824
+2,"(32, 4)",discusses societal perceptions or stereotypes specifically about women,0.5614035087719298
+3,"(32, 4)",mentions societal perceptions or treatment of women,0.7488
+4,"(32, 4)",mentions discomfort or negative emotions regarding the topic,0.3158974358974359
+5,"(32, 4)",expresses uncertainty or avoidance in response,0.48
+6,"(32, 4)",mentions challenges or discomfort related to being perceived as a woman,0.5614035087719298
+7,"(32, 4)",mentions being perceived as cisgender or misgendered,0.6313846153846154
+8,"(32, 4)",mentions being perceived as a specific binary gender (male or female),0.7263157894736842
+9,"(32, 4)",mentions societal expectations or stereotypes about masculinity,0.6991780821917808
+10,"(32, 4)",expresses uncertainty or lack of knowledge about the topic,0.39481481481481484
+11,"(32, 4)",mentions alignment or similarity between self-perception and others' perception,0.5252830188679246
+12,"(32, 4)",mentions a strong mismatch between self-perception of gender and how others perceive their gender,0.647887323943662
+13,"(32, 4)",discusses rejection or critique of labels or categorizations related to gender identity,0.6626865671641792
+14,"(32, 4)",mentions hiding or concealing their gender identity,0.815609756097561
+15,"(32, 4)",discusses the perception of women as weak and contrasts it with their own or women's actual strength or capabilities,0.588
+16,"(32, 4)","mentions how others perceive their gender using terms like 'man', 'woman', 'male', 'female', or similar descriptors",0.534375
+17,"(32, 4)",mentions similarity or difference between self-identified gender identity and others' perception,0.364
+18,"(32, 4)",discusses being perceived as nonbinary or struggles with nonbinary identity being understood,0.6927777777777779
+19,"(32, 4)",mentions alignment between self-identified gender and others' perception of gender,0.6448484848484849
+20,"(32, 4)",mentions being a tomboy or non-typical gender presentation,0.3298245614035088
+21,"(32, 4)",expresses disregard or indifference towards others' perceptions of their gender identity,0.44307692307692303
+22,"(32, 4)",uses concise or brief responses without elaboration,0.4664406779661017
+23,"(32, 4)",mentions cultural or racial identity,0.11320754716981131
+24,"(32, 4)",challenges or critiques traditional gender roles or stereotypes,0.594
+25,"(32, 4)",mentions how others perceive them as conforming to or diverging from societal or traditional gender expectations,0.42692307692307696
+26,"(32, 4)",mentions a mismatch between how they feel internally about their gender and how others perceive their gender,0.6107936507936509
+27,"(32, 4)",mentions being perceived as female or a girl,0.6498461538461539
+28,"(32, 4)",expresses uncertainty or lack of knowledge about the topic,0.5307936507936508
+29,"(32, 4)",mentions assumptions or perceptions about sexual orientation or behavior,0.525
+30,"(32, 4)","mentions physical attributes like body shape, voice, facial hair, or specific features when describing how others perceive their gender identity",0.7534177215189872
+31,"(32, 4)",expresses indifference or lack of strong emotional engagement regarding the topic,0.37527272727272726

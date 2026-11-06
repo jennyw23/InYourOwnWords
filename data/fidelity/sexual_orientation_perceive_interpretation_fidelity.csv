@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(32, 4)",avoids explicitly identifying or discussing specific sexual orientations,0.48627450980392156
+1,"(32, 4)",expresses indifference or lack of concern about others' perceptions of their sexual orientation,0.7480519480519481
+2,"(32, 4)",mentions connection or comparison between sexual orientation and gender identity,0.6985915492957747
+3,"(32, 4)",mentions how others assume they are heterosexual due to appearances or societal norms,0.6519402985074627
+4,"(32, 4)",mentions being perceived as straight due to being married to a man,0.8280952380952381
+5,"(32, 4)",mentions being perceived as lesbian or bisexual,0.7324675324675324
+6,"(32, 4)",expresses uncertainty with the phrase 'not sure' or a synonym,0.723116883116883
+7,"(32, 4)",expresses uncertainty or lack of knowledge explicitly,0.7232876712328767
+8,"(32, 4)",mentions others' views about heterosexuality or straightness,0.5169230769230769
+9,"(32, 4)",mentions telling or not telling others about their sexual orientation,0.8202409638554217
+10,"(32, 4)",mentions how others misperceive their sexual orientation,0.48733333333333334
+11,"(32, 4)",mentions alignment between self-identified sexual orientation and others' perception,0.5498181818181819
+12,"(32, 4)",mentions assumptions made by others about their sexual orientation,0.5714285714285715
+13,"(32, 4)",expresses uncertainty or lack of knowledge about how others perceive their sexual orientation,0.49049180327868847
+14,"(32, 4)",expresses uncertainty or lack of knowledge about their sexual orientation or how others perceive it,0.4503703703703703
+15,"(32, 4)",mentions being in or perceived as being in a relationship that contrasts with their self-identified sexual orientation,0.6486153846153847
+16,"(32, 4)",mentions bisexuality or being attracted to multiple genders,0.7471794871794871
+17,"(32, 4)",mentions being perceived as gay or a different sexual orientation than self-identified,0.5656140350877192
+18,"(32, 4)",expresses uncertainty or lack of knowledge,0.5898305084745763
+19,"(32, 4)","mentions asexuality or related terms (e.g., asexual, demisexual, ace)",0.8228571428571428
+20,"(32, 4)",mentions perceptions or assumptions based on stereotypes,0.42000000000000004
+21,"(32, 4)",mentions being transgender or t4t,0.11307692307692307
+22,"(32, 4)",expresses uncertainty or lack of knowledge about others' perceptions,0.5142857142857143
+23,"(32, 4)",expresses uncertainty or lack of knowledge about how others perceive their sexual orientation,0.3069767441860465
+24,"(32, 4)",mentions uncertainty or doubt about how others perceive their sexual orientation,0.36
+25,"(32, 4)",mentions how others perceive them as different or unusual,0.5498181818181819
+26,"(32, 4)",mentions the concept of 'difference' or 'different',0.7534177215189872
+27,"(32, 4)",discusses misconceptions or stereotypes about bisexuality,0.6662686567164179
+28,"(32, 4)",explicitly states that their self-identified sexual orientation is the same as how others perceive it,0.07666666666666666
+29,"(32, 4)",expresses indifference or positive emotion about their sexual orientation,0.35508771929824556
+30,"(32, 4)",mentions similarity or sameness in perception,0.534375
+31,"(32, 4)",uses vague or ambiguous language to describe orientation or perception,0.24615384615384608

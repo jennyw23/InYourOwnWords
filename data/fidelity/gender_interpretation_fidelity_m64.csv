@@ -1,0 +1,65 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(64, 4)",mentions using multiple pronouns or being comfortable with multiple pronouns,0.892888888888889
+1,"(64, 4)",mentions racial or ethnic identity explicitly,0.6301369863013699
+2,"(64, 4)",explicitly self-describes as cisgender,0.626031746031746
+3,"(64, 4)",mentions being born male and still identifying as male,0.8671264367816092
+4,"(64, 4)",mentions how gender impacts their life,0.45245901639344266
+5,"(64, 4)",discusses challenges or discrimination faced in professional or societal contexts due to gender,0.6364179104477612
+6,"(64, 4)",mentions enjoyment of traditionally feminine activities or traits,0.5647058823529413
+7,"(64, 4)",uses the term nonbinary or non-binary to describe their gender identity,0.9498947368421051
+8,"(64, 4)",self-describes as genderqueer,0.6861971830985916
+9,"(64, 4)",expresses indifference or flexibility about how others perceive their gender or which pronouns are used,0.7819999999999999
+10,"(64, 4)",discusses challenges or societal expectations specifically related to being a woman,0.8489411764705882
+11,"(64, 4)",explicitly mentions never questioning their gender identity,0.7542857142857142
+12,"(64, 4)",mentions lifelong consistency in gender identity,0.7594736842105264
+13,"(64, 4)",uses concise statements to describe their gender without elaboration or context,0.8088888888888889
+14,"(64, 4)",self-describes as cisgender or cis woman,0.8280952380952381
+15,"(64, 4)",mentions discomfort or questioning of gender identity from a young age,0.7338666666666667
+16,"(64, 4)",mentions responsibility to provide or take care of family,0.5236363636363637
+17,"(64, 4)",discusses societal expectations or roles related to masculinity,0.7954999999999999
+18,"(64, 4)","explicitly states sexual orientation (e.g., heterosexual, bisexual, gay)",0.98989898989899
+19,"(64, 4)",mentions alignment with masculinity or masculine traits,0.7615384615384615
+20,"(64, 4)",mentions advantages or benefits related to their gender identity,0.48857142857142855
+21,"(64, 4)","mentions milestones related to womanhood, such as motherhood, giving birth, or navigating societal expectations specific to women",0.5460317460317461
+22,"(64, 4)",mentions being born a specific gender and still identifying as that gender,0.5647058823529413
+23,"(64, 4)",mentions medical transition or plans for medical transition,0.5714285714285715
+24,"(64, 4)",single-word responses,0.35933333333333334
+25,"(64, 4)",mentions experiences or challenges related to societal or workplace discrimination based on gender,0.8844943820224719
+26,"(64, 4)",expresses confusion or uncertainty about their gender identity,0.715
+27,"(64, 4)",mentions giving birth or ability to bear children,0.3298245614035088
+28,"(64, 4)","mentions biological or physical characteristics such as chromosomes, reproductive organs, or secondary sex characteristics to describe gender identity",0.8689655172413793
+29,"(64, 4)",describes gender identity as straightforward or simple,0.6376811594202899
+30,"(64, 4)",mentions giving birth or having children,0.924731182795699
+31,"(64, 4)",mentions gender presentation as distinct or differing from gender identity,0.7994999999999999
+32,"(64, 4)",mentions gender identity as fluid or changing over time,0.864367816091954
+33,"(64, 4)",mentions being assigned female at birth,0.7134246575342464
+34,"(64, 4)","discusses how gender identity aligns or interacts with societal norms, expectations, or roles",0.6268656716417911
+35,"(64, 4)",explicitly self-describes as cisgender man or cis male,0.7898734177215191
+36,"(64, 4)",mentions emotional characteristics or behaviors,0.4072727272727273
+37,"(64, 4)",uses the phrase 'I am a female' or 'I'm a female',0.8202409638554217
+38,"(64, 4)",uses the term 'nonbinary' or 'agender' to describe their gender identity,0.92
+39,"(64, 4)",mentions nonbinary or non-binary as their gender identity,0.8889887640449439
+40,"(64, 4)",single-word responses referring only to gender,0.6575342465753424
+41,"(64, 4)",uses the term 'cisgender' or 'cis' to describe their gender identity,0.9698969072164948
+42,"(64, 4)",mentions a sense of detachment or complexity regarding gender identity,0.5483636363636364
+43,"(64, 4)",mentions being born a woman and explicitly repeats or emphasizes being born a woman,0.7698701298701298
+44,"(64, 4)",mentions lack of significant influence of gender on their life,0.7960975609756098
+45,"(64, 4)",mentions struggles or discomfort with femininity or societal expectations of femininity,0.6503030303030303
+46,"(64, 4)","expresses apathy, confusion, or rejection toward the concept of gender",0.8595348837209302
+47,"(64, 4)",explicitly states 'born female' or 'born a female',0.864367816091954
+48,"(64, 4)",mentions hobbies or activities associated with traditional masculinity,0.3031578947368421
+49,"(64, 4)",mentions expectations or roles tied to gender within family or societal context,0.7888607594936708
+50,"(64, 4)",explicitly states 'I identify as [a gender]',0.8166666666666667
+51,"(64, 4)",mentions belief in a binary gender system based on being born as either male or female,0.6745945945945946
+52,"(64, 4)",describes personal qualities or physical appearance in detail,0.27259259259259255
+53,"(64, 4)",explicitly self-describes as male or man,0.7594736842105264
+54,"(64, 4)",mentions how gender identity influences personal decisions or life milestones,0.5378461538461539
+55,"(64, 4)",expresses belief in the existence of only two genders,0.5944615384615385
+56,"(64, 4)",explicitly states being heterosexual or straight,0.6354929577464788
+57,"(64, 4)",explicitly self-describes as 'woman' or 'female' without additional qualifiers or complexities,0.7594736842105264
+58,"(64, 4)",mentions being heterosexual,0.6354929577464788
+59,"(64, 4)",mentions sports or activities traditionally associated with men,0.2750877192982456
+60,"(64, 4)","mentions ability to create or bring life (e.g., bearing children, conceiving, procreating, etc.)",0.4355555555555556
+61,"(64, 4)",mentions providing or taking responsibility for others,0.5681159420289855
+62,"(64, 4)",mentions transitioning or undergoing medical/physical changes related to gender,0.815609756097561
+63,"(64, 4)",mentions masculinity or masculine traits,0.6285714285714287

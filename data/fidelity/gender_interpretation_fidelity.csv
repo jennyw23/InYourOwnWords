@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(32, 4)",uses the exact word 'male',0.909010989010989
+1,"(32, 4)",mentions childhood experiences related to gender roles or expectations,0.7819999999999999
+2,"(32, 4)",mentions responsibility to provide for family,0.5507246376811594
+3,"(32, 4)",mentions use of multiple pronouns or experimenting with pronouns,0.4571428571428572
+4,"(32, 4)",mentions physical appearance or specific physical traits,0.38237288135593217
+5,"(32, 4)",mentions giving birth or having children as a significant aspect of their identity,0.8560919540229885
+6,"(32, 4)",single-word self-description of gender,0.56
+7,"(32, 4)",explicitly states never questioning their gender identity,0.8166666666666667
+8,"(32, 4)",explicitly states being born a specific gender and continuing to identify with that same gender,0.7012987012987013
+9,"(32, 4)","mentions how gender identity influences decisions, safety, or interactions in life",0.7177777777777777
+10,"(32, 4)",self-describes as male or man and mentions alignment with gender assigned at birth,0.9046153846153846
+11,"(32, 4)",uses the phrase 'I would describe my gender identity as ...',0.7743209876543209
+12,"(32, 4)","mentions enjoyment or participation in activities or items stereotypically associated with femininity (e.g., makeup, fashion, dressing up, heels, etc.)",0.5681159420289855
+13,"(32, 4)","mentions traditionally masculine activities or traits such as sports, fixing things, outdoor activities, or being a provider/protector",0.5048484848484848
+14,"(32, 4)",uses the word 'cisgender',0.9795918367346939
+15,"(32, 4)",explicitly states being heterosexual,0.9010989010989011
+16,"(32, 4)",mentions being non-binary or nonbinary,0.8098765432098767
+17,"(32, 4)",mentions fluidity or fluctuation in gender identity,0.7804878048780487
+18,"(32, 4)",uses the phrase 'I am a female',0.8078048780487804
+19,"(32, 4)",mentions being assigned a gender at birth,0.384
+20,"(32, 4)",mentions experiences of questioning or struggling with their gender identity,0.7548717948717948
+21,"(32, 4)",mentions experiences or milestones related to navigating societal expectations or breaking barriers tied to gender identity,0.647887323943662
+22,"(32, 4)",mentions roles or responsibilities within a family or household,0.5575757575757576
+23,"(32, 4)",self-describes as a woman or female without elaborating on gender identity beyond that,0.7594736842105264
+24,"(32, 4)",mentions being male or a man in a direct and explicit manner,0.8560919540229885
+25,"(32, 4)",explicitly rejects or feels disconnected from the concept of gender as a meaningful personal identity,0.7054054054054054
+26,"(32, 4)",explicitly states not caring about gender or not thinking much about it,0.90989010989011
+27,"(32, 4)",explicitly identifies as male or a variant of male,0.7688311688311688
+28,"(32, 4)","discusses how gender impacts societal roles, opportunities, or treatment",0.8489411764705882
+29,"(32, 4)",explicitly states 'I am a woman',0.9290322580645162
+30,"(32, 4)",mentions being born female and identifying as female,0.7954999999999999
+31,"(32, 4)",explicitly self-describes as non-binary or uses the term 'non-binary' to describe their gender identity,0.98

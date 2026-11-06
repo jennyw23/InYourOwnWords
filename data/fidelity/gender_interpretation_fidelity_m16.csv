@@ -1,0 +1,17 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(16, 4)",uses the term 'female' or 'females' explicitly to describe gender,0.3966666666666667
+1,"(16, 4)",mentions physical appearance or traits about self,0.4072727272727273
+2,"(16, 4)",is a single word response,0.43750000000000006
+3,"(16, 4)",mentions being nonbinary or genderfluid,0.90989010989011
+4,"(16, 4)",includes a definitive statement about gender identity without discussing ambiguity or questioning,0.5613559322033898
+5,"(16, 4)",self-describes as cisgender male or man,0.9498947368421051
+6,"(16, 4)",self-describes as feminine or mentions femininity,0.8432558139534884
+7,"(16, 4)",uses single words or very short phrases to describe gender identity,0.4974545454545454
+8,"(16, 4)",expresses belief in a strict binary concept of gender,0.6193548387096774
+9,"(16, 4)",expresses uncertainty or questioning about their gender identity,0.5967741935483871
+10,"(16, 4)",explicitly states alignment between birth-assigned sex and current gender identity,0.7636363636363636
+11,"(16, 4)",self-describes as a man or male,0.9182608695652175
+12,"(16, 4)",discusses experiences of navigating societal expectations or norms related to gender,0.9382978723404256
+13,"(16, 4)",mentions lack of significant impact or influence of gender on their life,0.6211764705882353
+14,"(16, 4)",explicitly states alignment between gender identity and sex assigned at birth,0.4897959183673469
+15,"(16, 4)",describes gender identity as aligned with biological sex or birth gender without significant questioning or exploration,0.5772413793103448

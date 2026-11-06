@@ -1,0 +1,33 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(32, 4)",refuses to provide a clear or specific answer about sexual orientation,0.6364179104477612
+1,"(32, 4)",explicitly states attraction to 'men' without additional context or qualifiers,0.9130434782608696
+2,"(32, 4)",mentions demisexuality or being demisexual,0.888888888888889
+3,"(32, 4)",mentions being married,0.9130434782608696
+4,"(32, 4)",explicitly self-describes as asexual or aromantic,0.98989898989899
+5,"(32, 4)",explicitly self-describes as straight or heterosexual without additional context or elaboration,0.8024390243902438
+6,"(32, 4)",explicitly self-describes as straight using the exact word 'straight',0.98989898989899
+7,"(32, 4)","discusses how sexual orientation influences personal growth, relationships, or key life milestones",0.6828985507246378
+8,"(32, 4)",uses the term 'queer' to describe their sexual orientation,0.7127272727272728
+9,"(32, 4)",explicitly states never questioning their sexual orientation,0.8498823529411764
+10,"(32, 4)",mentions uncertainty or questioning about their sexual orientation,0.8357647058823529
+11,"(32, 4)",mentions that their sexual orientation does not significantly impact their life,0.909010989010989
+12,"(32, 4)",mentions 'opposite sex' or 'opposite gender',0.7837974683544303
+13,"(32, 4)",mentions attraction to more than two genders or a spectrum of genders,0.8166666666666667
+14,"(32, 4)",mentions attraction specifically to the opposite sex,0.55
+15,"(32, 4)",mentions difficulty or hesitation in forming romantic or sexual connections,0.6498461538461539
+16,"(32, 4)",self-describes as gay,0.8395238095238095
+17,"(32, 4)",mentions romantic orientation as distinct from sexual orientation,0.715
+18,"(32, 4)",uses the phrase 'I would describe',0.8095238095238095
+19,"(32, 4)",mentions how sexual orientation influences their interactions or relationships with others,0.4467924528301886
+20,"(32, 4)",mentions the word 'straight',0.5003389830508475
+21,"(32, 4)",mentions age or life stage when they realized or came out,0.8028915662650602
+22,"(32, 4)",discusses how their sexual orientation influences their personal relationships or life milestones,0.5142857142857142
+23,"(32, 4)",mentions attraction to transgender or non-binary individuals,0.8689655172413793
+24,"(32, 4)",mentions religion or God in relation to their orientation,0.21428571428571425
+25,"(32, 4)",self-describes as lesbian,0.9046153846153846
+26,"(32, 4)",mentions pansexuality or pansexual as a descriptor,1.0
+27,"(32, 4)",self-describes as bisexual,0.892888888888889
+28,"(32, 4)",mentions attraction not based on gender or sex,0.8095238095238095
+29,"(32, 4)",mentions discomfort or rejection of labels for their sexual orientation,0.7342105263157895
+30,"(32, 4)",explicitly uses the term 'heterosexual',0.9595833333333332
+31,"(32, 4)",uses a single word or very brief phrase to describe sexual orientation without elaboration,0.7274666666666666

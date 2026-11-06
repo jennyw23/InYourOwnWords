@@ -1,0 +1,65 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(64, 4)",mentions African American identity or culture,0.7688311688311688
+1,"(64, 4)",self-describes using a single concise phrase or label without additional context or elaboration,0.6794666666666668
+2,"(64, 4)",mentions specific ancestry percentages or fractions,0.5843478260869565
+3,"(64, 4)",mentions lack of specific traditions or customs related to their race or ethnicity,0.7667532467532467
+4,"(64, 4)",mentions Arabic language or dialect,0.5074626865671642
+5,"(64, 4)",mentions indigenous roots or ancestry,0.685945945945946
+6,"(64, 4)",uses abstract or vague language to describe race/ethnicity or identity,0.46588235294117636
+7,"(64, 4)",mentions Italian heritage or cultural elements,0.7595
+8,"(64, 4)","self-describes as ordinary, plain, or generic with regards to race or ethnicity",0.9498947368421051
+9,"(64, 4)","mentions African or African American identity, heritage, or culture explicitly",0.7995
+10,"(64, 4)","mentions Southern or rural cultural attributes (e.g., Southern food, accents, traditions, or rural life)",0.723116883116883
+11,"(64, 4)",mentions gender or gender identity explicitly,0.9361702127659575
+12,"(64, 4)",mentions being Mexican American or having Mexican heritage,0.9698969072164948
+13,"(64, 4)",self-describes as white or includes 'white' in their racial/ethnic identity,0.6423529411764707
+14,"(64, 4)",mentions being Vietnamese or Vietnamese-American,0.5074626865671642
+15,"(64, 4)",mentions being mixed race or biracial,0.8432558139534884
+16,"(64, 4)",explicitly describes the cultural or ethnic traditions or practices associated with their race or ethnicity,0.5898305084745763
+17,"(64, 4)",self-describes as Black or African American,0.92
+18,"(64, 4)","describes race using collective traits, values, or actions of the group",0.6794117647058823
+19,"(64, 4)",mentions being South Asian or a specific South Asian ethnicity,0.7341772151898733
+20,"(64, 4)",mentions German ancestry,0.8844943820224719
+21,"(64, 4)",mentions Puerto Rican heritage,0.43750000000000006
+22,"(64, 4)",mentions Asian or Pacific Islander identity,0.7686075949367089
+23,"(64, 4)","mentions ancestors or ancestry in detail, including migration or origins",0.7338666666666667
+24,"(64, 4)","mentions celebration of American holidays such as Christmas, Thanksgiving, or Independence Day",0.8301176470588235
+25,"(64, 4)",mentions speaking only English at home,0.6666666666666666
+26,"(64, 4)",mentions privilege associated with being white,0.8301176470588235
+27,"(64, 4)",mentions Scottish or Irish heritage,0.9595833333333332
+28,"(64, 4)",mentions European ancestry in detail,0.8982222222222221
+29,"(64, 4)",mentions speaking or learning multiple languages,0.4840677966101696
+30,"(64, 4)",mentions Filipino ethnicity or culture,0.7499999999999999
+31,"(64, 4)",mentions being American or having American identity explicitly,0.63
+32,"(64, 4)",mentions traditions or practices related to holidays and food,0.6088235294117648
+33,"(64, 4)",describes themselves explicitly as 'white',0.7891358024691357
+34,"(64, 4)",mentions being Korean or engaging in Korean culture,0.5507246376811594
+35,"(64, 4)",mentions being raised in a religious household or community,0.5805882352941176
+36,"(64, 4)",mentions Native American tribal affiliation,0.9382978723404256
+37,"(64, 4)",mentions taking a DNA test or ancestry analysis,0.5074626865671642
+38,"(64, 4)",mentions lack of strong connection or significance of race/ethnicity to identity,0.7205405405405405
+39,"(64, 4)",explicitly self-describes as 'white',0.5893333333333333
+40,"(64, 4)",self-describes as black or African American,0.8078048780487804
+41,"(64, 4)",mentions lack of connection to cultural heritage or traditions,0.8180487804878049
+42,"(64, 4)","mentions activities involving food, such as BBQ, soul food, or cooking",0.36923076923076925
+43,"(64, 4)",mentions bilingualism or the use of multiple languages,0.6634285714285715
+44,"(64, 4)",mentions speaking English fluently or as a primary language,0.9395744680851065
+45,"(64, 4)",self-describes as mixed race or biracial,0.8240963855421687
+46,"(64, 4)",emphasizes family orientation and traditional values,0.7688311688311688
+47,"(64, 4)",mentions Africa or being African,0.9
+48,"(64, 4)",mentions speaking a non-English language at home or with family,0.519298245614035
+49,"(64, 4)",mentions food as a significant aspect of cultural identity,0.8404705882352941
+50,"(64, 4)",mentions rich cultural heritage or traditions,0.6219718309859155
+51,"(64, 4)",mentions languages spoken in their family or heritage,0.8078048780487804
+52,"(64, 4)","mentions Native American culture, traditions, or identity",0.6261111111111112
+53,"(64, 4)",mentions Jewish holidays or customs,0.24561403508771928
+54,"(64, 4)",mentions mixed European heritage or ancestry,0.6038709677419355
+55,"(64, 4)",mentions being born in the United States or America,0.864367816091954
+56,"(64, 4)",mentions celebrating Lunar New Year or cultural new year celebrations,0.36065573770491804
+57,"(64, 4)",mentions experiences of discrimination or racism,0.7743209876543209
+58,"(64, 4)",mentions being Chinese or of Chinese descent,0.7341772151898733
+59,"(64, 4)",mentions mixed racial or ethnic identity,0.5821538461538461
+60,"(64, 4)","self-describes as Black American or related terms (e.g., Black, Black American, ADOS)",0.9290322580645162
+61,"(64, 4)",mentions experiences of being of mixed race or ethnicity and feeling disconnected from one or more of their cultural backgrounds,0.7746835443037974
+62,"(64, 4)",mentions Spanish as a spoken language or cultural element,0.8432558139534884
+63,"(64, 4)",mentions specific ancestral or geographic origins in addition to race/ethnicity,0.4707692307692308

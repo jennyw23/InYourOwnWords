@@ -1,0 +1,17 @@
+neuron_idx,source_sae,interpretation,f1_fidelity_score
+0,"(16, 4)",expresses uncertainty or refusal to describe their sexual orientation,0.6153846153846154
+1,"(16, 4)",mentions experimentation or exploration of sexuality,0.48627450980392156
+2,"(16, 4)",mentions fluidity or changes in sexual orientation over time,0.3697777777777778
+3,"(16, 4)",discusses how sexual orientation influences relationships or life experiences,0.8154216867469879
+4,"(16, 4)",mentions bisexual or queer as part of their sexual orientation,0.8898876404494382
+5,"(16, 4)",mentions comfort or natural feeling about sexual orientation,0.5252830188679245
+6,"(16, 4)",mentions discomfort or reluctance in discussing sexual orientation,0.36705882352941177
+7,"(16, 4)",mentions personal milestones or transformative moments related to sexual orientation,0.41727272727272724
+8,"(16, 4)","responses are extremely brief, often one or two words, and lack elaboration",0.8432558139534884
+9,"(16, 4)",explicitly self-describes as straight or heterosexual,0.9583333333333334
+10,"(16, 4)",expresses uncertainty or confusion about their sexual orientation or labels,0.36705882352941177
+11,"(16, 4)",uses the word 'straight' without additional elaboration,0.5767164179104478
+12,"(16, 4)",self-describes as a woman attracted to women,0.723116883116883
+13,"(16, 4)",responses are single words or very short phrases,0.49650793650793656
+14,"(16, 4)",mentions lack of sexual attraction to real people,1.0
+15,"(16, 4)",explicitly self-describes as a specific sexual orientation without elaborating on fluidity or complexity,0.8844943820224719
