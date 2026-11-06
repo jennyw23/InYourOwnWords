@@ -3,17 +3,24 @@
 **/.DS_Store
 *_pycache_*
 
-# Ignore data and embedding files
+# Survey text and anything that contains it or can recover it (available on request);
+# fidelity scores, annotation indicators, and SAE checkpoints are shared
 *.npy
 data/in_your_own_words.csv
-data/*/*.csv
-data/*/*/*.pt
-validation/*.csv
+data/embeddings/
+data/validation/*.csv
 analysis/baselines/bertopic/bertopic_models/*
 analysis/baselines/topicgpt/data/*
 
 # Ignore figure outputs
 analysis/figures/*.png
 
-# Update this directory so people can use the code for their own projects
-# quickstart/
+# Open-weight embeddings, SAE checkpoints, and caches (regenerable; caches contain responses)
+open_weight/output/
+# annotation caches contain survey responses
+**/annotation_cache/
+
+# Other surveys: raw and cleaned responses are not redistributed; caches are regenerable
+additional_surveys/raw_data/
+additional_surveys/cleaned_data/
+additional_surveys/sae_cache/

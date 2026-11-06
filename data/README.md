@@ -1,13 +1,8 @@
 # Data
 
-The survey data (`in_your_own_words.csv`) is available upon request for research use.
-Visit the project website for instructions on requesting access.
+The survey data (`in_your_own_words.csv`) is available upon request for research use from [Harvard Dataverse](https://doi.org/10.7910/DVN/YHUVXQ)
 
-Pre-computed intermediate files (SAE model weights, LLM annotations, fidelity scores,
-and validation annotations) are provided alongside the paper and should be placed here
-before running the analysis scripts.
-
-analysis/ files assume that pre-computed LLM annotations, fidelity scores, and annotations are located in the data/ directory.
+Files that contain the survey text, or could be used to recover it, come with the data request: the survey responses, the embeddings (`embeddings/`), and the validation sample (`validation/*.csv`). Place them here before running the analysis scripts. The fidelity scores, annotation indicators, and SAE checkpoints contain no text and are included in the repo.
 
 ## Directory layout
 
@@ -17,11 +12,11 @@ data/
 ├── codebook.csv                                       # Full variable descriptions
 │
 ├── annotations/                                       # LLM-annotated theme indicators
-│   ├── race_annotations.csv                           # 1,004 rows × 26 themes (binary)
-│   ├── gender_annotations.csv                         # 1,004 rows × 27 themes (binary)
-│   └── sexual_orientation_annotations.csv             # 1,004 rows × 28 themes (binary)
+│   ├── race_annotations.csv                           # 1,004 rows × 32 themes (binary); analyses keep 26
+│   ├── gender_annotations.csv                         # 1,004 rows × 32 themes; analyses keep 27
+│   └── sexual_orientation_annotations.csv             # 1,004 rows × 32 themes; analyses keep 28
 │
-├── fidelity/                                          # SAE interpretation fidelity scores
+├── fidelity/                                          # Fidelity (harmonic mean of recall and specificity)
 │   ├── race_interpretation_fidelity.csv               # M=32 self-description themes
 │   ├── gender_interpretation_fidelity.csv
 │   ├── sexual_orientation_interpretation_fidelity.csv
@@ -44,16 +39,18 @@ data/
 │   ├── M=32_K=4_race/                                 # Self-description SAEs
 │   ├── M=16_K=4_race/                                 # robustness variants
 │   ├── ...                                            # (M=16, M=32, M=64 for all identities)
-│   ├── perception_drop_same_M=32_K=4_race/            # Perception SAEs
+│   ├── perception_race_drop_same/                     # Perception SAEs (M=32, K=4)
 │   └── ...
 │
-└── validation/                                        # Human and LLM annotations for κ
+└── validation/                                        # Human and LLM annotations (Tables S2, S3, S31)
     ├── annotated-race-sample.csv                      # Human-annotated (100 rows × 8 themes)
     ├── annotated-gender-sample.csv
     ├── annotated-sexual_orientation-sample.csv
     ├── annotated-race-gpt-4.1-mini-identity-specific.csv
-    ├── ...                                            # (other model/prompt combos for Table S7)
-    └── annotate.txt                                   # Annotation prompt template
+    ├── ...                                            # (other model/prompt combos for Table S2)
+    ├── annotated-race-qwen3-32b-identity-specific.csv # Qwen3-32B (Table S31)
+    ├── ...
+    └── annotate.txt                                   # Identity-specific annotation prompt (Figure S5)
 ```
 
 ## Survey variables
