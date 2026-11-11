@@ -560,3 +560,170 @@ def improved_sexual_orientation_themes_barchart(proportions, IDENTITY, sort_by, 
     plt.show()
 
     return fig
+
+
+def improved_gender_themes_barchart_crosstab(
+    proportions, IDENTITY, sort_by,
+    r2_dict=None, n_activated=None,
+    custom_style=None, no_legend=False,
+    textwrap_width=None, figwidth=None, figheight=None,
+    has_custom_bbox=None,
+):
+    """Gender themes chart with color for man/woman/other and hatching for cis/trans/no answer."""
+    # ── Visual encoding ───────────────────────────────────────────────────────
+    MAN_COLOR   = "#4878CF"   # blue
+    WOMAN_COLOR = "#D4748E"   # rose/pink
+    OTHER_COLOR = "#5A9CA5"   # teal
+    PNA_COLOR   = "#A0A0A0"   # neutral gray
+
+    # Maps every category → (fill color, hatch pattern, hatch edgecolor)
+    CATEGORY_STYLE = {
+        "Cisgender Woman":      (WOMAN_COLOR, "",    "none"),
+        "Cisgender Man":        (MAN_COLOR,   "",    "none"),
+        "Cisgender (Other)":    (OTHER_COLOR, "",    "none"),
+        "Transgender Woman":    (WOMAN_COLOR, "///", "white"),
+        "Transgender Man":      (MAN_COLOR,   "///", "white"),
+        "Transgender (Other)":  (OTHER_COLOR, "///", "white"),
+        "Prefer not to answer": (PNA_COLOR,   "...", "white"),
+    }
+
+    # ── Column wrapping ───────────────────────────────────────────────────────
+    textwrap_width = textwrap_width or 100
+    if n_activated is not None:
+        wrapped_columns, column_mapping = [], {}
+        for col in proportions.columns:
+            modified = textwrap.fill(f"{col} (n={n_activated[col]})", width=textwrap_width)
+            wrapped_columns.append(modified)
+            column_mapping[modified] = col
+    else:
+        wrapped_columns = [textwrap.fill(col, width=textwrap_width) for col in proportions.columns]
+        column_mapping = {w: o for w, o in zip(wrapped_columns, proportions.columns)}
+    proportions.columns = wrapped_columns
+
+    # ── Sort ──────────────────────────────────────────────────────────────────
+    proportions = _get_sorted_columns(proportions, sort_by, r2_dict, column_mapping)
+
+    # ── Figure ────────────────────────────────────────────────────────────────
+    num_themes = len(proportions.columns)
+    width  = figwidth  or 25
+    height = figheight or max(12, 12 + (num_themes - 10) * 0.2)
+    fig, ax = plt.subplots(figsize=(width, height))
+    custom_style() if custom_style else _setup_plot_style()
+
+    # ── Category order ────────────────────────────────────────────────────────
+    category_order = [
+        "Cisgender Woman", "Cisgender Man", "Cisgender (Other)",
+        "Transgender Woman", "Transgender Man", "Transgender (Other)",
+        "Prefer not to answer",
+    ]
+    category_order = [c for c in category_order if c in proportions.index]
+    proportions = proportions.loc[category_order]
+
+    # ── Plot bars ─────────────────────────────────────────────────────────────
+    colors = [CATEGORY_STYLE.get(cat, (PNA_COLOR, "", "none"))[0] for cat in proportions.index]
+    plot_df = proportions * 100
+    plot_df.T.plot(kind="barh", stacked=True, ax=ax, color=colors)
+    ax.set_xlim(0, 100)
+    ax.xaxis.set_major_formatter(mtick.PercentFormatter(xmax=100, decimals=0))
+    ax.set_ylabel("")
+    ax.grid(axis="x", linestyle="--", alpha=0.3)
+
+    # ── Apply hatch patterns to patches ──────────────────────────────────────
+    # Patches are ordered: all themes for cat[0], then all themes for cat[1], …
+    n_themes = len(proportions.columns)
+    for i, patch in enumerate(ax.patches):
+        cat_idx = i // n_themes
+        if cat_idx < len(category_order):
+            cat = category_order[cat_idx]
+            _, hatch, hatch_ec = CATEGORY_STYLE.get(cat, (PNA_COLOR, "", "none"))
+            patch.set_hatch(hatch)
+            if hatch:
+                patch.set_edgecolor(hatch_ec)
+                patch.set_linewidth(0.3)
+
+    # ── Alternating row backgrounds ───────────────────────────────────────────
+    for i in range(num_themes):
+        if i % 2 == 0:
+            ax.axhspan(i - 0.4, i + 0.4, color="#f5f5f5", zorder=0)
+
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    # ── Single legend box with two sections separated by a spacer ────────────
+    if not no_legend:
+        from matplotlib.legend_handler import HandlerBase
+
+        class _SectionTitle(patches.Patch):
+            """Patch subclass used as a section-title sentinel."""
+
+        class _Spacer(patches.Patch):
+            """Patch subclass used as a blank spacer sentinel."""
+
+        class _TitleHandler(HandlerBase):
+            """Returns an invisible zero-size patch so the swatch area is empty."""
+            def legend_artist(self, legend, orig_handle, fontsize, handlebox):
+                p = patches.Rectangle(
+                    [0, 0], 0, 0,
+                    transform=handlebox.get_transform(),
+                    facecolor="none", edgecolor="none",
+                )
+                handlebox.add_artist(p)
+                return p
+
+        SWATCH = "#555555"  # neutral swatch for the cis/trans section
+
+        all_handles = [
+            # ── Section 1: Cis/Trans Status ──
+            _SectionTitle(facecolor="none", edgecolor="none"),
+            patches.Patch(facecolor=SWATCH,    hatch="",    edgecolor="none",  label="Cisgender"),
+            patches.Patch(facecolor=SWATCH,    hatch="///", edgecolor="white", label="Transgender"),
+            patches.Patch(facecolor=PNA_COLOR, hatch="...", edgecolor="white", label="Prefer not to answer"),
+            # ── Blank spacer row ──
+            _Spacer(facecolor="none", edgecolor="none"),
+            # ── Section 2: Gender ──
+            _SectionTitle(facecolor="none", edgecolor="none"),
+            patches.Patch(facecolor=MAN_COLOR,   edgecolor="none", label="Man"),
+            patches.Patch(facecolor=WOMAN_COLOR, edgecolor="none", label="Woman"),
+            patches.Patch(facecolor=OTHER_COLOR, edgecolor="none", label="Another gender"),
+        ]
+
+        def _wrap(s, w=28):
+            return textwrap.fill(s, width=w)
+
+        # Section titles are centered by using a fixed-width field matching the
+        # longest label ("Another gender" = 16 chars). The handle column adds
+        # ~6 chars of space to the left, so we left-pad titles to compensate.
+        def _center_title(s, width=20):
+            return s.center(width)
+
+        all_labels = [
+            _center_title("Cis/Trans Status"),
+            _wrap("Cisgender"), _wrap("Transgender"), _wrap("Prefer not to answer"),
+            "",
+            _center_title("Gender"),
+            _wrap("Man"), _wrap("Woman"), _wrap("Another gender"),
+        ]
+
+        handler_map = {_SectionTitle: _TitleHandler(), _Spacer: _TitleHandler()}
+
+        bbox = has_custom_bbox or (1.01, 1.0)
+        legend = ax.legend(
+            handles=all_handles,
+            labels=all_labels,
+            handler_map=handler_map,
+            bbox_to_anchor=bbox,
+            loc="upper left",
+            frameon=True, framealpha=0.9,
+            facecolor="white", edgecolor="lightgray",
+            handlelength=1.5, handleheight=1.2,
+        )
+
+        # Bold the section-title rows and draw an underline beneath each
+        section_titles = {_center_title("Cis/Trans Status"), _center_title("Gender")}
+        for text in legend.get_texts():
+            if text.get_text() in section_titles:
+                text.set_fontweight("bold")
+
+    plt.tight_layout()
+    plt.show()
+    return fig

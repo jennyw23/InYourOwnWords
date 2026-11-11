@@ -9,7 +9,8 @@ Produces:
   - Per-theme R² sorted table (one per identity)
   - Median R² per identity
   - Table S10: four R² metrics (OLS, adjusted, McFadden, Cox-Snell)
-  - Stacked bar-chart figures saved to analysis/figures/
+  - Stacked bar-chart figures saved to analysis/figures/ (Figures S7–S9, and the three
+    Figure 2 panels as figure2_{identity}.png)
 
 Run from InYourOwnWords/:
     python analysis/4_themes_by_category.py
@@ -215,19 +216,121 @@ def save_figure(identity, annotations, df):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
+# Figure 2: seven selected themes per identity, one panel each (combined by hand)
+# ──────────────────────────────────────────────────────────────────────────────
+
+FIG2_THEMES = {
+    "race": [
+        "mentions being Black or African American",
+        "mentions being born in the United States or America",
+        "mentions being first, second, or third generation American or immigrant",
+        "mentions speaking or understanding multiple languages or specific non-English languages",
+        "mentions traditional or cultural food as an important aspect of their identity",
+        "describes beliefs or values associated with their race",
+        "mentions feelings of not fully belonging or being out of place related to race/ethnicity",
+    ],
+    "gender": [
+        "mentions enjoyment or participation in activities or items stereotypically associated with femininity (e.g., makeup, fashion, dressing up, heels, etc.)",
+        "mentions traditionally masculine activities or traits such as sports, fixing things, outdoor activities, or being a provider/protector",
+        "mentions roles or responsibilities within a family or household",
+        "mentions fluidity or fluctuation in gender identity",
+        "explicitly rejects or feels disconnected from the concept of gender as a meaningful personal identity",
+        "mentions experiences of questioning or struggling with their gender identity",
+        "mentions being male or a man in a direct and explicit manner",
+    ],
+    "sexual_orientation": [
+        "mentions attraction not based on gender or sex",
+        "mentions attraction to more than two genders or a spectrum of genders",
+        "mentions uncertainty or questioning about their sexual orientation",
+        "mentions age or life stage when they realized or came out",
+        "explicitly states never questioning their sexual orientation",
+        "mentions romantic orientation as distinct from sexual orientation",
+        "mentions difficulty or hesitation in forming romantic or sexual connections",
+    ],
+}
+
+# Shortened labels used in the figure.
+FIG2_LABELS = {
+    "mentions speaking or understanding multiple languages or specific non-English languages": "mentions speaking or understanding multiple languages",
+    "mentions being first, second, or third generation American or immigrant": "mentions being immigrant or immigrant generation",
+    "mentions traditional or cultural food as an important aspect of their identity": "mentions cultural food as important to identity",
+    "mentions feelings of not fully belonging or being out of place related to race/ethnicity": "mentions a lack of racial or ethnic belonging",
+    "mentions being born in the United States or America": "mentions being born in the United States",
+    "mentions experiences of questioning or struggling with their gender identity": "mentions questioning gender identity",
+    "explicitly rejects or feels disconnected from the concept of gender as a meaningful personal identity": "mentions rejecting gender as part of identity",
+    "mentions roles or responsibilities within a family or household": "mentions responsibilities within family",
+    "mentions traditionally masculine activities or traits such as sports, fixing things, outdoor activities, or being a provider/protector": "mentions traditionally masculine activities or traits",
+    "mentions enjoyment or participation in activities or items stereotypically associated with femininity (e.g., makeup, fashion, dressing up, heels, etc.)": "mentions stereotypically feminine activities or items",
+    "mentions being male or a man in a direct and explicit manner": "directly mentions being male or a man",
+    "mentions attraction to more than two genders or a spectrum of genders": "mentions attraction to multiple genders",
+    "mentions uncertainty or questioning about their sexual orientation": "mentions questioning sexual orientation",
+    "mentions age or life stage when they realized or came out": "mentions age of realization or coming out",
+    "explicitly states never questioning their sexual orientation": "mentions never questioning sexual orientation",
+    "mentions romantic orientation as distinct from sexual orientation": "distinguishes between romantic & sexual orientation",
+    "mentions difficulty or hesitation in forming romantic or sexual connections": "mentions reluctance to form intimate connections",
+}
+
+FIG2_MIN_N = 10
+# As in the paper: respondents in sexual orientation categories with fewer than FIG2_MIN_N
+# people are dropped, and that same filtered sample is used for all three panels.
+FIG2_FILTER_COLUMN = "sexual_orientation"
+
+FIG2_PANELS = {  # plotting function name, figwidth, legend anchor
+    "race":               ("improved_race_themes_barchart",               18,   (1.1, 1.025)),
+    "gender":             ("improved_gender_themes_barchart_crosstab",    18,   (1.1, 1.0)),
+    "sexual_orientation": ("improved_sexual_orientation_themes_barchart", 18.5, (1.1, 1.05)),
+}
+
+
+def _fig2_style():
+    import matplotlib.pyplot as plt
+    plt.rcParams.update({"font.size": 20, "axes.titlesize": 20, "axes.labelsize": 20,
+                         "xtick.labelsize": 20, "ytick.labelsize": 25,
+                         "legend.fontsize": 25, "legend.title_fontsize": 25})
+
+
+def save_figure2_panels(annotations_by_identity, df):
+    """Save the three Figure 2 panels to figures/figure2_{identity}.png."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import make_figures
+    from sae_helper import calculate_proportions_identity
+
+    _set_figure_font()
+    counts = df[FIG2_FILTER_COLUMN].value_counts()
+    print(f"\nFigure 2: dropping {FIG2_FILTER_COLUMN} categories with n < {FIG2_MIN_N}: "
+          f"{counts[counts < FIG2_MIN_N].to_dict()}")
+    filtered = df[df[FIG2_FILTER_COLUMN].isin(counts[counts >= FIG2_MIN_N].index)]
+
+    for identity, ann in annotations_by_identity.items():
+        fn_name, figwidth, bbox = FIG2_PANELS[identity]
+        subset = ann[FIG2_THEMES[identity]].rename(columns=FIG2_LABELS)
+        proportions = calculate_proportions_identity(subset, filtered, identity)
+        fig = getattr(make_figures, fn_name)(
+            proportions, identity, sort_by="min_max_any_group", r2_dict=None, n_activated=None,
+            custom_style=_fig2_style, no_legend=False, textwrap_width=60,
+            figwidth=figwidth, figheight=6, has_custom_bbox=bbox,
+        )
+        out = FIGURES_DIR / f"figure2_{identity}.png"
+        fig.savefig(out, dpi=300, bbox_inches="tight")
+        print(f"  Saved figure: {out.relative_to(ROOT)}")
+
+
+# ──────────────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     print(f"\nLoading data …")
     df = load_survey()
     print(f"  N = {len(df)} respondents")
 
-    results = {}
+    results, annotations = {}, {}
     for identity in IDENTITIES:
         try:
             ann = load_annotations(identity)
         except FileNotFoundError as e:
             print(f"  WARNING: {e} — skipping {identity}")
             continue
+        annotations[identity] = ann
 
         formula = category_formula(identity, df)
         print(f"\nComputing R² for {len(ann.columns)} {identity} themes …")
@@ -239,3 +342,6 @@ if __name__ == "__main__":
 
     print_median_r2(results)
     print_robust_r2(results)
+
+    if len(annotations) == len(IDENTITIES):
+        save_figure2_panels(annotations, df)
