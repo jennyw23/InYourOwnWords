@@ -17,6 +17,7 @@ analysis/figures/*.png
 
 # Open-weight embeddings, SAE checkpoints, and caches (regenerable; caches contain responses)
 open_weight/output/
+
 # annotation caches contain survey responses
 **/annotation_cache/
 

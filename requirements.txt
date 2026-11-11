@@ -6,7 +6,7 @@ statsmodels==0.14.4
 
 # SAE training
 torch==2.6.0
-hypothesaes==2.0.0
+hypothesaes==2.0.1
 
 # Theme validation / regression
 scikit-learn==1.7.1
