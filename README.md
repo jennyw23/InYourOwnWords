@@ -18,7 +18,7 @@ Computationally identifying interpretable themes in free-text survey data`. If u
 Want to run the SAE pipeline on your own free-text dataset? See [`quickstart/`](quickstart/), which provides a self-contained notebook (`train_and_interpret_sae.ipynb`) that works with any CSV. A worked example on the estate tax item from Stantcheva (2021) is included (`ex_train_and_interpret_sae.ipynb`).
 
 ## Data availability
-If you would like to request access to the *In Your Own Words* dataset, follow the instructions on [Harvard Dataverse](https://doi.org/10.7910/DVN/YHUVXQ). The instructions will ask you to request access through Harvard Dataverse, and fill out a [Google Form](https://forms.gle/uUWFmsV8ZCz5Nq8V6) for details about your planned use case. We grant data access for research use. 
+If you would like to request access to the *In Your Own Words* dataset, follow the instructions on [Harvard Dataverse](https://doi.org/10.7910/DVN/PDSJYW). The instructions will ask you to request access through Harvard Dataverse, and fill out a [Google Form](https://forms.gle/uUWFmsV8ZCz5Nq8V6) for details about your planned use case. We grant data access for research use. 
 
 ## Installation
 
@@ -57,7 +57,7 @@ python run_all.py 1 2 5
 | 10 | `analysis/10_additional_surveys.py` | ANES and estate tax surveys; Table S30, Figures S13–S14 |
 | 11 | `analysis/11_open_weight_models.py` | Open-weight models; Table S31 |
 
-SAE runtime (Methods) comes from `scripts/benchmark_sae_timing.ipynb`, with results in `data/sae_timing_benchmark.csv` and `data/runtime_log.csv`.
+SAE runtime (Methods) comes from `scripts/benchmark_sae_timing.ipynb`; the reported timings are in its saved cell outputs. Re-running it needs the embeddings, and timings will vary with hardware.
 
 **Re-running from scratch** — the data request also provides the raw survey responses and pre-computed embeddings needed to rerun the LLM steps:
 
@@ -70,13 +70,24 @@ SAE runtime (Methods) comes from `scripts/benchmark_sae_timing.ipynb`, with resu
 | Run LDA / BERTopic | `analysis/6_baseline_comparisons.py` | Trains LDA and BERTopic baseline models |
 | Run TopicGPT | `analysis/baselines/topicgpt/topicgpt_run.py` | Runs TopicGPT (pre-computed outputs included in the data request) |
 | Other surveys | `additional_surveys/` | ANES and estate tax data (Supplementary H); see its README |
-| Open-weight models | `open_weight/` | Qwen embeddings, interpretation, and theme matching (Supplementary I); usage in each script's docstring |
+| Open-weight models | `open_weight/` | Qwen embeddings, interpretation, fidelity rescoring under recall/specificity, and theme matching (Supplementary I); usage in each script's docstring |
+
+**Re-running the LLM steps will not give identical themes.** Interpretation samples three candidates per SAE neuron at temperature 0.7, and OpenAI models are not deterministic even at temperature 0, so candidate wording, fidelity scores, and which candidate is selected will vary from run to run. Expect similar themes, not the same ones. Fidelity scoring and annotation both use the identity-specific prompt in `prompts/annotate.txt` (Figure S5), which the scripts load in place of the `hypothesaes` default. To reproduce the paper's numbers, use the shipped files in `data/fidelity/`, `data/annotations/`, and `data/checkpoints/`. The paper used:
+
+| Step | Model | Script default |
+|------|-------|----------------|
+| Embeddings | `text-embedding-3-large` | pre-computed in `data/embeddings/` |
+| Interpretation | `gpt-4o` | `--interpreter-model gpt-4o` |
+| Fidelity scoring (choosing among candidates) | `gpt-4o-mini` | `--annotator-model gpt-4o-mini` |
+| Annotation of all responses | `gpt-4.1-mini` | `scripts/annotate_themes.py --model gpt-4.1-mini` |
+
+Some of these models may be retired. If so, pass a current model (the `hypothesaes` 2.0.0 defaults are `gpt-5.2` for interpretation and `gpt-5-mini` for annotation).
 
 The data request provides the files that contain the survey text or could be used to recover it:
 
 - **`data/in_your_own_words.csv`** — raw survey responses (required for all scripts)
 - **`data/embeddings/`** — pre-computed OpenAI embeddings for all identity and perception questions (required for SAE training and BERTopic)
-- **`data/validation/`** — human and LLM annotations used for inter-rater reliability (Tables S2, S3, S31), and the identity-specific annotation prompt, whose examples are real responses
+- **`data/validation/`** — human and LLM annotations used for inter-rater reliability (Tables S2, S3, S31)
 - **`analysis/baselines/`** — saved LDA and BERTopic models (both store responses) and the TopicGPT inputs
 
 Included in the repo, since they contain no text:

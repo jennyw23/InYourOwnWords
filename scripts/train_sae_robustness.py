@@ -48,6 +48,8 @@ from hypothesaes.interpret_neurons import NeuronInterpreter, InterpretConfig, Sc
 from fidelity import FIDELITY_METRIC, patch_hypothesaes
 
 patch_hypothesaes()
+from prompts import use_identity_specific_prompt
+use_identity_specific_prompt()
 
 
 # ---------------------------------------------------------------------------
@@ -122,8 +124,8 @@ def parse_args():
         help="LLM for generating neuron interpretations (default: gpt-4o)",
     )
     parser.add_argument(
-        "--annotator-model", default="gpt-4.1-mini",
-        help="LLM for scoring interpretation fidelity (default: gpt-4.1-mini)",
+        "--annotator-model", default="gpt-4o-mini",
+        help="LLM for scoring interpretation fidelity (default: gpt-4o-mini)",
     )
     parser.add_argument(
         "--overwrite", action="store_true",
@@ -171,7 +173,7 @@ def generate_interpretations_and_fidelity_scores(
     cache_name,
     *,
     interpreter_model="gpt-4o",
-    annotator_model="gpt-4.1-mini",
+    annotator_model="gpt-4o-mini",
     n_examples_for_interpretation=20,
     max_words_per_example=256,
     interpret_temperature=0.7,

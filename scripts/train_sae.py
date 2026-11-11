@@ -18,7 +18,7 @@ What this script does:
   1. Loads pre-computed embeddings from the embeddings directory.
   2. Trains an SAE with M=32 neurons and K=4 active neurons per input.
   3. Interprets each SAE neuron via an LLM (GPT-4o by default).
-  4. Scores interpretation fidelity with an annotator LLM (GPT-4.1-mini). Fidelity is the
+  4. Scores interpretation fidelity with an annotator LLM (GPT-4o-mini). Fidelity is the
      harmonic mean of recall and specificity (src/fidelity.py).
   5. Saves fidelity scores to data/fidelity/{identity}_interpretation_fidelity.csv.
   6. Saves all 3 candidate interpretations per neuron, scored under both recall/specificity
@@ -73,6 +73,8 @@ from hypothesaes.annotate import annotate, CACHE_DIR
 from fidelity import FIDELITY_METRIC, compute_metrics, patch_hypothesaes
 
 patch_hypothesaes()
+from prompts import use_identity_specific_prompt
+use_identity_specific_prompt()
 
 
 # ---------------------------------------------------------------------------
@@ -199,8 +201,8 @@ def parse_args():
         help="LLM for generating neuron interpretations (default: gpt-4o)",
     )
     parser.add_argument(
-        "--annotator-model", default="gpt-4.1-mini",
-        help="LLM for scoring interpretation fidelity (default: gpt-4.1-mini)",
+        "--annotator-model", default="gpt-4o-mini",
+        help="LLM for scoring interpretation fidelity (default: gpt-4o-mini)",
     )
     parser.add_argument(
         "--overwrite", action="store_true",
@@ -315,7 +317,7 @@ def generate_interpretations_and_fidelity_scores(
     *,
     identity=None,
     interpreter_model="gpt-4o",
-    annotator_model="gpt-4.1-mini",
+    annotator_model="gpt-4o-mini",
     n_examples_for_interpretation=20,
     max_words_per_example=256,
     interpret_temperature=0.7,

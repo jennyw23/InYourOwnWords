@@ -1,8 +1,8 @@
 # Data
 
-The survey data (`in_your_own_words.csv`) is available upon request for research use from [Harvard Dataverse](https://doi.org/10.7910/DVN/YHUVXQ)
+The survey data (`in_your_own_words.csv`) is available upon request for research use in Harvard Dataverse
 
-Files that contain the survey text, or could be used to recover it, come with the data request: the survey responses, the embeddings (`embeddings/`), and the validation sample and annotation prompt (`validation/`). Place them here before running the analysis scripts. The fidelity scores, annotation indicators, and SAE checkpoints contain no text and are included in the repo.
+Files that contain the survey text, or could be used to recover it, come with the data request: the survey responses, the embeddings (`embeddings/`), and the validation sample (`validation/`). Place them here before running the analysis scripts. The fidelity scores, annotation indicators, and SAE checkpoints contain no text and are included in the repo.
 
 ## Directory layout
 
@@ -49,8 +49,7 @@ data/
     ├── annotated-race-gpt-4.1-mini-identity-specific.csv
     ├── ...                                            # (other model/prompt combos for Table S2)
     ├── annotated-race-qwen3-32b-identity-specific.csv # Qwen3-32B (Table S31)
-    ├── ...
-    └── annotate.txt                                   # Identity-specific annotation prompt (Figure S5)
+    └── ...
 ```
 
 ## Survey variables

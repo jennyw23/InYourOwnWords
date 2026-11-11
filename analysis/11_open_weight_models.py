@@ -8,7 +8,8 @@ pipeline, from files already on disk (no API calls):
     (manual labels in open_weight/results/)
   - Table S31: annotation agreement with the human validation sample
 
-To regenerate the open-weight outputs, see open_weight/run_pipeline.py and open_weight/match_themes.py.
+To regenerate the open-weight outputs, see open_weight/run_pipeline.py, open_weight/rescore_fidelity.py
+and open_weight/match_themes.py.
 
 Run from InYourOwnWords/:
     python analysis/11_open_weight_models.py
@@ -31,15 +32,22 @@ MODELS = {"GPT-4.1-mini": "gpt-4.1-mini-identity-specific", "Qwen3-32B": "qwen3-
 
 def median_fidelity():
     print("Interpretation fidelity, median across 96 themes")
-    for label, folder in [("OpenAI", DATA_DIR / "fidelity"), ("Qwen", OPEN_WEIGHT_DIR)]:
+    # Qwen recall/specificity scores come from open_weight/rescore_fidelity.py.
+    sources = [
+        ("OpenAI, recall/specificity", DATA_DIR / "fidelity", "_interpretation_fidelity.csv", "f1_fidelity_score"),
+        ("Qwen, precision/recall F1", OPEN_WEIGHT_DIR, "_interpretation_fidelity.csv", "f1_fidelity_score"),
+        ("Qwen, recall/specificity", OPEN_WEIGHT_DIR, "_interpretation_fidelity_recall_specificity.csv",
+         "recall_specificity_hmean"),
+    ]
+    print(f"  {'':<28} {'all':>6}" + "".join(f"{i:>20}" for i in IDENTITIES))
+    for label, folder, suffix, col in sources:
         try:
-            scores = np.concatenate([pd.read_csv(folder / f"{i}_interpretation_fidelity.csv")["f1_fidelity_score"]
-                                     for i in IDENTITIES])
-            print(f"  {label:<7} {np.median(scores):.3f}")
+            by_id = {i: pd.read_csv(folder / f"{i}{suffix}")[col].to_numpy() for i in IDENTITIES}
         except FileNotFoundError as e:
-            print(f"  {label:<7} file not found: {e.filename}")
-    # The Qwen run scored with hypothesaes' precision/recall F1; the OpenAI files follow the
-    # paper's recall/specificity definition.
+            print(f"  {label:<28} file not found: {e.filename}")
+            continue
+        overall = np.median(np.concatenate(list(by_id.values())))
+        print(f"  {label:<28} {overall:>6.3f}" + "".join(f"{np.median(v):>20.3f}" for v in by_id.values()))
     print()
 
 

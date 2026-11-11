@@ -3,7 +3,7 @@ scripts/annotate_themes.py — Annotate every response for every theme.
 
 Labels each free-text response (rows, in survey order) against each SAE theme
 (columns, in data/fidelity order) with GPT-4.1-mini and the identity-specific
-prompt in data/validation/annotate.txt. Writes data/annotations/{identity}_annotations.csv.
+prompt in prompts/annotate.txt (Figure S5). Writes data/annotations/{identity}_annotations.csv.
 
 Usage:
     python scripts/annotate_themes.py
@@ -21,11 +21,10 @@ load_dotenv()
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
-PROMPT_PATH = DATA_DIR / "validation" / "annotate.txt"
+sys.path.insert(0, str(ROOT / "src"))
 
-import hypothesaes.annotate as _ann
 from hypothesaes.annotate import annotate_texts_with_concepts
-from hypothesaes.utils import load_prompt as _stock_load_prompt
+from prompts import use_identity_specific_prompt
 
 IDENTITY_TEXT_COLS = {
     "race": "race_open",
@@ -33,11 +32,6 @@ IDENTITY_TEXT_COLS = {
     "sexual_orientation": "sexuality_open",
 }
 MAX_WORDS_PER_EXAMPLE = 128
-
-
-def use_identity_specific_prompt():
-    prompt = PROMPT_PATH.read_text()
-    _ann.load_prompt = lambda name: prompt if name == "annotate" else _stock_load_prompt(name)
 
 
 def annotate_identity(identity, model, n_workers):

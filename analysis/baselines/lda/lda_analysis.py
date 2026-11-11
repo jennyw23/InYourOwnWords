@@ -6,6 +6,7 @@ Preprocessing: lowercase + remove punctuation/numbers (no stopword removal).
 Post-training: top-50 high-frequency stopwords removed from displayed word lists.
 
 Pre-trained models are provided in lda_models/. Run with --overwrite to retrain.
+Rare topics have many tied word probabilities; tomotopy 0.14.0 orders them as in Tables S15-S17 as of 11/10/2026 on Apple Macbook.
 
 Usage:
     python lda/lda_analysis.py

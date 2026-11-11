@@ -143,7 +143,7 @@ def nested_f_test(df, outcome, base_vars, theme_cols):
         "outcome":     outcome,
         "adj_r2_base": round(adj_base, 4),
         "adj_r2_full": round(adj_full, 4),
-        "ratio":       round(ratio, 2),
+        "ratio":       ratio,
         "f_stat":      f_stat,
         "p_value":     p_value,
         "n":           int(base_m.nobs),
@@ -170,16 +170,17 @@ def run_identity(df, annotations, identity, bformula):
         r["identity"] = identity
         rows.append(r)
 
-    results = pd.DataFrame(rows)
-    valid   = results["p_value"].notna()
-    p_vals  = results.loc[valid, "p_value"].tolist()
-    df_p    = pd.DataFrame({"p-value": p_vals})
-    df_p    = benjamini_hochberg_correction(df_p)
-    results.loc[valid, "p_bh"] = df_p["BH_corrected_p"].values
-    results["stars"] = results["p_bh"].apply(
-        lambda p: significance_stars(p) if pd.notna(p) else ""
-    )
-    return results
+    return pd.DataFrame(rows)
+
+
+def pooled_bh(all_results):
+    """BH correction pooled across all outcome x identity tests (18 in the paper)."""
+    pooled = pd.concat(all_results.values(), ignore_index=True)
+    valid  = pooled["p_value"].notna()
+    df_p   = benjamini_hochberg_correction(pd.DataFrame({"p-value": pooled.loc[valid, "p_value"].values}))
+    pooled.loc[valid, "p_bh"] = df_p["BH_corrected_p"].values
+    pooled["stars"] = pooled["p_bh"].apply(lambda p: significance_stars(p) if pd.notna(p) else "")
+    return {identity: g.reset_index(drop=True) for identity, g in pooled.groupby("identity", sort=False)}
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -389,12 +390,14 @@ OUTCOME_LABELS = {
 def print_table(all_results):
     print("\n" + "─" * 70)
     print("Table S11 — Free-text themes improve explained variance in life outcomes")
-    print("(adj R²: base model → full model, relative increase, BH-corrected sig.)")
+    print("(adj R²: base model → full model, relative increase; p_BH pooled across all tests)")
     print("─" * 70)
-    header = f"  {'Identity':<22} {'Outcome':<28} {'Base':>6} {'Full':>6} {'Ratio':>7} {'Sig':>4}"
+    header = (f"  {'Identity':<22} {'Outcome':<28} {'Base':>6} {'Full':>6} {'Ratio':>7} "
+              f"{'p':>9} {'p_BH':>9} {'Sig':>4}")
     print(header)
     print("  " + "─" * (len(header) - 2))
 
+    n_tests = n_sig = 0
     for identity in IDENTITIES:
         if identity not in all_results:
             continue
@@ -403,22 +406,13 @@ def print_table(all_results):
             label = OUTCOME_LABELS.get(row["outcome"], row["outcome"])
             print(f"  {identity:<22} {label:<28} "
                   f"{row['adj_r2_base']:>6.2f} {row['adj_r2_full']:>6.2f} "
-                  f"{row['ratio']:>6.1f}x {row['stars']:>4}")
+                  f"{row['ratio']:>6.1f}x {row['p_value']:>9.2g} {row['p_bh']:>9.2g} {row['stars']:>4}")
         print()
+        n_tests += results["p_value"].notna().sum()
+        n_sig   += (results["stars"] != "").sum()
 
-    # Cross-identity BH correction (18 tests together)
-    all_rows = pd.concat(all_results.values(), ignore_index=True)
-    valid    = all_rows["p_value"].notna()
-    p_vals   = all_rows.loc[valid, "p_value"].tolist()
-    df_p     = pd.DataFrame({"p-value": p_vals})
-    df_p     = benjamini_hochberg_correction(df_p)
-    all_rows.loc[valid, "p_bh_all"] = df_p["BH_corrected_p"].values
-    all_rows["stars_all"] = all_rows["p_bh_all"].apply(
-        lambda p: significance_stars(p) if pd.notna(p) else ""
-    )
-    sig_count = (all_rows["stars_all"] != "").sum()
-    print(f"  {sig_count} of {len(all_rows)} outcome x identity tests significant "
-          f"after BH correction (alpha=0.05, 18 tests pooled)")
+    print(f"  {n_sig} of {n_tests} outcome x identity tests significant "
+          f"after BH correction (FDR = 0.05, {n_tests} tests pooled)")
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -440,6 +434,7 @@ if __name__ == "__main__":
         print(f"\nRunning nested F-tests for {identity} ({ann.shape[1]} themes) …")
         all_results[identity] = run_identity(df, ann, identity, bformula)
 
+    all_results = pooled_bh(all_results)
     print_table(all_results)
     print()
 

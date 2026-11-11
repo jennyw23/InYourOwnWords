@@ -96,7 +96,7 @@ if __name__ == "__main__":
     themes = {i: pd.read_csv(DATA_DIR / "fidelity" / f"{i}_interpretation_fidelity.csv")["interpretation"].astype(str).tolist()
               for i in IDENTITY_COLS}
     stock = (PROMPTS_DIR / "annotate.txt").read_text()
-    identity_specific = (DATA_DIR / "validation" / "annotate.txt").read_text()
+    identity_specific = (ROOT / "prompts" / "annotate.txt").read_text()
 
     # Interpretation (GPT-4o)
     samples = [interpretation_tokens(df, themes, s) for s in range(10)]
